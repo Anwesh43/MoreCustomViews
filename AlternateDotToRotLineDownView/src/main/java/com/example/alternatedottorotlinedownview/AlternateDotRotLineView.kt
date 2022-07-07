@@ -39,14 +39,18 @@ fun Canvas.drawAlternateDotRotLine(scale : Float, w : Float, h : Float, paint : 
     val sc3 : Float = scale.divideScale(2, parts)
     val sc4 : Float = scale.divideScale(3, parts)
     save()
-    translate(w / 2, h / 2 + (h / 2 + size) * sc4)
+    translate(w / 2, h / 2 + (h / 2 + size + r) * sc4)
     rotate(rot * sc3)
     for (j in 0..1) {
         save()
         scale(1f - 2 * j, 1f)
+        save()
         translate(-w / 2 - r + (w / 2  + r - size) * sc1, 0f)
         drawCircle(0f, 0f, r, paint)
-        drawLine(0f, 0f, -size * sc2, 0f, paint)
+        restore()
+        if (sc2 > 0f) {
+            drawLine(0f, 0f, -size * sc2, 0f, paint)
+        }
         restore()
     }
     restore()
