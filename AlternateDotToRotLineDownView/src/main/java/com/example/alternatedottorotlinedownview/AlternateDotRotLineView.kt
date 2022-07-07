@@ -212,4 +212,13 @@ class AlternateDotRotLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : AlternateDotRotLineView {
+            val view : AlternateDotRotLineView = AlternateDotRotLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
