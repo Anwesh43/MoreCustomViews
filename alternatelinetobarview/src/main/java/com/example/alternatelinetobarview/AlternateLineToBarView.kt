@@ -214,4 +214,13 @@ class AlternateLineToBarView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : AlternateLineToBarView {
+            val view : AlternateLineToBarView = AlternateLineToBarView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
