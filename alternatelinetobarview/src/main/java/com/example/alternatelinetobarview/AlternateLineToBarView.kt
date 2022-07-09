@@ -189,4 +189,27 @@ class AlternateLineToBarView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : AlternateLineToBarView) {
+
+        private val altb : AlternateLineToBar = AlternateLineToBar(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            altb.draw(canvas, paint)
+            animator.animate {
+                altb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            altb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
