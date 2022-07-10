@@ -16,3 +16,4 @@ rootProject.name = "MoreCustomViews"
 include ':app'
 include ':AlternateDotToRotLineDownView'
 include ':alternatelinetobarview'
+include ':branchdividefromlineview'
