@@ -3,13 +3,13 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.alternatelinetobarview.AlternateLineToBarView
+import com.example.branchdividefromlineview.BranchDivideFromLineView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
-        AlternateLineToBarView.create(this)
+        BranchDivideFromLineView.create(this)
         fullScreen()
     }
 }
