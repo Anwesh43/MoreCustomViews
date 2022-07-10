@@ -47,7 +47,7 @@ fun Canvas.drawBranchDivideFromLine(scale : Float, w : Float, h : Float, paint :
     for (j in 0..1) {
         save()
         rotate(deg * (1 - 2 * j))
-        drawLine(0f, 0f, 0f, size * sc2, paint)
+        drawLine(0f, 0f,size * sc2, 0f, paint)
         restore()
     }
     restore()
