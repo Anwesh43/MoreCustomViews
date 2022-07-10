@@ -213,4 +213,13 @@ class BranchDivideFromLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BranchDivideFromLineView {
+            val view : BranchDivideFromLineView = BranchDivideFromLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
