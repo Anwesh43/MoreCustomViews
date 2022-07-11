@@ -186,4 +186,27 @@ class BallMoveLineJoinView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BallMoveLineJoinView) {
+
+        private val bmlj : BallMoveLineJoin = BallMoveLineJoin(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bmlj.draw(canvas, paint)
+            animator.animate {
+                bmlj.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bmlj.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
