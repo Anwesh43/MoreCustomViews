@@ -211,4 +211,13 @@ class BallMoveLineJoinView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BallMoveLineJoinView {
+            val view : BallMoveLineJoinView = BallMoveLineJoinView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
