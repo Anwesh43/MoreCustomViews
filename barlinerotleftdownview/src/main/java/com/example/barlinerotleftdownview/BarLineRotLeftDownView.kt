@@ -186,4 +186,27 @@ class BarLineRotLeftDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BarLineRotLeftDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val blrld : BarLineRotLeftDown = BarLineRotLeftDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            blrld.draw(canvas, paint)
+            animator.animate {
+                blrld.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            blrld.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
