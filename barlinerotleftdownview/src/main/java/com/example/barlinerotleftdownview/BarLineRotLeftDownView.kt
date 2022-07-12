@@ -44,7 +44,9 @@ fun Canvas.drawBarLineRotLeftDown(scale : Float, w : Float, h : Float, paint : P
         translate((size / 2), 0f)
         rotate(deg * sc3)
         drawRect(RectF(-size / 2, -size / 4, -size / 2 + size * 0.5f * sc1, size / 4), paint)
-        drawLine(0f, 0f,size * 0.5f * sc2, 0f, paint)
+        if (sc2 > 0f) {
+            drawLine(0f, 0f, size * 0.5f * sc2, 0f, paint)
+        }
         restore()
     }
     restore()
