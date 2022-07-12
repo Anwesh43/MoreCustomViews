@@ -3,7 +3,6 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.ballmovelinejoinview.BallMoveLineJoinView
 import com.example.barlinerotleftdownview.BarLineRotLeftDownView
 
 class MainActivity : AppCompatActivity() {
