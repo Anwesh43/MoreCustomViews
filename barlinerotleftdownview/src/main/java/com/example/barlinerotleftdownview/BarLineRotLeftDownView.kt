@@ -211,4 +211,12 @@ class BarLineRotLeftDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : BarLineRotLeftDownView {
+            val view : BarLineRotLeftDownView = BarLineRotLeftDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
