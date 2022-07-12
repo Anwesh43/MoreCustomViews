@@ -61,14 +61,16 @@ fun Canvas.drawBLRLDNode(i : Int, scale : Float, paint : Paint) {
 
 class BarLineRotLeftDownView(ctx : Context) : View(ctx) {
 
-    override fun onDraw(canvas : Canvas) {
+    private val renderer : Renderer = Renderer(this)
 
+    override fun onDraw(canvas : Canvas) {
+        renderer.render(canvas)
     }
 
     override fun onTouchEvent(event : MotionEvent) : Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-
+                renderer.handleTap()
             }
         }
         return true
@@ -193,7 +195,7 @@ class BarLineRotLeftDownView(ctx : Context) : View(ctx) {
         private val blrld : BarLineRotLeftDown = BarLineRotLeftDown(0)
         private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-        fun render(canvas : Canvas, paint : Paint) {
+        fun render(canvas : Canvas) {
             canvas.drawColor(backColor)
             blrld.draw(canvas, paint)
             animator.animate {
