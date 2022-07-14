@@ -3,13 +3,13 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.barlinerotleftdownview.BarLineRotLeftDownView
+import com.example.biarrowshiftrotmoveview.BiArrowShiftRotMoveView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
-        BarLineRotLeftDownView.create(this)
+        BiArrowShiftRotMoveView.create(this)
         fullScreen()
     }
 }
