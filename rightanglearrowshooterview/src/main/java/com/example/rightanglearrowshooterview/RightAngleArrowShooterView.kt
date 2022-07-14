@@ -216,4 +216,13 @@ class RightAngleArrowShootView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : RightAngleArrowShootView {
+            val view : RightAngleArrowShootView = RightAngleArrowShootView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
