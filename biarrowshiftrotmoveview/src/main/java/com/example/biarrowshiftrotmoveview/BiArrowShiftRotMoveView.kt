@@ -122,4 +122,45 @@ class BiArrowShiftRotMoveView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class BASRMNode(var i : Int, val state : State = State()) {
+
+        private var next : BASRMNode? = null
+        private var prev : BASRMNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size ) {
+                next = BASRMNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawBASRMNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : BASRMNode {
+            var curr : BASRMNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
