@@ -43,9 +43,15 @@ fun Canvas.drawBiArrowShiftRotMove(scale : Float, w : Float, h : Float, paint : 
     rotate(deg * sc3)
     for (j in 0..1) {
         save()
-        translate((w / 2) * (1f - sc1) + (h / 2) * (1 - 2 * j) * sc4, arrowSize * (1f - 2 * j))
-        drawLine(0f, 0f, size, 0f, paint)
-        drawLine(0f, 0f, arrowSize * sc2, -arrowSize * sc2, paint)
+        translate(-size * (1f - 2 * j) * sc1 +((w / 2 + size / 2) * (1f - sc1) - (h / 2 + size / 2) * sc4) * (1 - 2 * j),  arrowSize * (1f - 2 * j))
+        drawLine(0f, 0f, size * (1f - 2 * j), 0f, paint)
+        drawLine(
+            0f,
+            0f,
+            arrowSize * sc2 * (1f - 2 * j),
+            -arrowSize * (1f - 2 * j) * sc2,
+            paint
+        )
         restore()
     }
     restore()
