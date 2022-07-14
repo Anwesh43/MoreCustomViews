@@ -24,7 +24,7 @@ val backColor : Int = Color.parseColor("#BDBDBD")
 val deg : Float = 90f
 val sizeFactor : Float = 5.9f
 val strokeFactor : Float = 90f
-val arrowFactor : Float = 13.9f
+val arrowFactor : Float = 4.9f
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())

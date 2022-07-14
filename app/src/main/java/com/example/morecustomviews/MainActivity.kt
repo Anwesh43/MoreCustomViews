@@ -3,7 +3,6 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.biarrowshiftrotmoveview.BiArrowShiftRotMoveView
 import com.example.rightanglearrowshooterview.RightAngleArrowShootView
 
 class MainActivity : AppCompatActivity() {
