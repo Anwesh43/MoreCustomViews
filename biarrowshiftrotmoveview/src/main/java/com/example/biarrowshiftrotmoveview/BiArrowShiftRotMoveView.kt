@@ -211,4 +211,12 @@ class BiArrowShiftRotMoveView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : BiArrowShiftRotMoveView {
+            val view : BiArrowShiftRotMoveView = BiArrowShiftRotMoveView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
