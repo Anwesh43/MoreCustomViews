@@ -186,4 +186,27 @@ class BiArrowShiftRotMoveView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiArrowShiftRotMoveView) {
+
+        private val basrm : BiArrowShiftRotMove = BiArrowShiftRotMove(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas, ) {
+            canvas.drawColor(backColor)
+            basrm.draw(canvas, paint)
+            animator.animate {
+                basrm.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            basrm.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
