@@ -178,4 +178,27 @@ class ReflectingBallLineMoveView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ReflectingBallLineMoveView) {
+
+        private val rblm : ReflectingBallLineMove = ReflectingBallLineMove(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rblm.draw(canvas, paint)
+            animator.animate {
+                rblm.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rblm.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
