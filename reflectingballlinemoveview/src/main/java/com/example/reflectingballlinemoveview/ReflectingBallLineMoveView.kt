@@ -203,4 +203,13 @@ class ReflectingBallLineMoveView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : ReflectingBallLineMoveView {
+            val view : ReflectingBallLineMoveView = ReflectingBallLineMoveView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
