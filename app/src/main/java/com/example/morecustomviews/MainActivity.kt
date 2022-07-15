@@ -3,13 +3,13 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.rightanglearrowshooterview.RightAngleArrowShootView
+import com.example.reflectingballlinemoveview.ReflectingBallLineMoveView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
-        RightAngleArrowShootView.create(this)
+        ReflectingBallLineMoveView.create(this)
         fullScreen()
     }
 }
