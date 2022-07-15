@@ -38,7 +38,9 @@ fun Canvas.drawReflectingBallLineMove(scale : Float , w : Float, h : Float, pain
     val ballR : Float = Math.min(w, h) / ballSizeFactor
     save()
     translate(w / 2, h / 2)
-    drawLine(0f, -size * 0.5f * (sc1 - sc3), 0f, size * 0.5f * (sc1 - sc3), paint)
+    if (sc1 > 0 && sc3 < 1) {
+        drawLine(-ballR, -size * 0.5f * (sc1 - sc3), -ballR, size * 0.5f * (sc1 - sc3), paint)
+    }
     drawCircle((w / 2 + ballR) * (1 - sc2 + sc4), (h / 2 + ballR) * (-1 + sc2 + sc4), ballR, paint)
     restore()
 }
