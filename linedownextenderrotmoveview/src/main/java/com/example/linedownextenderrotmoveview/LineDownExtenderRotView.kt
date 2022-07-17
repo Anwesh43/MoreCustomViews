@@ -181,4 +181,27 @@ class LineDownExtenderRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineDownExtenderRotView) {
+
+        private val lder : LineDownExtenderRot = LineDownExtenderRot(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lder.draw(canvas, paint)
+            animator.animate {
+                lder.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lder.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
