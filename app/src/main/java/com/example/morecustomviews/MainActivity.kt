@@ -3,13 +3,13 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.reflectingballlinemoveview.ReflectingBallLineMoveView
+import com.example.linedownextenderrotmoveview.LineDownExtenderRotView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
-        ReflectingBallLineMoveView.create(this)
+        LineDownExtenderRotView.create(this)
         fullScreen()
     }
 }
