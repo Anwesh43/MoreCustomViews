@@ -206,4 +206,13 @@ class LineDownExtenderRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineDownExtenderRotView {
+            val view : LineDownExtenderRotView = LineDownExtenderRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
