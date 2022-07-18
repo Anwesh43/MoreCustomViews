@@ -1,8 +1,8 @@
 package com.example.balllineslidedownview
 
+import android.app.Activity
 import android.view.View
 import android.view.MotionEvent
-import android.app.Activity
 import android.content.Context
 import android.graphics.Paint
 import android.graphics.Color
@@ -200,7 +200,7 @@ class BallLineSlideDownView(ctx : Context) : View(ctx) {
 
         fun render(canvas : Canvas) {
             canvas.drawColor(backColor)
-            blsd.draw(canvas)
+            blsd.draw(canvas, paint)
             animator.animate {
                 blsd.update {
                     animator.stop()
@@ -212,6 +212,15 @@ class BallLineSlideDownView(ctx : Context) : View(ctx) {
             blsd.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+
+        fun create(activity : Activity) : BallLineSlideDownView {
+            val view : BallLineSlideDownView = BallLineSlideDownView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }
