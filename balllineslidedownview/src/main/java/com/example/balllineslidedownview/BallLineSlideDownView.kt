@@ -189,4 +189,26 @@ class BallLineSlideDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BallLineSlideDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val blsd : BallLineSlideDown = BallLineSlideDown(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            blsd.draw(canvas, paint)
+            animator.animate {
+                blsd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            blsd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
