@@ -37,7 +37,7 @@ fun Canvas.drawRightAngleBarUp(scale : Float, w : Float, h : Float, paint : Pain
     val sc3 : Float = scale.divideScale(2, parts)
     val sc4 : Float = scale.divideScale(3, parts)
     save()
-    translate(w / 2, h / 2 + (h / 2 + size) * sc1)
+    translate(w / 2, h / 2 + (h / 2 + size) * sc4)
     rotate(deg * sc3)
     for (j in 0..1) {
         save()
