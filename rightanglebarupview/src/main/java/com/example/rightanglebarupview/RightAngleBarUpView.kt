@@ -209,4 +209,13 @@ class RightAngleBarUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : RightAngleBarUpView {
+            val view : RightAngleBarUpView = RightAngleBarUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
