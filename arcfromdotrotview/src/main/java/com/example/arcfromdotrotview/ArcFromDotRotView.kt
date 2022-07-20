@@ -22,7 +22,7 @@ val parts : Int = 4
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
-val rFactor : Float = 11.2f
+val rFactor : Float = 19.2f
 val backColor : Int = Color.parseColor("#BDBDBD")
 val deg : Float = 90f
 val gapDeg : Float = 180f
@@ -41,14 +41,16 @@ fun Canvas.drawArcFromDotRot(scale : Float, w : Float, h : Float, paint : Paint)
     val sc4 : Float = scale.divideScale(3, parts)
     save()
     translate(w / 2 + (w / 2 + size) * sc4, h / 2)
-    rotate(deg * sc3)
+    rotate(deg * sc3 + deg * 2 * sc4)
     for (j in 0..1) {
         save()
         rotate(gapDeg * j)
         save()
+        paint.style = Paint.Style.STROKE
         drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 0f, deg * sc2, false, paint)
         save()
         translate(size / 2, 0f)
+        paint.style = Paint.Style.FILL
         drawCircle(0f, 0f, r * sc1, paint)
         restore()
         restore()
