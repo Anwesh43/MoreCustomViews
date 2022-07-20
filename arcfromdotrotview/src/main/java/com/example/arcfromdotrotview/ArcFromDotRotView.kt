@@ -191,4 +191,27 @@ class ArcFromDotRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ArcFromDotRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val afdr : ArcFromDotRot = ArcFromDotRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            afdr.draw(canvas, paint)
+            animator.animate {
+                afdr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            afdr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
