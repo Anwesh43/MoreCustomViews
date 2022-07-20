@@ -216,4 +216,13 @@ class ArcFromDotRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : ArcFromDotRotView {
+            val view : ArcFromDotRotView = ArcFromDotRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
