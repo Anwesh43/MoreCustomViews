@@ -3,14 +3,14 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.arcfromdotrotview.ArcFromDotRotView
+import com.example.avatariconrotview.AvatarIconRotView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //LineDownExtenderRotView.create(this)
-        ArcFromDotRotView.create(this)
+        AvatarIconRotView.create(this)
         fullScreen()
     }
 }
