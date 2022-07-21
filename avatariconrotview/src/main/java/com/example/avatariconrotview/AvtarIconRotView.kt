@@ -193,4 +193,27 @@ class AvatarIconRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : AvatarIconRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val air : AvatarIconRot = AvatarIconRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            air.draw(canvas, paint)
+            animator.animate {
+                air.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            air.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
