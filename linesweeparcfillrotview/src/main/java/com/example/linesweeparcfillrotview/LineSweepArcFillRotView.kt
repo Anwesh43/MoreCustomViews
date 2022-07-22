@@ -182,4 +182,27 @@ class LineSweepArcFillRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineSweepArcFillRotView) {
+
+        private val lsafr : LineSweepArcFill = LineSweepArcFill(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lsafr.draw(canvas, paint)
+            animator.animate {
+                lsafr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lsafr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
