@@ -42,9 +42,15 @@ fun Canvas.drawLineSweepArcFill(scale : Float, w : Float, h : Float, paint : Pai
     save()
     translate(w / 2 + (w / 2 + size) * sc5, h / 2)
     rotate(deg * sc4)
-    drawLine(size, 0f, size - (size - r) * sc1, 0f, paint)
-    drawArc(RectF(-r, -r, r, r), 0f, 180f * sc2, false, paint)
-    drawLine(-r, 0f, -r - (size - r) * sc3, 0f, paint)
+    if (sc1 > 0f) {
+        drawLine(size, 0f, size - (size - r) * sc1, 0f, paint)
+    }
+    if (sc2 > 0f) {
+        drawArc(RectF(-r, -r, r, r), 0f, 180f * sc2, false, paint)
+    }
+    if (sc3 > 0f) {
+        drawLine(-r, 0f, -r - (size - r) * sc3, 0f, paint)
+    }
     restore()
 }
 
