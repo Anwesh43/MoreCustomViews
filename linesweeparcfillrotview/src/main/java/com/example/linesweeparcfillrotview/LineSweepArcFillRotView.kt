@@ -41,10 +41,10 @@ fun Canvas.drawLineSweepArcFill(scale : Float, w : Float, h : Float, paint : Pai
     val r : Float = Math.min(w, h) / rFactor
     save()
     translate(w / 2 + (w / 2 + size) * sc5, h / 2)
-    rotate(-deg * sc4)
+    rotate(deg * sc4)
     drawLine(size, 0f, size - (size - r) * sc1, 0f, paint)
     drawArc(RectF(-r, -r, r, r), 0f, 180f * sc2, false, paint)
-    drawLine(r, 0f, r + (size - r) * sc3, 0f, paint)
+    drawLine(-r, 0f, -r - (size - r) * sc3, 0f, paint)
     restore()
 }
 
@@ -54,6 +54,7 @@ fun Canvas.drawLSAFRNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
     drawLineSweepArcFill(scale, w, h, paint)
 }
 
@@ -111,6 +112,7 @@ class LineSweepArcFillRotView(ctx : Context) : View(ctx) {
         fun start() {
             if (!animated) {
                 animated = true
+                view.postInvalidate()
             }
         }
 
