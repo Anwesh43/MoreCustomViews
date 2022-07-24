@@ -210,4 +210,13 @@ class CutSideUpBarView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : CutSideUpBarView {
+            val view : CutSideUpBarView = CutSideUpBarView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
