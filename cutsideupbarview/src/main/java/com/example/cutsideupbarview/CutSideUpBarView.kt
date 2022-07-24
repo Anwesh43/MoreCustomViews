@@ -185,4 +185,27 @@ class CutSideUpBarView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : CutSideUpBarView) {
+
+        private val csub : CutSideUpBar = CutSideUpBar(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            csub.draw(canvas, paint)
+            animator.animate {
+                csub.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            csub.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
