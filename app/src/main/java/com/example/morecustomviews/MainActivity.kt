@@ -3,7 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.linesweeparcfillrotview.LineSweepArcFillRotView
+import com.example.cutsideupbarview.CutSideUpBarView
 
 
 class MainActivity : AppCompatActivity() {
@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //LineDownExtenderRotView.create(this)
-        LineSweepArcFillRotView.create(this)
+        CutSideUpBarView.create(this)
         fullScreen()
     }
 }
