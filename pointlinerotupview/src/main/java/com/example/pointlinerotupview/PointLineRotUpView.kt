@@ -26,7 +26,35 @@ val sizeFactor : Float = 4.9f
 val pointSizeFactor : Float = 14.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
+val deg : Float = 45f
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
+
+fun Canvas.drawClippedTriangle(size : Float, sc : Float, paint : Paint) {
+    save()
+    val path : Path = Path()
+    path.moveTo(-size / 2, 0f)
+    path.lineTo(0f, -size)
+    path.lineTo(size / 2, 0f)
+    path.lineTo(-size / 2, 0f)
+    clipPath(path)
+    drawRect(RectF(-size / 2, -size * sc, size / 2, 0f), paint)
+    restore()
+}
+
+fun Canvas.drawPointLineRotUp(scale : Float, w : Float, h : Float, paint : Paint) {
+    val sc1 : Float = scale.divideScale(0, parts)
+    val sc2 : Float = scale.divideScale(1, parts)
+    val sc3 : Float = scale.divideScale(2, parts)
+    val sc4 : Float = scale.divideScale(3, parts)
+    val size : Float = Math.min(w, h) / sizeFactor
+    val pointsize : Float = Math.min(w, h) / pointSizeFactor
+    save()
+    translate(w / 2, h / 2)
+    rotate(deg * (1 - sc3))
+    drawLine(0f, 0f, 0f, -size * sc1, paint)
+    drawClippedTriangle(pointsize, sc2, paint)
+    restore()
+}
