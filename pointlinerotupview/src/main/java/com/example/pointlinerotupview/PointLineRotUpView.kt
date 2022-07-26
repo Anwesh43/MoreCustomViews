@@ -55,7 +55,10 @@ fun Canvas.drawPointLineRotUp(scale : Float, w : Float, h : Float, paint : Paint
     translate(w / 2, h / 2 - (h / 2 * sc4))
     rotate(deg * (1 - sc3))
     drawLine(0f, 0f, 0f, -size * sc1, paint)
+    save()
+    translate(0f, -size)
     drawClippedTriangle(pointsize, sc2, paint)
+    restore()
     restore()
 }
 
