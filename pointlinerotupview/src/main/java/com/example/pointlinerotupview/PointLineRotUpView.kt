@@ -194,4 +194,27 @@ class PointLineRotUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : PointLineRotUpView) {
+
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val plru : PointLineRotUp = PointLineRotUp(0)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            plru.draw(canvas, paint)
+            animator.animate {
+                plru.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            plru.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
