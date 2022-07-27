@@ -183,4 +183,27 @@ class LineExpandArcShiftView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineExpandArcShiftView) {
+
+        private var leas : LineExpandArcShift = LineExpandArcShift(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            leas.draw(canvas, paint)
+            animator.animate {
+                leas.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            leas.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
