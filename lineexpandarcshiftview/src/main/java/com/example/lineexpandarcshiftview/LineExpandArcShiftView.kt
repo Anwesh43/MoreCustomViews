@@ -208,4 +208,13 @@ class LineExpandArcShiftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineExpandArcShiftView {
+            val view : LineExpandArcShiftView = LineExpandArcShiftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
