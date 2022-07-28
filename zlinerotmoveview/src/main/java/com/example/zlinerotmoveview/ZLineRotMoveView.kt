@@ -213,4 +213,13 @@ class ZLineRotMoveView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : ZLineRotMoveView {
+            val view : ZLineRotMoveView = ZLineRotMoveView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
