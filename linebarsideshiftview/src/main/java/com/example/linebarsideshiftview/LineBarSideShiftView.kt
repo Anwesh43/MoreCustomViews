@@ -209,4 +209,12 @@ class LineBarSideShiftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : LineBarSideShiftView {
+            val view : LineBarSideShiftView = LineBarSideShiftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
