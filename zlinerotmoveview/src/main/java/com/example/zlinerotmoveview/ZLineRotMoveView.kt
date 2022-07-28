@@ -19,7 +19,7 @@ val colors : Array<Int> = arrayOf(
     Color.parseColor(it)
 }.toTypedArray()
 val parts : Int = 4
-val scGap : Float = 0.04f
+val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val delay : Long = 20
@@ -44,8 +44,11 @@ fun Canvas.drawZLineRotMove(scale : Float, w : Float, h : Float, paint : Paint) 
         scale(1f - 2 * j, 1f - 2 * j)
         for (k in 0..1) {
             save()
+            translate(size * 0.5f * sc1, 0f)
             rotate(-rot * sc2 * k)
-            drawLine(0f, 0f, size * 0.5f * sc1, 0f, paint)
+            if (sc1 > 0f) {
+                drawLine(-size * 0.5f * sc1, 0f, 0f, 0f, paint)
+            }
             restore()
         }
         restore()
