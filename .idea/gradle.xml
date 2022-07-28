@@ -30,6 +30,7 @@
             <option value="$PROJECT_DIR$/reflectingballlinemoveview" />
             <option value="$PROJECT_DIR$/rightanglearrowshooterview" />
             <option value="$PROJECT_DIR$/rightanglebarupview" />
+            <option value="$PROJECT_DIR$/zlinerotmoveview" />
           </set>
         </option>
       </GradleProjectSettings>
