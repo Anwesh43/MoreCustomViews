@@ -184,4 +184,27 @@ class LineBarSideShiftView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : View, var animated : Boolean = false) {
+
+        private val animator : Animator = Animator(view)
+        private val lbss : LineBarSideShift = LineBarSideShift(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lbss.draw(canvas, paint)
+            animator.animate {
+                lbss.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbss.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
