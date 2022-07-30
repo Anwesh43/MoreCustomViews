@@ -44,7 +44,9 @@ fun Canvas.drawCircleAttachedLineShooter(scale : Float, w : Float, h : Float, pa
     drawCircle(0f, 0f, r * sc1, paint)
     save()
     translate(0f, -r - (h / 2) * sc4)
-    drawLine(0f, 0f, 0f, -size * sc2, paint)
+    if (sc2 > 0f) {
+        drawLine(0f, 0f, 0f, -size * sc2, paint)
+    }
     restore()
     restore()
 }
