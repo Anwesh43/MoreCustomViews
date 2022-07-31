@@ -214,4 +214,13 @@ class LineDoubleSquareHolderView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineDoubleSquareHolderView {
+            val view : LineDoubleSquareHolderView = LineDoubleSquareHolderView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
