@@ -42,12 +42,16 @@ fun Canvas.drawLineDoubleSquareHolder(scale : Float, w : Float, h : Float, paint
     save()
     translate(w / 2 + (w / 2 + size) * sc5, h / 2)
     rotate(rot * sc4)
-    drawLine(0f, size / 2 - size * sc1, 0f, size / 2, paint)
-    drawLine(-size * 0.5f * sc2, -size / 2, size * 0.5f * sc2, -size / 2, paint)
+    if (sc1 > 0f) {
+        drawLine(0f, size / 2 - size * sc1, 0f, size / 2, paint)
+    }
+    if (sc2 > 0f) {
+        drawLine(-size * 0.5f * sc2, -size / 2, size * 0.5f * sc2, -size / 2, paint)
+    }
     for (j in 0..1) {
         save()
         scale(1f - 2 * j, 1f)
-        translate(-size / 2 + sqSize / 2, -h / 2 - sqSize / 2 + (h / 2 - size - sqSize / 2) * sc3)
+        translate(-size / 2 + sqSize / 2, -h / 2 - sqSize / 2 + (h / 2 - size / 2) * sc3)
         drawRect(RectF(-sqSize / 2, -sqSize / 2, sqSize / 2, sqSize / 2), paint)
         restore()
     }
