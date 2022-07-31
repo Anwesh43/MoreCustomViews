@@ -211,4 +211,13 @@ class HalfLineBarDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : HalfLineBarDownView {
+            val view : HalfLineBarDownView = HalfLineBarDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
