@@ -37,13 +37,15 @@ fun Canvas.drawHalfLineBarDown(scale : Float, w : Float, h : Float, paint : Pain
     val sc3 : Float = scale.divideScale(2, parts)
     val sc4 : Float = scale.divideScale(3, parts)
     save()
-    translate(w / 2, h / 2)
+    translate(w / 2, h / 2 + (h / 2 + size) * sc4)
     for (j in 0..1) {
         save()
         scale(1f - 2 * j, 1f)
         save()
         rotate(-rot * sc3)
-        drawLine(0f, 0f, size * 0.5f * sc1, 0f, paint)
+        if (sc1 > 0f) {
+            drawLine(0f, 0f, size * 0.5f * sc1, 0f, paint)
+        }
         restore()
         drawRect(RectF(0f, 0f, size * 0.5f * sc2, size * 0.25f), paint)
         restore()
