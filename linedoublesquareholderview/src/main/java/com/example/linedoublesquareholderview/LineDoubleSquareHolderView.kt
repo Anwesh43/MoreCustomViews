@@ -189,4 +189,27 @@ class LineDoubleSquareHolderView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineDoubleSquareHolderView) {
+
+        private val ldsh : LineDoubleSquareHolder = LineDoubleSquareHolder(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ldsh.draw(canvas, paint)
+            animator.animate {
+                ldsh.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ldsh.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
