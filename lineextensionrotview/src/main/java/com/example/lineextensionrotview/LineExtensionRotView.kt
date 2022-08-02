@@ -203,4 +203,13 @@ class LineExtensionRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineExtensionRotView {
+            val view : LineExtensionRotView = LineExtensionRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
