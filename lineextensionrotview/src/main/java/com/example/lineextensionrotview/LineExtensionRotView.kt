@@ -36,10 +36,14 @@ fun Canvas.drawLineExtensionRot(scale : Float, w : Float, h : Float, paint : Pai
     val sc3 : Float = scale.divideScale(2, parts)
     val sc4 : Float = scale.divideScale(3, parts)
     save()
-    translate(w / 2 + (w / 2 + size) * sc3, h / 2)
+    translate(w / 2 + (w / 2 + size) * sc4, h / 2)
     rotate(rot * sc3)
-    drawLine(0f, 0f, size * sc1, -size * sc1, paint)
-    drawLine(0f, 0f, 0f, size * sc2, paint)
+    if (sc1 > 0f) {
+        drawLine(0f, 0f, size * 0.3f * sc1, -size * 0.3f * sc1, paint)
+    }
+    if (sc2 > 0f) {
+        drawLine(0f, 0f, 0f, size * sc2, paint)
+    }
     restore()
 }
 
