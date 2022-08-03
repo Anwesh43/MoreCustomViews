@@ -47,7 +47,9 @@ fun Canvas.drawHalfArcAboveSq(scale : Float, w : Float, h : Float, paint : Paint
         save()
         scale(1f - 2 * j, 1f)
         translate(-size / 2, size / 2)
-        drawLine(0f, 0f, (-size / 3) * sc3, 0f, paint)
+        if (sc3 > 0f) {
+            drawLine(0f, 0f, (-size / 3) * sc3, 0f, paint)
+        }
         restore()
     }
     restore()
