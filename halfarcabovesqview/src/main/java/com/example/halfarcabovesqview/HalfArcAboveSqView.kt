@@ -188,4 +188,26 @@ class HalfArcAboveSqView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : HalfArcAboveSqView) {
+        private val animator : Animator = Animator(view)
+        private val haas : HalfArcAboveSq = HalfArcAboveSq(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            haas.draw(canvas, paint)
+            animator.animate {
+                haas.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            haas.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
