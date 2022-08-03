@@ -212,4 +212,13 @@ class HalfArcAboveSqView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : HalfArcAboveSqView {
+            val view : HalfArcAboveSqView = HalfArcAboveSqView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
