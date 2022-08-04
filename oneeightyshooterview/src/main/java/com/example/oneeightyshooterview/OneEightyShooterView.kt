@@ -48,7 +48,9 @@ fun Canvas.drawOneEightyShooter(scale : Float, w : Float, h : Float, paint : Pai
         rotate(-rot * sc2 * j)
         save()
         translate(0f, (w / 2) * sc6)
-        drawLine(0f, 0f, 0f, size * sc2, paint)
+        if (sc1 > 0f) {
+            drawLine(0f, 0f, 0f, size * sc1, paint)
+        }
         restore()
         drawCircle(0f, (h / 2 + r ) * sc4, r * sc3, paint)
         restore()
