@@ -212,4 +212,13 @@ class VBallLineMoverView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : VBallLineMoverView {
+            val view : VBallLineMoverView = VBallLineMoverView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
