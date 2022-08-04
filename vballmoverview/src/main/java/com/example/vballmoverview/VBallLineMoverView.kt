@@ -18,7 +18,7 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val parts : Int = 4
+val parts : Int = 5
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
@@ -37,18 +37,20 @@ fun Canvas.drawVBallLineMover(scale : Float, w : Float, h : Float, paint : Paint
     val sc2 : Float = scale.divideScale(1, parts)
     val sc3 : Float = scale.divideScale(2, parts)
     val sc4 : Float = scale.divideScale(3, parts)
+    val sc5 : Float = scale.divideScale(4, parts)
     val r : Float = Math.min(w, h) / rFactor
     val a : Float = size * sc2
+    val x : Float = a / 2 - (size / 2) * sc4
     save()
-    translate(w / 2 + (w / 2 + size + r) * sc4, h / 2)
+    translate(w / 2 + (w / 2 + size + r) * sc5, h / 2)
     rotate(-deg * sc3)
     for (j in 0..1) {
         save()
         scale(1f - 2 * j, 1f)
         if (sc2 > 0f) {
-            drawLine(0f, 0f, a, -a, paint)
+            drawLine(0f, 0f, x, -a, paint)
         }
-        drawCircle(a, -a, r * sc1, paint)
+        drawCircle(x, -a, r * sc1, paint)
         restore()
     }
     restore()
