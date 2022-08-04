@@ -52,7 +52,9 @@ fun Canvas.drawOneEightyShooter(scale : Float, w : Float, h : Float, paint : Pai
             drawLine(0f, 0f, 0f, size * sc1, paint)
         }
         restore()
-        drawCircle(0f, (h / 2 + r ) * sc4, r * sc3, paint)
+        if (sc5 <= 0f) {
+            drawCircle(0f, (h / 2 + r) * sc4, r * sc3, paint)
+        }
         restore()
     }
     restore()
