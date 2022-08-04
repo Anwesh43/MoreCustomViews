@@ -216,4 +216,13 @@ class OneEightyShooterView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : OneEightyShooterView {
+            val view : OneEightyShooterView = OneEightyShooterView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
