@@ -40,12 +40,14 @@ fun Canvas.drawVBallLineMover(scale : Float, w : Float, h : Float, paint : Paint
     val r : Float = Math.min(w, h) / rFactor
     val a : Float = size * sc2
     save()
-    translate(w / 2, h / 2 + (h / 2 + size + r) * sc4)
-    rotate(deg * sc3)
+    translate(w / 2 + (w / 2 + size + r) * sc4, h / 2)
+    rotate(-deg * sc3)
     for (j in 0..1) {
         save()
         scale(1f - 2 * j, 1f)
-        drawLine(0f, 0f, a, -a, paint)
+        if (sc2 > 0f) {
+            drawLine(0f, 0f, a, -a, paint)
+        }
         drawCircle(a, -a, r * sc1, paint)
         restore()
     }
