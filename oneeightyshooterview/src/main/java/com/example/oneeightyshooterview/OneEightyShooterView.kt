@@ -191,4 +191,27 @@ class OneEightyShooterView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : OneEightyShooterView) {
+
+        private val animator : Animator = Animator(view)
+        private val oes : OneEightyShooter = OneEightyShooter(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            oes.draw(canvas, paint)
+            animator.animate {
+                oes.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            oes.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
