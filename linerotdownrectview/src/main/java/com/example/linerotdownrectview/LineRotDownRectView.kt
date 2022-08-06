@@ -19,7 +19,7 @@ val colors : Array<Int> = arrayOf(
     Color.parseColor(it)
 }.toTypedArray()
 val parts : Int = 4
-val scGap : Float = 0.04f / parts
+val scGap : Float = 0.03f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val rot : Float = 90f
@@ -41,10 +41,12 @@ fun Canvas.drawLineRotDownRect(scale : Float, w : Float, h : Float, paint : Pain
     for (j in 0..1) {
         save()
         rotate(rot * j * sc2)
-        drawLine(0f, 0f, size * sc1, 0f, paint)
+        if (sc1 > 0f) {
+            drawLine(0f, 0f, size * sc1, 0f, paint)
+        }
         restore()
     }
-    drawRect(RectF(0f, -size * 0.5f * sc3, size, 0f), paint)
+    drawRect(RectF(-paint.strokeWidth / 2, -size * 0.5f * sc3, size + paint.strokeWidth, 0f), paint)
     restore()
 }
 
