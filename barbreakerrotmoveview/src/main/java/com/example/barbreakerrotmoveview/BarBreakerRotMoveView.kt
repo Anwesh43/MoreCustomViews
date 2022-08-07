@@ -26,3 +26,4 @@ val lBarHFactor : Float = 7.8f
 val rot : Float = 90f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
+
