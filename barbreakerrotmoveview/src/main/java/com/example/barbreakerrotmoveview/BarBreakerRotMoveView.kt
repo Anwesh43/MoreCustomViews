@@ -30,3 +30,29 @@ val backColor : Int = Color.parseColor("#BDBDBD")
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
+
+fun Canvas.drawBarBreakRotMove(scale : Float, w : Float, h : Float, paint : Paint) {
+    val size : Float = Math.min(w, h) / sizeFactor
+    val barH : Float = Math.min(w, h) / barHFactor
+    val lBarH : Float = Math.min(w, h) / lBarHFactor
+    val sc1 : Float = scale.divideScale(0, parts)
+    val sc2 : Float = scale.divideScale(1, parts)
+    val sc3 : Float = scale.divideScale(2, parts)
+    val sc4 : Float = scale.divideScale(3, parts)
+    save()
+    translate(w / 2 - (w / 2 + barH) * sc4, h / 2)
+    rotate(rot * sc3)
+    drawRect(RectF(0f, -barH / 2, size * sc1, barH / 2), paint)
+    save()
+    translate(size - barH, barH / 2)
+    drawRect(RectF(0f, 0f, barH, lBarH * sc2), paint)
+    restore()
+    restore()
+}
+
+fun Canvas.drawBBRMNode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    paint.color = colors[i]
+    drawBarBreakRotMove(scale, w, h, paint)
+}
