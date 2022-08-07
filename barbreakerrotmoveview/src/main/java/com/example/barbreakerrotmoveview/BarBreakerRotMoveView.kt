@@ -19,10 +19,10 @@ val colors : Array<Int> = arrayOf(
     Color.parseColor(it)
 }.toTypedArray()
 val parts : Int = 4
-val scGap : Float = 0.03f / parts
+val scGap : Float = 0.038f / parts
 val sizeFactor : Float = 4.9f
-val barHFactor : Float = 11.2f
-val lBarHFactor : Float = 7.8f
+val barHFactor : Float = 13.2f
+val lBarHFactor : Float = 8.8f
 val rot : Float = 90f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
@@ -45,7 +45,7 @@ fun Canvas.drawBarBreakRotMove(scale : Float, w : Float, h : Float, paint : Pain
     drawRect(RectF(0f, -barH / 2, size * sc1, barH / 2), paint)
     save()
     translate(size - barH, barH / 2)
-    drawRect(RectF(0f, 0f, barH, lBarH * sc2), paint)
+    drawRect(RectF(0f, 0f, barH, barH * sc2), paint)
     restore()
     restore()
 }
