@@ -208,4 +208,13 @@ class BarBreakerRotMoveView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BarBreakerRotMoveView {
+            val view : BarBreakerRotMoveView = BarBreakerRotMoveView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
