@@ -56,3 +56,19 @@ fun Canvas.drawBBRMNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     drawBarBreakRotMove(scale, w, h, paint)
 }
+
+class BarBreakerRotMoveView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
+}
