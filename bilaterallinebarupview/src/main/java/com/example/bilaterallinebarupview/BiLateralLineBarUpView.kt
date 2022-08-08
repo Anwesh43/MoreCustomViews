@@ -41,11 +41,15 @@ fun Canvas.drawBiLateralLineBarUp(scale : Float, w : Float, h : Float, paint : P
     for (j in 0..1) {
         save()
         scale(1f - 2 * j, 1f)
-        translate(-size / 2, -(h / 2) * scale.divideScale(3 + j, parts))
+        translate(-size / 2, -(h / 2 + paint.strokeWidth / 2) * scale.divideScale(3 + j, parts))
         if (sc1 > 0f) {
             drawLine(0f, 0f, 0f, -size * sc1, paint)
         }
-        drawRect(RectF(0f, -size * sc2, size / 2, 0f), paint)
+        drawRect(
+            RectF(
+                0f, paint.strokeWidth / 2 -(size + paint.strokeWidth) * sc2, size / 2, paint.strokeWidth / 2
+            ), paint
+        )
         restore()
     }
     restore()
