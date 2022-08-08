@@ -209,4 +209,13 @@ class BiLateralLineBarUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BiLateralLineBarUpView {
+            val view : BiLateralLineBarUpView = BiLateralLineBarUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
