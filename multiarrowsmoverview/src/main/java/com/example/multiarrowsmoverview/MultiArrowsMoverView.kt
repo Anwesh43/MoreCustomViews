@@ -20,7 +20,7 @@ val colors : Array<Int> = arrayOf(
 val parts : Int = 3
 val scGap : Float = 0.02f / parts
 val lines : Int = 4
-val sizeFactor : Float = 18.2f
+val sizeFactor : Float = 3.2f
 val delay : Long = 20
 val deg : Float = 30f
 val backColor : Int = Color.parseColor("#BDBDBD")
@@ -39,11 +39,11 @@ fun Canvas.drawMultiArrowsMover(scale : Float, w : Float, h : Float, paint : Pai
     save()
     translate(w / 2, h / 2)
     for (j in 0..(lines - 1)) {
-        val sc1j : Float = sc1.divideScale(j, parts)
-        val sc2j : Float = sc2.divideScale(j, parts)
-        val sc3j : Float = sc3.divideScale(j, parts)
+        val sc1j : Float = sc1.divideScale(j, lines)
+        val sc2j : Float = sc2.divideScale(j, lines)
+        val sc3j : Float = sc3.divideScale(j, lines)
         save()
-        translate(-w / 2 + (w / 2) * sc1j + (w / 2 + lSize) * sc3j, -h / 2 - lSize / 2 + lSize * j)
+        translate(-w / 2 + (w / 2) * sc1j + (w / 2 + lSize) * sc3j, -size / 2 + lSize * j)
         for (k in 0..1) {
             save()
             rotate(deg * (1 - 2 * k) * sc2j)
@@ -58,7 +58,7 @@ fun Canvas.drawMultiArrowsMover(scale : Float, w : Float, h : Float, paint : Pai
 fun Canvas.drawMAMNode(i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
-    paint.color = colors[i]
+    paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
     paint.color = colors[i]
     drawMultiArrowsMover(scale, w, h, paint)
