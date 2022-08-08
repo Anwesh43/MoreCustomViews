@@ -190,4 +190,27 @@ class MultiArrowsMoverView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : MultiArrowsMoverView) {
+
+        private val mam : MultiArrowsMover = MultiArrowsMover(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            mam.draw(canvas, paint)
+            animator.animate {
+                mam.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            mam.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
