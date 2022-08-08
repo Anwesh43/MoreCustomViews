@@ -184,4 +184,27 @@ class BiLateralLineBarUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiLateralLineBarUpView) {
+
+        private val animator : Animator = Animator(view)
+        private val bllb : BiLateralLineBarUp = BiLateralLineBarUp(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bllb.draw(canvas, paint)
+            animator.animate {
+                bllb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bllb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
