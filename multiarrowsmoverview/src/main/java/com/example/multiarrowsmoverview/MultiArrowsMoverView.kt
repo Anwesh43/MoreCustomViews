@@ -215,4 +215,13 @@ class MultiArrowsMoverView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : MultiArrowsMoverView {
+            val view : MultiArrowsMoverView = MultiArrowsMoverView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
