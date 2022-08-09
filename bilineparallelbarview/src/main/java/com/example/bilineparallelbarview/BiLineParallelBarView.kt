@@ -212,4 +212,12 @@ class BiLineParallelBarView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : BiLineParallelBarView {
+            val view : BiLineParallelBarView = BiLineParallelBarView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
