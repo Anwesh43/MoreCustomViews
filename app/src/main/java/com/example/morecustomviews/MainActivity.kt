@@ -3,7 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.multiarrowsmoverview.MultiArrowsMoverView
+import com.example.bilineparallelbarview.BiLineParallelBarView
 
 //import com.example.circleattachedlineshooterview.CircleAttachedLineShooterView
 
@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //LineDownExtenderRotView.create(this)
-        MultiArrowsMoverView.create(this)
+        BiLineParallelBarView.create(this)
         fullScreen()
     }
 }
