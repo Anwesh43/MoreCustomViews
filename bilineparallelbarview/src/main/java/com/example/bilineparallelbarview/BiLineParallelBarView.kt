@@ -25,7 +25,7 @@ val sizeFactor : Float = 4.9f
 val barHFactor : Float = 13.4f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
-val rot : Float = 180f
+val rot : Float = 90f
 
 fun Int.inverse() : Float = 1f /this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -41,12 +41,22 @@ fun Canvas.drawBiLineParallelBar(scale : Float, w : Float, h : Float, paint : Pa
     save()
     translate(w / 2, h / 2 + (h / 2) * sc4)
     rotate(rot * sc3)
-    drawLine(size * sc2, -size * 0.5f * sc1, size * sc2, size * 0.5f * sc1, paint)
+    if (sc1 > 0f) {
+        drawLine(
+            size * sc2,
+            -barH * 0.5f * sc1,
+            size * sc2,
+            barH * 0.5f * sc1,
+            paint
+        )
+    }
     for (j in 0..1) {
         save()
         scale(1f, 1f - 2 * j)
         translate(0f, -barH / 2)
-        drawLine(0f, 0f, size * sc2, 0f, paint)
+        if (sc2 > 0f) {
+            drawLine(0f, 0f, size * sc2, 0f, paint)
+        }
         restore()
     }
     restore()
