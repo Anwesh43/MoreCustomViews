@@ -208,4 +208,13 @@ class MiniLineBarHolderView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : MiniLineBarHolderView {
+            val view : MiniLineBarHolderView = MiniLineBarHolderView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
