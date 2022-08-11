@@ -183,4 +183,27 @@ class MiniLineBarHolderView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : MiniLineBarHolderView) {
+
+        private val mlbh : MiniLineBarHolder = MiniLineBarHolder(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            mlbh.draw(canvas, paint)
+            animator.animate {
+                mlbh.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            mlbh.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
