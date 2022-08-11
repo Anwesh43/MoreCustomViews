@@ -41,7 +41,7 @@ fun Canvas.drawMiniLineBarHolder(scale : Float, w : Float, h : Float, paint : Pa
     for (j in 0..1) {
         save()
         rotate(rot * j * sc2)
-        translate((w / 2 + (h / 2 - w / 2)) * sc4, 0f)
+        translate((w / 2 + (h / 2 - w / 2) * j) * sc4, 0f)
         if (sc1 > 0f) {
             drawLine(0f, 0f, size * sc1, 0f, paint)
         }
