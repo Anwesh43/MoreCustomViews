@@ -90,7 +90,7 @@ class SquareShiftDownRotView(ctx : Context) : View(ctx) {
             }
         }
 
-        fun startUdpating(cb : () -> Unit) {
+        fun startUpdating(cb : () -> Unit) {
             if (dir == 0f) {
                 dir = 1f - 2 * prevScale
                 cb()
@@ -123,6 +123,47 @@ class SquareShiftDownRotView(ctx : Context) : View(ctx) {
             if (animated) {
                 animated = false
             }
+        }
+    }
+
+    data class SSDRNode(var i : Int, val state : State = State()) {
+
+        private var prev : SSDRNode? = null
+        private var next : SSDRNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = SSDRNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawSSDRNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNexrt(dir : Int, cb : () -> Unit) : SSDRNode {
+            var curr : SSDRNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
         }
     }
 }
