@@ -47,7 +47,9 @@ fun Canvas.drawLineArcRotSideWise(scale : Float, w : Float, h : Float, paint : P
         for (k in 0..1) {
             save()
             rotate(90f * k * sc2)
-            drawLine(0f, 0f, 0f, -size * sc1, paint)
+            if (sc1 > 0f) {
+                drawLine(0f, 0f, 0f, -size * sc1, paint)
+            }
             restore()
         }
         drawArc(RectF(-r, -r, r, r), -rot, rot * sc3, true, paint)
