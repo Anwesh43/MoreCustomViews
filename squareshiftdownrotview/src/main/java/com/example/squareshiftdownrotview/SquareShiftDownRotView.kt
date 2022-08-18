@@ -189,4 +189,27 @@ class SquareShiftDownRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SquareShiftDownRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val ssdr : SquareShiftDownRot = SquareShiftDownRot(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ssdr.draw(canvas, paint)
+            animator.animate {
+                ssdr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ssdr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
