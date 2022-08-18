@@ -216,4 +216,13 @@ class LineArcRotSideWiseView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineArcRotSideWiseView {
+            val view : LineArcRotSideWiseView = LineArcRotSideWiseView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
