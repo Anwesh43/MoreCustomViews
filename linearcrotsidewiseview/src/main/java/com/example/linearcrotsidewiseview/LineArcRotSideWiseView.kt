@@ -191,4 +191,27 @@ class LineArcRotSideWiseView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineArcRotSideWiseView) {
+
+        private val animator : Animator = Animator(view)
+        private val larsw : LineArcRotSideWise = LineArcRotSideWise(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            larsw.draw(canvas, paint)
+            animator.animate {
+                larsw.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            larsw.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
