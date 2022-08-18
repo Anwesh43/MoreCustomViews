@@ -214,4 +214,13 @@ class SquareShiftDownRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SquareShiftDownRotView {
+            val view : SquareShiftDownRotView = SquareShiftDownRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
