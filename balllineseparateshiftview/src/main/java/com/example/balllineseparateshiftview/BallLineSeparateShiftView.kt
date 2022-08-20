@@ -198,4 +198,27 @@ class BallLineSeparateShiftView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BallLineSeparateShiftView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val blss : BallLineSeparateShift = BallLineSeparateShift(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            blss.draw(canvas, paint)
+            animator.animate {
+                blss.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            blss.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
