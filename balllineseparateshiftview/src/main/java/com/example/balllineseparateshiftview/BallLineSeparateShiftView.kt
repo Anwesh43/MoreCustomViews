@@ -223,4 +223,13 @@ class BallLineSeparateShiftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : BallLineSeparateShiftView {
+            val view : BallLineSeparateShiftView = BallLineSeparateShiftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
