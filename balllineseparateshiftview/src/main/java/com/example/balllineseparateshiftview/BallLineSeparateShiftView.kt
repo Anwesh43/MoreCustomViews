@@ -56,11 +56,12 @@ fun Canvas.drawBallLineSeparateShift(scale : Float, w : Float, h : Float, paint 
                 paint
             )
         }
-        drawInXY(0f, (w / 2 + size) * sc6) {
-            drawLine(0f, -size * 0.5f * sc2, 0f, size * 0.5f * sc2, paint)
+        drawInXY(0f, -(w / 2 + size) * sc6) {
+            if (sc2 > 0) {
+                drawLine(0f, -size * 0.5f * sc2, 0f, size * 0.5f * sc2, paint)
+            }
         }
     }
-    restore()
 }
 
 fun Canvas.drawBLSSNode(i : Int, scale : Float, paint : Paint) {
@@ -69,6 +70,7 @@ fun Canvas.drawBLSSNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
     drawBallLineSeparateShift(scale, w, h, paint)
 }
 
