@@ -180,4 +180,27 @@ class StepBarRotMoveView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : StepBarRotMoveView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val sbrm : StepBarRotMove = StepBarRotMove(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sbrm.draw(canvas, paint)
+            animator.animate {
+                sbrm.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sbrm.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
