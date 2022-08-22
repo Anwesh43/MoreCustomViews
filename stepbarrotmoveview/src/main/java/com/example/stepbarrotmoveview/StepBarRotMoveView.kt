@@ -38,7 +38,7 @@ fun Canvas.drawStepBarRotMove(scale : Float, w : Float, h : Float, paint : Paint
     rotate(rot * sc3)
     for (j in 0..1) {
         save()
-        translate((h / 2) * scale.divideScale(j + 3, parts), size * 0.5f * j)
+        translate((h / 2 + size) * scale.divideScale(j + 3, parts), size * 0.5f * j)
         drawRect(RectF(-size * scale.divideScale(j, parts), -size / 2, 0f, 0f), paint)
         restore()
     }
