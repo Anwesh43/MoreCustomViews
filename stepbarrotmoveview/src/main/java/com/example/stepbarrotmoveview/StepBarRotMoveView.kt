@@ -205,4 +205,13 @@ class StepBarRotMoveView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : StepBarRotMoveView {
+            val view : StepBarRotMoveView = StepBarRotMoveView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
