@@ -185,4 +185,27 @@ class LineJoinSqRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineJoinSqRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val ljsr : LineJoinSqRight = LineJoinSqRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ljsr.draw(canvas, paint)
+            animator.animate {
+                ljsr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ljsr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
