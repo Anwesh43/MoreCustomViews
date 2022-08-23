@@ -210,4 +210,13 @@ class LineJoinSqRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineJoinSqRightView {
+            val view : LineJoinSqRightView = LineJoinSqRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
