@@ -41,12 +41,14 @@ fun Canvas.drawLineJoinSqRight(scale : Float, w : Float, h : Float, paint : Pain
     rotate(deg * dsc(3))
     for (j in 0..1) {
         save()
-        scale(1f, 1f - 2 * j)
+        scale(1f - 2 * j, 1f - 2 * j)
         translate(0f, (size / 2 - sq / 2) * (1 - dsc(2)))
         drawRect(RectF(0f, -sq / 2, sq * dsc(1), sq / 2), paint)
         restore()
     }
-    drawLine(0f, -size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), paint)
+    if (dsc(0) > 0) {
+        drawLine(0f, -size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), paint)
+    }
     restore()
 }
 
