@@ -61,14 +61,16 @@ fun Canvas.drawLJSRNode(i : Int, scale : Float, paint : Paint) {
 
 class LineJoinSqRightView(ctx : Context) : View(ctx) {
 
-    override fun onDraw(canvas : Canvas) {
+    private val renderer : Renderer = Renderer(this)
 
+    override fun onDraw(canvas : Canvas) {
+        renderer.render(canvas)
     }
 
     override fun onTouchEvent(event : MotionEvent) : Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-
+                renderer.handleTap()
             }
         }
         return true
@@ -94,7 +96,7 @@ class LineJoinSqRightView(ctx : Context) : View(ctx) {
         }
     }
 
-    data class Animator(var view : View, var animated : Boolean) {
+    data class Animator(var view : View, var animated : Boolean = false) {
 
         fun animate(cb : () -> Unit) {
             if (animated) {
