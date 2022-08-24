@@ -182,4 +182,27 @@ class SqAltToMiddleUpRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SqAltToMiddleUpRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val satmur : SqAltToMiddleUpRot = SqAltToMiddleUpRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            satmur.draw(canvas, paint)
+            animator.animate {
+                satmur.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            satmur.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
