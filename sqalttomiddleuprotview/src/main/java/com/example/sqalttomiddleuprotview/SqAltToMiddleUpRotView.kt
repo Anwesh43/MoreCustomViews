@@ -49,7 +49,7 @@ fun Canvas.drawSATMUR(scale : Float, w: Float, h : Float, paint : Paint) {
     restore()
 }
 
-fun Canvas.drawSAMURNode(i : Int, scale : Float, paint : Paint) {
+fun Canvas.drawSATMURNode(i : Int, scale : Float, paint : Paint) {
     val  w : Float = width.toFloat()
     val h : Float = height.toFloat()
     paint.color = colors[i]
@@ -116,6 +116,47 @@ class SqAltToMiddleUpRotView(ctx : Context) : View(ctx) {
             if (animated) {
                 animated = false
             }
+        }
+    }
+
+    data class SATMURNode(var i : Int, val state : State = State()) {
+
+        private var next : SATMURNode? = null
+        private var prev : SATMURNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = SATMURNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawSATMURNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : SATMURNode {
+            var curr : SATMURNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
         }
     }
 }
