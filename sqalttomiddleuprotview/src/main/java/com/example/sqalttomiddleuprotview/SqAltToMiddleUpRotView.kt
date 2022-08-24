@@ -36,7 +36,7 @@ fun Canvas.drawSATMUR(scale : Float, w: Float, h : Float, paint : Paint) {
     val sc3 : Float = scale.divideScale(2, parts)
     val sc4 : Float = scale.divideScale(3, parts)
     save()
-    translate(w / 2 + (w / 2 + size) * sc4, h / 2)
+    translate(w / 2, h / 2 - (h / 2 + size) * sc4)
     rotate(rot * sc3)
     for (j in 0..1) {
         save()
@@ -45,7 +45,7 @@ fun Canvas.drawSATMUR(scale : Float, w: Float, h : Float, paint : Paint) {
         drawRect(RectF(0f, -size, size, 0f), paint)
         restore()
     }
-    drawRect(RectF(-size / 2, 0f, -size / 2, size * sc2), paint)
+    drawRect(RectF(-size / 2, 0f, size / 2, size * sc2), paint)
     restore()
 }
 
