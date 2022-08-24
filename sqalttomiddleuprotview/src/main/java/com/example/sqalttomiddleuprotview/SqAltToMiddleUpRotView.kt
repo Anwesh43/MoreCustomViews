@@ -207,4 +207,13 @@ class SqAltToMiddleUpRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SqAltToMiddleUpRotView {
+            val view : SqAltToMiddleUpRotView = SqAltToMiddleUpRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
