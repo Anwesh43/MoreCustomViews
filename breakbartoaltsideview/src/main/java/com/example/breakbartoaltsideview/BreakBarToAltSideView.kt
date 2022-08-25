@@ -64,7 +64,7 @@ class BreakBarToAltSideView(ctx : Context) : View(ctx) {
     private val renderer : Renderer = Renderer(this)
 
     override fun onDraw(canvas : Canvas) {
-        renderer.handleTap()
+        renderer.render(canvas)
     }
 
     override fun onTouchEvent(event : MotionEvent) : Boolean {
