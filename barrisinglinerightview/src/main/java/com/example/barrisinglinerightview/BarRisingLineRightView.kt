@@ -207,4 +207,13 @@ class BarRisingLineRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BarRisingLineRightView {
+            val view : BarRisingLineRightView = BarRisingLineRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
