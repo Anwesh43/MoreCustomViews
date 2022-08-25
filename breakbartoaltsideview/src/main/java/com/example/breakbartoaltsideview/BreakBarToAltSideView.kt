@@ -185,4 +185,27 @@ class BreakBarToAltSideView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BreakBarToAltSideView) {
+
+        private val animator : Animator = Animator(view)
+        private val bbtas : BreakBarToAltSide = BreakBarToAltSide(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bbtas.draw(canvas, paint)
+            animator.animate {
+                bbtas.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bbtas.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
