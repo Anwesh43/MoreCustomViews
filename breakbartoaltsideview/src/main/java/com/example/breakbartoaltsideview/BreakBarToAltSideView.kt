@@ -121,4 +121,45 @@ class BreakBarToAltSideView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class BBTASNode(var i : Int = 0, val state : State = State()) {
+
+        private var prev : BBTASNode? = null
+        private var next : BBTASNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = BBTASNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawBBTASNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : BBTASNode {
+            var curr : BBTASNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
