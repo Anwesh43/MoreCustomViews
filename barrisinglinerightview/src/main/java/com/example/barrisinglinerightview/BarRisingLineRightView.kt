@@ -182,4 +182,27 @@ class BarRisingLineRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BarRisingLineRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val brlr : BarRisingLineRight = BarRisingLineRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            brlr.draw(canvas, paint)
+            animator.animate {
+                brlr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            brlr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
