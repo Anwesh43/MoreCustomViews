@@ -210,4 +210,13 @@ class BreakBarToAltSideView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : BreakBarToAltSideView {
+            val view : BreakBarToAltSideView = BreakBarToAltSideView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
