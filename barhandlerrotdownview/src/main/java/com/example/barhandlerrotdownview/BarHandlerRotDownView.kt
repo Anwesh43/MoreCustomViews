@@ -119,4 +119,41 @@ class BarHandlerRotDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class BHRDNode(var i : Int, val state : State = State()) {
+
+        private var prev : BHRDNode? = null
+        private var next : BHRDNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = BHRDNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawBHRDNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : BHRDNode {
+            var curr : BHRDNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
