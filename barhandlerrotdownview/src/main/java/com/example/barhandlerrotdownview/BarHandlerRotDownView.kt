@@ -208,4 +208,13 @@ class BarHandlerRotDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BarHandlerRotDownView {
+            val view : BarHandlerRotDownView = BarHandlerRotDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
