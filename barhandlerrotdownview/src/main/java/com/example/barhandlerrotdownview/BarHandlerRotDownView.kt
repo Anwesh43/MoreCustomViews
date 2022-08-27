@@ -19,7 +19,7 @@ val colors : Array<Int> = arrayOf(
     Color.parseColor(it)
 }.toTypedArray()
 val parts : Int = 5
-val scGap : Float = 0.04f
+val scGap : Float = 0.04f / parts
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 90f
@@ -37,14 +37,21 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawNoDotLine(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f)  {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawBarHandlerRotDown(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     drawXY(w / 2, h / 2 + (h /2 + size) * dsc(4)) {
         rotate(rot * dsc(3))
-        drawLine(0f, 0f, -size * dsc(0), 0f, paint)
-        drawLine(0f, 0f, 0f, -size * dsc(1), paint)
-        drawRect(RectF(0f, -size, size * dsc(2), 0f), paint)
+        drawNoDotLine(0f, 0f, -size * dsc(0), 0f, paint)
+        drawNoDotLine(0f, 0f, 0f, -size * dsc(1), paint)
+        drawRect(RectF(0f, paint.strokeWidth / 2 - size - paint.strokeWidth, size * dsc(2), paint.strokeWidth / 2), paint)
     }
 }
 
