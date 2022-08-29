@@ -186,4 +186,27 @@ class CircleExpandParallelDropView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : CircleExpandParallelDropView) {
+
+        private val animator : Animator = Animator(view)
+        private val cepd : CircleExpandParallelDrop = CircleExpandParallelDrop(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            cepd.draw(canvas, paint)
+            animator.animate {
+                cepd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            cepd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
