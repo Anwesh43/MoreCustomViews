@@ -59,3 +59,19 @@ fun Canvas.drawCEPDNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     drawCircleExpandParallelDrop(scale, w, h, paint)
 }
+
+class CircleExpandParallelDropView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
+}
