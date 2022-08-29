@@ -193,8 +193,31 @@ class RightLineArrowDashView(ctx : Context) : View(ctx) {
             }
         }
 
-        fun startupdating(cb : () -> Unit) {
+        fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : RightLineArrowDashView) {
+
+        private val animator : Animator = Animator(view)
+        private val rlad : RightLineArrowDash = RightLineArrowDash(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rlad.draw(canvas, paint)
+            animator.animate {
+                rlad.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rlad.startUpdating {
+                animator.start()
+            }
         }
     }
 }
