@@ -222,4 +222,12 @@ class RightLineArrowDashView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : RightLineArrowDashView {
+            val view : RightLineArrowDashView = RightLineArrowDashView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
