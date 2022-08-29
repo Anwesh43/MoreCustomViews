@@ -211,4 +211,12 @@ class CircleExpandParallelDropView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : CircleExpandParallelDropView {
+            val view : CircleExpandParallelDropView = CircleExpandParallelDropView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
