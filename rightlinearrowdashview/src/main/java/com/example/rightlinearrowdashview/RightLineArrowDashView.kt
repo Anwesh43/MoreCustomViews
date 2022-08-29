@@ -38,17 +38,16 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
-fun Canvas.clipTriPath(scale : Float, size : Float, paint : Paint) {
+fun Canvas.clipTriPath(a : Float, scale : Float, size : Float, paint : Paint) {
     save()
     val path : Path = Path()
-    path.moveTo(0f, -size)
+    path.moveTo(0f, -size + a / 2)
     path.lineTo(size, -size / 2)
-    path.lineTo(0f, 0f)
+    path.lineTo(0f, a / 2)
     clipPath(path)
-    drawRect(RectF(0f, -size, size * scale, 0f), paint)
+    drawRect(RectF(0f, -size + a / 2, size * scale, a / 2), paint)
     restore()
 }
-
 fun Canvas.drawWithoutDotLine(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
     if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
         return
@@ -67,7 +66,7 @@ fun Canvas.drawRightLineArrowDash(scale : Float, w : Float, h : Float, paint : P
                 drawWithoutDotLine(0f, 0f, -size * dsc(0), 0f, paint)
             }
         }
-        clipTriPath(dsc(2), size, paint)
+        clipTriPath(paint.strokeWidth, dsc(2), size + paint.strokeWidth, paint)
     }
 }
 
