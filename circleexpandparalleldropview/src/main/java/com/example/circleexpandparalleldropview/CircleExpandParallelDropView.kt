@@ -47,7 +47,7 @@ fun Canvas.drawCircleExpandParallelDrop(scale : Float, w : Float, h : Float, pai
         for (j in 0..1) {
             save()
             translate((h / 2 + r) * dsc(3 + j), (gap - r) * dsc(1) * (1f - 2 * j))
-            drawArc(RectF(0f, -r, r,  2 * r), 0f, 360f * dsc(0), true, paint)
+            drawArc(RectF(0f, -r,  2 * r,   r), 0f, 360f * dsc(0), true, paint)
             restore()
         }
     }
