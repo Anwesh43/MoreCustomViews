@@ -63,8 +63,8 @@ fun Canvas.drawRightLineArrowDash(scale : Float, w : Float, h : Float, paint : P
         rotate(rot * dsc(3))
         for (j in 0..1) {
             drawXY(0f, 0f) {
-                rotate(-rot * j * dsc(1))
-                drawWithoutDotLine(0f, 0f, size * dsc(0), 0f, paint)
+                rotate(rot * j * dsc(1))
+                drawWithoutDotLine(0f, 0f, -size * dsc(0), 0f, paint)
             }
         }
         clipTriPath(dsc(2), size, paint)
