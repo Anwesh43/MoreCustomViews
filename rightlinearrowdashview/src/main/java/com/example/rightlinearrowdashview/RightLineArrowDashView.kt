@@ -49,6 +49,13 @@ fun Canvas.clipTriPath(scale : Float, size : Float, paint : Paint) {
     restore()
 }
 
+fun Canvas.drawWithoutDotLine(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawRightLineArrowDash(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
@@ -57,17 +64,19 @@ fun Canvas.drawRightLineArrowDash(scale : Float, w : Float, h : Float, paint : P
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 rotate(-rot * j * dsc(1))
-                drawLine(0f, 0f, size * dsc(0), 0f, paint)
+                drawWithoutDotLine(0f, 0f, size * dsc(0), 0f, paint)
             }
         }
-        clipTriPath(scale, size, paint)
+        clipTriPath(dsc(2), size, paint)
     }
 }
 
 fun Canvas.drawRLADNode(i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
-    val size : Float = Math.min(w, h) / sizeFactor
+    paint.color = colors[i]
+    paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
     drawRightLineArrowDash(scale, w, h, paint)
 }
 
@@ -123,8 +132,8 @@ class RightLineArrowDashView(ctx : Context) : View(ctx) {
         }
 
         fun start() {
-            if (animated) {
-                animated = false
+            if (!animated) {
+                animated = true
                 view.postInvalidate()
             }
         }
