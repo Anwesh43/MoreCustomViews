@@ -30,3 +30,26 @@ val backColor : Int = Color.parseColor("#bdbdbd")
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
+
+fun Canvas.drawRightLineBarExtend(scale : Float, w : Float, h : Float, paint : Paint) {
+    val size : Float = Math.min(w, h) / sizeFactor
+    val barH : Float = Math.min(w, h) / barHFactor
+    val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
+    save()
+    translate(w / 2, h / 2 + (h / 2 + size) * dsc(3))
+    drawLine(-size, 0f, -size + size * dsc(0), 0f, paint)
+    save()
+    rotate(rot * dsc(2))
+    drawRect(RectF(0f, -barH, size * dsc(1), 0f), paint)
+    restore()
+    restore()
+}
+
+fun Canvas.drawRLBENode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    paint.color = colors[i]
+    paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    drawRightLineBarExtend(scale, w, h, paint)
+}
