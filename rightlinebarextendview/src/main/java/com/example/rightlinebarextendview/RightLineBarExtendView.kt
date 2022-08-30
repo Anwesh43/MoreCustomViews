@@ -205,4 +205,12 @@ class RightLineBarExtendView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : RightLineBarExtendView {
+            val view : RightLineBarExtendView = RightLineBarExtendView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
