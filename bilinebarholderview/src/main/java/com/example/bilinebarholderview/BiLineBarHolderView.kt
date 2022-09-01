@@ -66,3 +66,18 @@ fun Canvas.drawBLHNode(i : Int, scale : Float, paint : Paint) {
     drawBiLineHolder(scale, w, h, paint)
 }
 
+class BiLineBarHolderView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
+}
