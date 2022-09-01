@@ -38,6 +38,13 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawNoDotLine(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawBiLineBarHolder(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val barH : Float = Math.min(w, h) / barHFactor
@@ -213,7 +220,7 @@ class BiLineBarHolderView(ctx : Context) : View(ctx) {
 
         fun handleTap() {
             blbh.startUpdating {
-                animator.stop()
+                animator.start()
             }
         }
     }
