@@ -38,7 +38,7 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
-fun Canvas.drawBiLineHolder(scale : Float, w : Float, h : Float, paint : Paint) {
+fun Canvas.drawBiLineBarHolder(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val barH : Float = Math.min(w, h) / barHFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
@@ -57,13 +57,13 @@ fun Canvas.drawBiLineHolder(scale : Float, w : Float, h : Float, paint : Paint) 
     }
 }
 
-fun Canvas.drawBLHNode(i : Int, scale : Float, paint : Paint) {
+fun Canvas.drawBLBHNode(i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
-    drawBiLineHolder(scale, w, h, paint)
+    drawBiLineBarHolder(scale, w, h, paint)
 }
 
 class BiLineBarHolderView(ctx : Context) : View(ctx) {
@@ -126,6 +126,47 @@ class BiLineBarHolderView(ctx : Context) : View(ctx) {
             if (animated) {
                 animated = false
             }
+        }
+    }
+
+    data class BLBHNode(var i : Int, val state : State = State()) {
+
+        private var prev : BLBHNode? = null
+        private var next : BLBHNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = BLBHNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawBLBHNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : BLBHNode {
+            var curr : BLBHNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
         }
     }
 }
