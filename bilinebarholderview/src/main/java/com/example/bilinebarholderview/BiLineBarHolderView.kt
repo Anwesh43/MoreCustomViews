@@ -217,4 +217,13 @@ class BiLineBarHolderView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BiLineBarHolderView {
+            val view : BiLineBarHolderView = BiLineBarHolderView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
