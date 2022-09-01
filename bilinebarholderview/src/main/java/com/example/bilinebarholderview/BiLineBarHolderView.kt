@@ -192,4 +192,27 @@ class BiLineBarHolderView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiLineBarHolderView) {
+
+        private val animator : Animator = Animator(view)
+        private val blbh : BiLineBarHolder = BiLineBarHolder(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            blbh.draw(canvas, paint)
+            animator.animate {
+                blbh.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            blbh.startUpdating {
+                animator.stop()
+            }
+        }
+    }
 }
