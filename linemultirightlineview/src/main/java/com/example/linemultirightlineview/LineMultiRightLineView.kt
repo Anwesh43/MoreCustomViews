@@ -18,12 +18,13 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val parts : Int = 4
-val scGap : Float = 0.04f / parts
+val parts : Int = 6
+val scGap : Float = 0.055f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val rot : Float = 90f
+val deg : Float = 180f
 val backColor : Int = Color.parseColor("#BDBDBD")
 
 fun Int.inverse() : Float = 1f / this
@@ -37,19 +38,30 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawDotLine(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawMultiRightLine(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
-    drawXY(w / 2 - (w / 2 + size) * dsc(3) , h / 2) {
-        drawLine(0f, 0f, 0f, -size * dsc(0), paint)
-        drawXY(0f, 0f) {
-            rotate(-rot * dsc(1))
-            drawLine(0f, 0f, 0f, -size * Math.floor(dsc(0).toDouble()).toFloat(), paint)
+    drawXY(w / 2 , h / 2 + (h / 2) * dsc(5)) {
+        rotate(deg * dsc(4))
+        drawXY((size / 2) * dsc(3), 0f) {
+            drawDotLine(0f, 0f, 0f, -size * dsc(0), paint)
+            drawXY(0f, 0f) {
+                rotate(-rot * dsc(1))
+                drawDotLine(0f, 0f, 0f, -size * Math.floor(dsc(0).toDouble()).toFloat(), paint)
+            }
+            drawXY(-size, 0f) {
+                rotate(-rot * dsc(2))
+                drawDotLine(0f, 0f, size * Math.floor(dsc(1).toDouble()).toFloat(), 0f, paint)
+            }
         }
-        drawXY(-size, 0f) {
-            rotate(-rot * dsc(2))
-            drawLine(0f, 0f, size * Math.floor(dsc(1).toDouble()).toFloat(), 0f, paint)
-        }
+
     }
 }
 
