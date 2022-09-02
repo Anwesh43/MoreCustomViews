@@ -213,4 +213,13 @@ class LineMultiRightLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineMultiRightLineView {
+           val view : LineMultiRightLineView = LineMultiRightLineView(activity)
+           activity.setContentView(view)
+           return view
+        }
+    }
 }
