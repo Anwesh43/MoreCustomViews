@@ -206,4 +206,13 @@ class VaseFlatLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : VaseFlatLineView {
+            val view : VaseFlatLineView = VaseFlatLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
