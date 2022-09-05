@@ -181,4 +181,27 @@ class VaseFlatLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : VaseFlatLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val vfl : VaseFlatLine = VaseFlatLine(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            vfl.draw(canvas, paint)
+            animator.animate {
+                vfl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            vfl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
