@@ -3,7 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.linemultirightlineview.LineMultiRightLineView
+import com.example.vaseflatlineview.VaseFlatLineView
 
 //import com.example.bilineparallelbarview.BiLineParallelBarView
 
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         //setContentView(R.layout.activity_main)
         //LineDownExtenderRotView.create(this)
         //BiLineParallelBarView.create(this)
-        LineMultiRightLineView.create(this)
+        VaseFlatLineView.create(this)
         fullScreen()
     }
 }
