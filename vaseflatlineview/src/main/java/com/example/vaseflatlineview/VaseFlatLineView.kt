@@ -8,6 +8,7 @@ import android.graphics.Color
 import android.graphics.RectF
 import android.view.MotionEvent
 import android.graphics.Canvas
+import android.util.Log
 
 val colors : Array<Int> = arrayOf(
     "#1A237E",
@@ -16,7 +17,7 @@ val colors : Array<Int> = arrayOf(
     "#C51162",
     "#00C853"
 ).map {
-    Color.parseColor("#BDBDBD")
+    Color.parseColor(it)
 }.toTypedArray()
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
@@ -30,18 +31,37 @@ fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
 
+fun Canvas.drawWithoutDotLine(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawVaseFlatLineView(scale : Float, w : Float, h : Float, paint : Paint) {
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     val size : Float = Math.min(w, h) / sizeFactor
     save()
     translate(w / 2, h / 2 + (h / 2 + size) * dsc(3))
-    rotate(rot * dsc(2))
-    drawLine(0f, -size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), paint)
+    rotate(-rot * dsc(2))
+    drawWithoutDotLine(
+        0f,
+        -size * 0.5f * dsc(0),
+        0f,
+        size * 0.5f * dsc(0),
+        paint
+    )
     for (j in 0..1) {
         save()
         scale(1f, 1f - 2 * j)
         translate(0f, -size / 2)
-        drawLine(0f, 0f, (size / 2) * dsc(1), -(size / 4) * dsc(1), paint)
+        drawWithoutDotLine(
+            0f,
+            0f,
+            (size / 2) * dsc(1),
+            -(size / 4) * dsc(1),
+            paint
+        )
         restore()
     }
     restore()
@@ -52,6 +72,8 @@ fun Canvas.drawVFLNode(i : Int, scale : Float, paint : Paint) {
     val h : Float = height.toFloat()
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    //Log.d("draw VFLNode", "$scale")
     drawVaseFlatLineView(scale, w , h, paint)
 }
 
@@ -60,6 +82,7 @@ class VaseFlatLineView(ctx : Context) : View(ctx) {
     private val renderer : Renderer = Renderer(this)
 
     override fun onDraw(canvas : Canvas) {
+        //Log.d("ONDraw", "VaseFlatLineView")
         renderer.render(canvas)
     }
 
@@ -75,6 +98,7 @@ class VaseFlatLineView(ctx : Context) : View(ctx) {
     data class State(var scale : Float = 0f, var dir : Float = 0f, var prevScale : Float = 0f) {
 
         fun update(cb : (Float) -> Unit) {
+            //Log.d("Updating", "State class")
             scale += scGap * dir
             if (Math.abs(scale - prevScale) > 1) {
                 scale = prevScale + dir
@@ -95,6 +119,8 @@ class VaseFlatLineView(ctx : Context) : View(ctx) {
     data class Animator(var view : View, var animated : Boolean = false) {
 
         fun animate(cb : () -> Unit) {
+
+            //Log.d("Animating", "Animator")
             if (animated) {
                 cb()
                 try {
@@ -137,6 +163,7 @@ class VaseFlatLineView(ctx : Context) : View(ctx) {
         }
 
         fun draw(canvas : Canvas, paint : Paint) {
+            //Log.d("Drawing", "VaseFlatLine")
             canvas.drawVFLNode(i, state.scale, paint)
         }
 
@@ -167,6 +194,7 @@ class VaseFlatLineView(ctx : Context) : View(ctx) {
         private var dir : Int = 1
 
         fun draw(canvas : Canvas, paint : Paint) {
+            //Log.d("Drawing", "VaseFlatLine")
             curr.draw(canvas, paint)
         }
 
@@ -191,6 +219,7 @@ class VaseFlatLineView(ctx : Context) : View(ctx) {
         private val vfl : VaseFlatLine = VaseFlatLine(0)
 
         fun render(canvas : Canvas) {
+            //Log.d("Drawing", "Renderer")
             canvas.drawColor(backColor)
             vfl.draw(canvas, paint)
             animator.animate {
