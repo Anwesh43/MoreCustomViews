@@ -29,3 +29,28 @@ val scGap : Float = 0.04f / parts
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
+
+fun Canvas.drawVaseFlatLineView(scale : Float, w : Float, h : Float, paint : Paint) {
+    val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
+    val size : Float = Math.min(w, h) / sizeFactor
+    save()
+    translate(w / 2, h / 2 + (h / 2 + size) * dsc(3))
+    rotate(rot * dsc(2))
+    drawLine(0f, -size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), paint)
+    for (j in 0..1) {
+        save()
+        scale(1f, 1f - 2 * j)
+        translate(0f, -size / 2)
+        drawLine(0f, 0f, (size / 2) * dsc(1), -(size / 4) * dsc(1), paint)
+        restore()
+    }
+    restore()
+}
+
+fun Canvas.drawVFLNode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    paint.color = colors[i]
+    paint.strokeCap = Paint.Cap.ROUND
+    drawVaseFlatLineView(scale, w , h, paint)
+}
