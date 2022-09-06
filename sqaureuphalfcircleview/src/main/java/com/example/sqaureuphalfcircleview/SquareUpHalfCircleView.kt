@@ -25,7 +25,7 @@ val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 90f
-val rFactor : Float = 14.2f
+val rFactor : Float = 18.2f
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -42,7 +42,7 @@ fun Canvas.drawSquareUpHalfCircle(scale : Float, w : Float, h : Float, paint : P
     for (j in 0..1) {
         save()
         scale(1f - 2 * j, 1f - 2 * j)
-        translate(-size / 2, -size / 5)
+        translate(-size / 2 + r, -size / 5)
         drawArc(RectF(-r, -r, r, r), 180f , 180f * dsc(1), true, paint)
         restore()
     }
