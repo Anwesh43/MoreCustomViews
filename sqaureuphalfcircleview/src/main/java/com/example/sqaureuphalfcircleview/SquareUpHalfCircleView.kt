@@ -184,4 +184,27 @@ class SquareUpHalfCircleView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SquareUpHalfCircleView) {
+
+        private val animator : Animator = Animator(view)
+        private val squareUpHalfCircle : SquareUpHalfCircle = SquareUpHalfCircle(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            squareUpHalfCircle.draw(canvas, paint)
+            animator.animate {
+                squareUpHalfCircle.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            squareUpHalfCircle.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
