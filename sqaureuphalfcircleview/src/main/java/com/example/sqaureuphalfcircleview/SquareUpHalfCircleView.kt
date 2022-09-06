@@ -120,4 +120,45 @@ class SquareUpHalfCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class SUHCNode(var i : Int, val state : State = State()) {
+
+        private var prev : SUHCNode? = null
+        private var next : SUHCNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = SUHCNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawSUHCNode(i, state.scale, paint)
+        }
+
+        fun udpate(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : SUHCNode {
+            var curr : SUHCNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
