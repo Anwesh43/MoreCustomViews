@@ -209,4 +209,13 @@ class SquareUpHalfCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SquareUpHalfCircleView {
+            val view : SquareUpHalfCircleView = SquareUpHalfCircleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
