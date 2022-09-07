@@ -208,4 +208,13 @@ class SquareUpBarRotDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SquareUpBarRotDownView {
+            val view : SquareUpBarRotDownView = SquareUpBarRotDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
