@@ -37,7 +37,7 @@ fun Canvas.drawSquareUpBarRotDown(scale : Float, w : Float, h : Float, paint : P
     val barH : Float = Math.min(w, h) / barHFactor
     val upSize : Float = size * 0.5f * dsc(0)
     save()
-    translate(w / 2, h / 2 + (h / 2 + size) * dsc(3))
+    translate(w / 2 + (w / 2 + size) * dsc(3), h / 2)
     rotate(rot * dsc(2))
     drawRect(RectF(-upSize, -barH / 2, upSize, barH / 2), paint)
     for (j in 0..1) {
