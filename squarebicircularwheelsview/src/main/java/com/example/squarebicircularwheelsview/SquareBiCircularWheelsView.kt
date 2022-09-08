@@ -20,10 +20,10 @@ val colors : Array<Int> = arrayOf(
 }.toTypedArray()
 val parts : Int = 4
 val scGap : Float = 0.04f / parts
-val sizeFactor : Float = 90f
+val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
-val rFactor : Float = 19.2f
+val rFactor : Float = 33.2f
 val rot : Float = 90f
 
 fun Int.inverse() : Float = 1f / this
@@ -47,7 +47,7 @@ fun Canvas.drawSquareBiCircularWheels(scale : Float, w : Float, h : Float, paint
         for (j in 0..1) {
             drawXY(w / 2 + r - (w / 2 - size / 2) * dsc(1), 0f) {
                 scale(1f, 1f - 2 * j)
-                drawCircle(0f, 0f, r, paint)
+                drawCircle(0f, size / 2 - r, r, paint)
             }
         }
     }
