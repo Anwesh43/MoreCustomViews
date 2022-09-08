@@ -211,4 +211,13 @@ class SquareBiCircularWheelsView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : SquareBiCircularWheelsView {
+            val view : SquareBiCircularWheelsView = SquareBiCircularWheelsView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
