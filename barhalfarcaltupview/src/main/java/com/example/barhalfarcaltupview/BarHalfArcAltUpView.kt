@@ -225,4 +225,13 @@ class BarHalfArcAltUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BarHalfArcAltUpView {
+            val view : BarHalfArcAltUpView = BarHalfArcAltUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
