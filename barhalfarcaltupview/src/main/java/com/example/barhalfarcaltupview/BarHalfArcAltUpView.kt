@@ -54,11 +54,14 @@ fun Canvas.drawBarHalfArcAltUp(scale : Float, w : Float, h : Float, paint : Pain
            drawScaleAt(1f - 2 * j, 1f - 2 * j) {
                drawXY(size * 0.5f * dsc(2), h * 0.5f * dsc(3)) {
                    drawRect(RectF(-r / 2, 0f, r / 2, size * 0.5f *  dsc(1)), paint)
-                   drawArc(
-                       RectF(-r / 2, -r / 2, r / 2, r / 2), 0f, rot * dsc(0),
-                       true,
-                       paint
-                   )
+                   drawXY(0f, size * 0.5f * dsc(1)) {
+                       drawArc(
+                           RectF(-r / 2, -r / 2, r / 2, r / 2), 0f, rot * dsc(0),
+                           true,
+                           paint
+                       )
+                   }
+
                }
            }
         }
