@@ -200,4 +200,27 @@ class BarHalfArcAltUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BarHalfArcAltUpView) {
+
+        private val bhaau : BarHalfArcAltUp = BarHalfArcAltUp(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bhaau.draw(canvas, paint)
+            animator.animate {
+                bhaau.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bhaau.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
