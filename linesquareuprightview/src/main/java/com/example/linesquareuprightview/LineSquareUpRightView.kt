@@ -31,3 +31,40 @@ val rot : Float = 90f
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
+
+fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
+    save()
+    translate(x, y)
+    cb()
+    restore()
+}
+
+fun Canvas.drawWithoutDotLine(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
+fun Canvas.drawLineSquareUpRight(scale : Float, w : Float, h : Float, paint : Paint) {
+    val size : Float = Math.min(w, h) / sizeFactor
+    val barW : Float = Math.min(w, h) / barWFactor
+    val barH : Float = Math.min(w, h) / barHFactor
+    val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
+    drawXY(w / 2 + (w / 2) * dsc(3), h / 2) {
+        rotate(rot * dsc(2))
+        drawXY(0f, -barH * dsc(1)) {
+            drawWithoutDotLine(-size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), 0f, paint)
+        }
+        drawRect(RectF(-barW / 2, -barH * dsc(1), barW / 2, 0f), paint)
+    }
+}
+
+fun Canvas.drawLSURNode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    paint.color = colors[i]
+    paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    drawLineSquareUpRight(scale, w, h, paint)
+}
