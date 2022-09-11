@@ -197,7 +197,7 @@ class RightLineTriangleRotView(ctx : Context) : View(ctx) {
         private val rltr : RightLineTriangleRot = RightLineTriangleRot(0)
         private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-        fun render(canvas : Canvas, paint : Paint) {
+        fun render(canvas : Canvas) {
             canvas.drawColor(backColor)
             rltr.draw(canvas, paint)
             animator.animate {
