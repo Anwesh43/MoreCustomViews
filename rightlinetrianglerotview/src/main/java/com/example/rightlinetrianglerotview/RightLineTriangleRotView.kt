@@ -213,4 +213,13 @@ class RightLineTriangleRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : RightLineTriangleRotView {
+            val view : RightLineTriangleRotView = RightLineTriangleRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
