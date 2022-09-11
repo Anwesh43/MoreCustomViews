@@ -199,4 +199,13 @@ class BlockTravellerView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BlockTravellerView {
+            val view : BlockTravellerView = BlockTravellerView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
