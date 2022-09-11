@@ -174,4 +174,27 @@ class BlockTravellerView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BlockTravellerView) {
+
+        private val bt : BlockTraveller = BlockTraveller(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bt.draw(canvas, paint)
+            animator.animate {
+                bt.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bt.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
