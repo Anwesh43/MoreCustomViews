@@ -29,3 +29,21 @@ val rot : Float = 45f
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
+
+fun Canvas.drawBlockTraveller(scale : Float, w : Float, h : Float, paint : Paint) {
+    val barH : Float = Math.min(w, h) / barHFactor
+    val barW : Float = Math.min(w, h) / barWFactor
+    val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
+    save()
+    translate(w / 2 + (w / 4) * dsc(2), h / 2 + (h / 4) * dsc(2) + (h/ 4 + barH / 2) * dsc(4))
+    rotate(rot * (dsc(1) - dsc(3)))
+    drawRect(RectF(-barW / 2, barH / 2 - barH * dsc(0), barW / 2, barH / 2), paint)
+    restore()
+}
+
+fun Canvas.drawBTNode(i : Int, scale : Float, paint : Paint) {
+    paint.color = colors[i]
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    drawBlockTraveller(scale, w, h, paint)
+}
