@@ -22,7 +22,7 @@ val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val barHFactor : Float = 4.9f
 val barWFactor : Float = 10.2f
-val parts : Int = 5
+val parts : Int = 4
 val scGap : Float = 0.04f / parts
 val rot : Float = 45f
 
@@ -35,8 +35,8 @@ fun Canvas.drawBlockTraveller(scale : Float, w : Float, h : Float, paint : Paint
     val barW : Float = Math.min(w, h) / barWFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     save()
-    translate(w / 2 + (w / 4) * dsc(2), h / 2 + (h / 4) * dsc(2) + (h/ 4 + barH / 2) * dsc(4))
-    rotate(rot * (dsc(1) - dsc(3)))
+    translate(w / 2 + (w / 4) * dsc(2), h / 2 + (h / 4) * dsc(2) + (h/ 4 + barH / 2) * dsc(3))
+    rotate(-rot * (dsc(1) - dsc(2)))
     drawRect(RectF(-barW / 2, barH / 2 - barH * dsc(0), barW / 2, barH / 2), paint)
     restore()
 }
