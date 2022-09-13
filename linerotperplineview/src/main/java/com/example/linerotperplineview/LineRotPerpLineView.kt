@@ -185,4 +185,27 @@ class LineRotPerpLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRotPerpLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val lrpl : LineRotPerpLine = LineRotPerpLine(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrpl.draw(canvas, paint)
+            animator.animate {
+                lrpl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrpl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
