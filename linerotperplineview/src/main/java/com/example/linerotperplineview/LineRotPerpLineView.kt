@@ -210,4 +210,13 @@ class LineRotPerpLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineRotPerpLineView {
+            val view : LineRotPerpLineView = LineRotPerpLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
