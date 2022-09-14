@@ -209,4 +209,13 @@ class SquareDropLineShiftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SquareDropLineShiftView {
+            val view : SquareDropLineShiftView = SquareDropLineShiftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
