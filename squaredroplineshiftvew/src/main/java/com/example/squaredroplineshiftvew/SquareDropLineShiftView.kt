@@ -40,7 +40,10 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
 fun Canvas.drawSquareDropLineShift(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
-    drawXY((-(w / 2 + paint.strokeWidth)) * (1 - dsc(0)) + (w / 2 + size) * dsc(2), h / 2) {
+    drawXY(
+        (-paint.strokeWidth + (w / 2 + paint.strokeWidth)) *  dsc(0) + (w / 2 + size) * dsc(2),
+        h / 2
+    ) {
         drawRect(RectF(-size, -size, 0f, 0f), paint)
         drawXY(0f, 0f) {
             rotate(rot * dsc(1))
@@ -129,7 +132,7 @@ class SquareDropLineShiftView(ctx : Context) : View(ctx) {
         private var next : SDLSNode? = null
 
         init {
-
+            addNeighbor()
         }
 
         fun addNeighbor() {
