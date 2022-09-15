@@ -207,4 +207,13 @@ class SquareArcRotDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SquareArcRotDownView {
+            val view : SquareArcRotDownView = SquareArcRotDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
