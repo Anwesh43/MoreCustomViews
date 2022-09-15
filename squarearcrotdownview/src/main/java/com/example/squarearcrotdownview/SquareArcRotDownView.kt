@@ -45,7 +45,13 @@ fun Canvas.drawSquareArcRotDown(scale : Float, w  : Float, h : Float, paint : Pa
         drawXY(-(w / 2) * (1 - dsc(0)), 0f) {
             drawRect(-size, -size / 2, 0f, size / 2, paint)
         }
-        drawArc(RectF(-size / 2, -size / 2 ,size / 2, size / 2), -90f, -90f + 180f * dsc(1), true, paint)
+        drawArc(
+            RectF(-size / 2, -size / 2 ,size / 2, size / 2),
+            -90f,
+            180f * dsc(1),
+            true,
+            paint
+        )
     }
 }
 
