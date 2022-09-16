@@ -18,11 +18,11 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val parts : Int = 4
+val parts : Int = 5
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
-val sizeFactor : Float = 4.9f
-val arcFactor : Float = 11.2f
+val sizeFactor : Float = 3.9f
+val arcFactor : Float = 18.2f
 val delay : Long = 20
 val deg : Float = 90f
 val backColor : Int = Color.parseColor("#BDBDBD")
@@ -41,16 +41,17 @@ fun Canvas.drawBiLineAltRot(scale : Float, w : Float, h : Float, paint : Paint) 
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     val r : Float = Math.min(w, h) / arcFactor
-    drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(3)) {
+    drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(4)) {
         rotate(deg * dsc(2))
-        drawXY(-(w / 2 + size / 2) * (1 - dsc(1)), 0f) {
+        drawXY(-(w / 2 + size / 2) * (1 - dsc(0)), 0f) {
             drawLine(-size / 2, 0f, size / 2, 0f, paint)
         }
         for (j in 0..1) {
             save()
             scale(1f - 2 * j, 1f - 2 * j)
-            drawXY((size / 2  - r), 0f) {
+            drawXY((size / 2  - r), (w / 2 + 2 * r) * dsc(3)) {
                 drawArc(RectF(-r, -r, r, r), 0f, 180f * dsc(1), true, paint)
+                drawRect(RectF(-r, -r * dsc(1), r, 0f), paint)
             }
             restore()
         }
