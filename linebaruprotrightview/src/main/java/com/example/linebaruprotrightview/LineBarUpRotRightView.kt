@@ -188,4 +188,27 @@ class LineBarUpRotRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBarUpRotRightView) {
+
+        private val lburr : LineBarUpRotRight = LineBarUpRotRight(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lburr.draw(canvas, paint)
+            animator.animate {
+                lburr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lburr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
