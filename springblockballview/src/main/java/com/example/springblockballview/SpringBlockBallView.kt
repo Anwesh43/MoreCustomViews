@@ -207,4 +207,13 @@ class SpringBlockBallView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SpringBlockBallView {
+            val view : SpringBlockBallView = SpringBlockBallView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
