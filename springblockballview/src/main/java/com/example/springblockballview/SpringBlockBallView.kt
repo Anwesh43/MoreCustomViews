@@ -41,10 +41,10 @@ fun Canvas.drawSpringBlockBall(scale : Float, w : Float, h : Float, paint : Pain
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     drawXY(w / 2 + (w / 2 + size / 2) * dsc(6), h / 2) {
         rotate(rot * dsc(3))
-        drawXY(0f, -h / 2 -size + (h / 2 - size / 2) * (dsc(1) - dsc(5)) + (size / 2) * (dsc(2) - dsc(4))) {
+        drawXY(0f, -h / 2 - size / 2 + (h / 2 - size) * (dsc(1) - dsc(5)) + (size * 0.9f) * (dsc(2) - dsc(4))) {
             drawCircle(0f, 0f, size / 2, paint)
         }
-        drawRect(RectF(-size / 2, -size * (dsc(0) - dsc(2) + dsc(4)), size / 2, 0f), paint)
+        drawRect(RectF(-size / 2, -size * dsc(0) + size * 0.9f * (dsc(2) - dsc(4)), size / 2, 0f), paint)
     }
 }
 
