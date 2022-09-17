@@ -30,6 +30,13 @@ fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
 
+fun Canvas.drawWithoutDotLine(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     save()
     translate(x, y)
@@ -42,12 +49,12 @@ fun Canvas.drawLineBarUpRotRight(scale : Float, w : Float, h : Float, paint : Pa
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     drawXY(w / 2 + (w / 2 + size) * dsc(4), h / 2) {
         rotate(rot * dsc(3))
-        drawLine(-size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), 0f, paint)
+        drawWithoutDotLine(-size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), 0f, paint)
         drawRect(RectF(-size / 4, -size * 0.5f * dsc(1), size / 4, 0f), paint)
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
-                drawLine(-size / 2, 0f, -size / 2, size * dsc(2), paint)
+                drawWithoutDotLine(-size / 2, 0f, -size / 2, size * dsc(2), paint)
             }
         }
     }
