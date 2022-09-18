@@ -181,4 +181,27 @@ class AltCornerArcJoinView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view: AltCornerArcJoinView) {
+
+        private val animator : Animator = Animator(view)
+        private val acaj : AltCornerArcJoin = AltCornerArcJoin(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            acaj.draw(canvas, paint)
+            animator.animate {
+                acaj.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            acaj.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
