@@ -190,7 +190,7 @@ class AltCornerArcJoinView(ctx : Context) : View(ctx) {
         private val acaj : AltCornerArcJoin = AltCornerArcJoin(0)
         private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-        fun render(canvas : Canvas, paint : Paint) {
+        fun render(canvas : Canvas) {
             canvas.drawColor(backColor)
             acaj.draw(canvas, paint)
             animator.animate {
@@ -204,6 +204,15 @@ class AltCornerArcJoinView(ctx : Context) : View(ctx) {
             acaj.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+
+        fun create(activity : Activity) : AltCornerArcJoinView {
+            val view : AltCornerArcJoinView = AltCornerArcJoinView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }
