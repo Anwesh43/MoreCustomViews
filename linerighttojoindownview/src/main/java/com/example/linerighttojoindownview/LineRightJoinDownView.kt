@@ -210,4 +210,13 @@ class LineRightJoinDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineRightJoinDownView {
+            val view : LineRightJoinDownView = LineRightJoinDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
