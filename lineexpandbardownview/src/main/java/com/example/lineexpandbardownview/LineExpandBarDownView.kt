@@ -214,4 +214,13 @@ class LineExpandBarDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineExpandBarDownView {
+            val view : LineExpandBarDownView = LineExpandBarDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
