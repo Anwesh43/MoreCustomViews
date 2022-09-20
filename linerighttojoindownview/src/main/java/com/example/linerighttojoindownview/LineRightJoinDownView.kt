@@ -15,7 +15,7 @@ val colors : Array<Int> = arrayOf(
     "#C51162",
     "#00C853"
 ).map {
-    Color.parseColor("#BDBDBD")
+    Color.parseColor(it)
 }.toTypedArray()
 val parts : Int = 4
 val scGap : Float = 0.04f / parts
@@ -206,7 +206,7 @@ class LineRightJoinDownView(ctx : Context) : View(ctx) {
 
         fun handleTap() {
             lrjd.startUpdating {
-                animator.stop()
+                animator.start()
             }
         }
     }
