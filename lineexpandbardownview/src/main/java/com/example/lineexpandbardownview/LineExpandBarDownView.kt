@@ -185,8 +185,31 @@ class LineExpandBarDownView(ctx : Context) : View(ctx) {
             }
         }
 
-        fun startUdpating(cb : () -> Unit) {
+        fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : LineExpandBarDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val lebd : LineExpandBarDown = LineExpandBarDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lebd.draw(canvas, paint)
+            animator.animate {
+                lebd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lebd.startUpdating {
+                animator.start()
+            }
         }
     }
 }
