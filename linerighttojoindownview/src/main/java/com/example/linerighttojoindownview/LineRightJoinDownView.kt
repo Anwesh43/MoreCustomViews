@@ -185,4 +185,27 @@ class LineRightJoinDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRightJoinDownView) {
+
+        private val lrjd : LineRightJoinDown = LineRightJoinDown(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrjd.draw(canvas, paint)
+            animator.animate {
+                lrjd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrjd.startUpdating {
+                animator.stop()
+            }
+        }
+    }
 }
