@@ -39,7 +39,7 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
 }
 
 fun Canvas.drawSquareEndUpArc(scale : Float, w : Float, h : Float, paint : Paint) {
-    val r : Float = Math.min(w, h) / r
+    val r : Float = Math.min(w, h) / rFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     drawXY(w / 2, h / 2 + (h / 2 + r) * dsc(3)) {
         rotate(deg * dsc(2))
@@ -93,6 +93,34 @@ class SquareEndUpArcView(ctx : Context) : View(ctx) {
             if (dir == 0f) {
                 dir = 1f - 2 * prevScale
                 cb()
+            }
+        }
+    }
+
+    data class Animator(var view : View, var animated : Boolean = false) {
+
+        fun animate(cb : () -> Unit) {
+            if (animated) {
+                cb()
+                try {
+                    Thread.sleep(delay)
+                    view.invalidate()
+                } catch(ex : Exception) {
+
+                }
+            }
+        }
+
+        fun start() {
+            if (!animated) {
+                animated = true
+                view.postInvalidate()
+            }
+        }
+
+        fun stop() {
+            if (animated) {
+                animated = false
             }
         }
     }
