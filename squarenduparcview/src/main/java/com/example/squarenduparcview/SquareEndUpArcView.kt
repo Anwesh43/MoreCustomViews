@@ -213,4 +213,13 @@ class SquareEndUpArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : SquareEndUpArcView {
+            val view : SquareEndUpArcView = SquareEndUpArcView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
