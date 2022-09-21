@@ -50,7 +50,7 @@ fun Canvas.drawLineExpandBarDown(scale : Float, w : Float, h : Float, paint : Pa
             }
             restore()
         }
-        drawRect(RectF(-size * 0.5f * dsc(1), -size / 2, size * 0.5f * dsc(1), size / 2), paint)
+        drawRect(RectF(-size * 0.5f * dsc(1), -size, size * 0.5f * dsc(1), 0f), paint)
     }
 }
 
