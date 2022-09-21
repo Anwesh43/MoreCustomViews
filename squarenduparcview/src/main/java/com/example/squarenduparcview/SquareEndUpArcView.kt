@@ -48,7 +48,7 @@ fun Canvas.drawDotLine(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : P
 fun Canvas.drawSquareEndUpArc(scale : Float, w : Float, h : Float, paint : Paint) {
     val r : Float = Math.min(w, h) / rFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
-    drawXY(w / 2 - (w / 2 + r) * dsc(3), h / 2) {
+    drawXY(w / 2 - (w / 2 + 2 * r) * dsc(3), h / 2) {
         rotate(deg * dsc(2))
         drawArc(RectF(-r, -r, r, r), 0f, rot * dsc(0), true, paint)
         for (j in 0..1) {
