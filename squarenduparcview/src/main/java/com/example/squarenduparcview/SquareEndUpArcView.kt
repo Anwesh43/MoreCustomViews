@@ -188,4 +188,27 @@ class SquareEndUpArcView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SquareEndUpArcView) {
+
+        private val animator : Animator = Animator(view)
+        private val seua : SquareEndUpArc = SquareEndUpArc(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            seua.draw(canvas, paint)
+            animator.animate {
+                seua.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            seua.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
