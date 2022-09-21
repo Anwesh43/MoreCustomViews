@@ -23,7 +23,7 @@ val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val rFactor : Float = 7.8f
 val delay : Long = 20
-val rot : Float = 360f
+val rot : Float = 270f
 val deg : Float = 45f
 val backColor : Int = Color.parseColor("#BDBDBD")
 
@@ -38,16 +38,23 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawDotLine(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawSquareEndUpArc(scale : Float, w : Float, h : Float, paint : Paint) {
     val r : Float = Math.min(w, h) / rFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
-    drawXY(w / 2, h / 2 + (h / 2 + r) * dsc(3)) {
+    drawXY(w / 2 - (w / 2 + r) * dsc(3), h / 2) {
         rotate(deg * dsc(2))
         drawArc(RectF(-r, -r, r, r), 0f, rot * dsc(0), true, paint)
         for (j in 0..1) {
-            drawXY(-r, -r) {
-                rotate(deg * 2 * j)
-                drawLine(r * (1 - dsc(1)), 0f, r, 0f, paint)
+            drawXY(r, -r) {
+                rotate(-deg * 2 * j)
+                drawDotLine(-r * (1 - dsc(1)), 0f, -r, 0f, paint)
             }
         }
     }
