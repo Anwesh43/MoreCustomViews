@@ -204,8 +204,10 @@ class ArcOneSixthArcView(ctx : Context) : View(ctx) {
             }
         }
 
-        fun handleTap(cb : () -> Unit) {
-            aosa.startUpdating(cb)
+        fun handleTap() {
+            aosa.startUpdating{
+                animator.start()
+            }
         }
     }
 }
