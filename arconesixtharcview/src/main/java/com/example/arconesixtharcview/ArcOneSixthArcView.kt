@@ -185,4 +185,25 @@ class ArcOneSixthArcView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ArcOneSixthArcView) {
+
+        private val animator : Animator = Animator(view)
+        private val aosa : ArcOneSixthArc = ArcOneSixthArc(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            aosa.draw(canvas, paint)
+            animator.animate {
+                aosa.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap(cb : () -> Unit) {
+            aosa.startUpdating(cb)
+        }
+    }
 }
