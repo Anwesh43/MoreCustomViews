@@ -40,12 +40,13 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
 fun Canvas.drawArcOneSixthArc(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
+    val r : Float = size / 2 - paint.strokeWidth / 2
     drawXY(w / 2, h / 2 + (h / 2 + size / 2) * dsc(3)) {
-        rotate(rot * dsc(2))
+        rotate((90 + rot / 2) * dsc(2))
         paint.style = Paint.Style.FILL
         drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 0f, (360f - rot) * dsc(0), true, paint)
         paint.style = Paint.Style.STROKE
-        drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), (360f - rot), rot * dsc(1), false, paint)
+        drawArc(RectF(-r, -r, r, r), (360f - rot), rot * dsc(1), false, paint)
     }
 }
 
