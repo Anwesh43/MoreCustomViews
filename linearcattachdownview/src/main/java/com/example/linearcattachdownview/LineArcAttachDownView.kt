@@ -220,4 +220,13 @@ class LineArcAttachDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineArcAttachDownView {
+            val view : LineArcAttachDownView = LineArcAttachDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
