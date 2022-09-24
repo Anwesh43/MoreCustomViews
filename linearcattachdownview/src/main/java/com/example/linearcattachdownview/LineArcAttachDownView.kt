@@ -195,4 +195,27 @@ class LineArcAttachDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineArcAttachDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val laad : LineArcAttachDown = LineArcAttachDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            laad.draw(canvas, paint)
+            animator.animate {
+                laad.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            laad.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
