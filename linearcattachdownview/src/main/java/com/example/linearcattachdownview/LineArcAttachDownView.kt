@@ -40,7 +40,7 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
 
 
 fun Canvas.drawLineArcAttachDown(scale : Float, w : Float, h : Float, paint : Paint) {
-    val size : Float = Math.min(w, h) / strokeFactor
+    val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     val r : Float = Math.min(w, h) / arcFactor
     drawXY(w / 2, h / 2) {
@@ -48,7 +48,7 @@ fun Canvas.drawLineArcAttachDown(scale : Float, w : Float, h : Float, paint : Pa
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f - 2 * j)
-                drawXY(0f, (h / 2) * (dsc(0) - dsc(3))) {
+                drawXY(0f, (h / 2) * (1 - dsc(0) +dsc(3))) {
                     drawLine(0f, 0f, 0f, size, paint)
                     drawXY(0f, size - r) {
                         drawArc(RectF(-r, -r, r, r), 90f, 180f * dsc(1), true, paint)
