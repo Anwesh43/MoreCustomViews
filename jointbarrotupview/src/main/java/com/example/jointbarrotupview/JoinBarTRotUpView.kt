@@ -222,4 +222,13 @@ class JoinBarTRotUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : JoinBarTRotUpView {
+            val view : JoinBarTRotUpView = JoinBarTRotUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
