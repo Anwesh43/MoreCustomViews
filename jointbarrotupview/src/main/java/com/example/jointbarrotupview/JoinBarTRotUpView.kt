@@ -197,4 +197,27 @@ class JoinBarTRotUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : JoinBarTRotUpView) {
+
+        private val animator : Animator = Animator(view)
+        private val jbtru : JoinBarTRotUp = JoinBarTRotUp(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            jbtru.draw(canvas, paint)
+            animator.animate {
+                jbtru.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            jbtru.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
