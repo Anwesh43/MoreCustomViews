@@ -213,4 +213,13 @@ class ShooterMidLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : ShooterMidLineView {
+            val view : ShooterMidLineView = ShooterMidLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
