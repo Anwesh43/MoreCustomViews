@@ -63,17 +63,18 @@ fun Canvas.drawBRUTRCNode(i : Int, scale : Float, paint : Paint) {
 
 class BiRotUpToRightCircleView(ctx : Context) : View(ctx) {
 
+    private val renderer : Renderer = Renderer(this)
     override fun onTouchEvent(event : MotionEvent) : Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-
+                renderer.handleTap()
             }
         }
         return true
     }
 
     override fun onDraw(canvas : Canvas) {
-
+        renderer.render(canvas)
     }
 
     data class State(var scale : Float = 0f, var dir : Float = 0f, var prevScale : Float = 0f) {
