@@ -55,8 +55,8 @@ fun Canvas.drawJoinBarTRotUp(scale : Float, w : Float, h : Float, paint : Paint)
                     drawRect(RectF(-size, -size, 0f, 0f), paint)
                 }
             }
-            drawXY(0f, size * (1f - 2 * j) * dsc(2)) {
-                drawLine(0f, 0f, size * dsc(1), 0f, paint)
+            drawXY(0f, (size - paint.strokeWidth) * (1f - 2 * j) * dsc(2)) {
+                drawWithoutDotLine(0f, 0f, size * dsc(1), 0f, paint)
             }
         }
     }
