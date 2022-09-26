@@ -19,7 +19,7 @@ val colors : Array<Int> = arrayOf(
     Color.parseColor(it)
 }.toTypedArray()
 val parts : Int = 5
-val scGap : Float = 0.02f / parts
+val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val delay : Long = 20
@@ -45,7 +45,7 @@ fun Canvas.drawBiRotUpToRightCircle(scale : Float, w : Float, h : Float, paint :
     drawXY(w / 2, h / 2) {
         rotate(rot * dsc(2))
         for (j in 0..1) {
-            drawXY(-size * (1f - 2 * j), -h / 2 - r + (h / 2 + r) * dsc(j) + (w / 2 + r) * dsc(3 + j)) {
+            drawXY(-size * (1f - 2 * j), -h / 2 - r + (h / 2 + r) * dsc(j) - (w / 2 + r) * dsc(3 + j)) {
                 drawCircle(0f, 0f, r, paint)
             }
         }
