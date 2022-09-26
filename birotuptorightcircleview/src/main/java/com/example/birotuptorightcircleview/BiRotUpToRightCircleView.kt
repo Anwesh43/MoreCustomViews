@@ -211,4 +211,12 @@ class BiRotUpToRightCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : BiRotUpToRightCircleView {
+            val view : BiRotUpToRightCircleView = BiRotUpToRightCircleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
