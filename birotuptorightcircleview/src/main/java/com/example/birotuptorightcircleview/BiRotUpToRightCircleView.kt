@@ -187,4 +187,27 @@ class BiRotUpToRightCircleView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiRotUpToRightCircleView) {
+
+        private val animator : Animator = Animator(view)
+        private val butrc : BiRotUpToRight = BiRotUpToRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            butrc.draw(canvas, paint)
+            animator.animate {
+                butrc.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            butrc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
