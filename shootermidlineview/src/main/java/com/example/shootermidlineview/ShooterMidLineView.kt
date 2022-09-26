@@ -18,7 +18,7 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val parts : Int = 5
+val parts : Int = 4
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
@@ -29,6 +29,13 @@ val rot : Float = 180f
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
+
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
 
 fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     save()
@@ -41,13 +48,13 @@ fun Canvas.drawShooterMidLine(scale : Float, w : Float, h : Float, paint : Paint
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     val size : Float = Math.min(w, h) / sizeFactor
     drawXY(w / 2, h / 2) {
-        drawXY(0f, (h / 2) * dsc(2)) {
+        drawXY(0f, (h / 2 + paint.strokeWidth) * dsc(2)) {
             rotate(rot * dsc(1))
-            drawLine(0f, 0f, 0f, -size * dsc(0) * 0.5f, paint)
+            drawLineWithoutDot(0f, 0f, 0f, -size * dsc(0) * 0.5f, paint)
         }
         for (j in 0..1) {
-            drawXY(0f, (-h / 2) * dsc(3)) {
-                drawLine(0f, 0f, 0f, -size * dsc(0), paint)
+            drawXY((size / 2) * (1f - 2 * j), (-h / 2 - paint.strokeWidth) * dsc(3)) {
+                drawLineWithoutDot(0f, 0f, 0f, -size * dsc(0), paint)
             }
         }
     }
