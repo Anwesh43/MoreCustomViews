@@ -18,7 +18,7 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val parts : Int = 4
+val parts : Int = 5
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
@@ -42,13 +42,14 @@ fun Canvas.drawBiLineShooterArc(scale : Float, w : Float, h : Float, paint : Pai
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     drawXY(w / 2, h / 2) {
-        drawXY(0f, -(h / 2) * dsc(3)) {
+        drawXY(0f, -(h / 2) * dsc(4)) {
             drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), deg, deg * dsc(1), true, paint)
         }
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
-                drawXY((size / 2) + w * 0.5f * dsc(2), 0f) {
+                rotate(deg * dsc(2))
+                drawXY((size / 2) + w * 0.5f * dsc(3), 0f) {
                     drawLine(0f, 0f, 0f, -size * dsc(0), paint)
                 }
             }
