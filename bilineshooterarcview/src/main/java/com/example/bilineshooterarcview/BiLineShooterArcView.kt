@@ -216,4 +216,13 @@ class BiLineShooterArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : BiLineShooterArcView {
+            val view : BiLineShooterArcView = BiLineShooterArcView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
