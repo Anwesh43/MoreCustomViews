@@ -191,4 +191,27 @@ class BiLineShooterArcView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiLineShooterArcView) {
+
+        private val animator : Animator = Animator(view)
+        private val blsa : BiLineShooter = BiLineShooter(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            blsa.draw(canvas, paint)
+            animator.animate {
+                blsa.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            blsa.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
