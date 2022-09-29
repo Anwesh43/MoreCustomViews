@@ -215,4 +215,12 @@ class BarExpandWithCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : BarExpandWithCircleView {
+            val view : BarExpandWithCircleView = BarExpandWithCircleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
