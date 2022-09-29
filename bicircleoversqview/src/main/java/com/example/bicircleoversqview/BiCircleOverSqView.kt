@@ -27,5 +27,8 @@ val rFactor : Float = 22.2f
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 180f
 
+fun Int.inverse() : Float = 1f / this
+fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
+fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
 
 
