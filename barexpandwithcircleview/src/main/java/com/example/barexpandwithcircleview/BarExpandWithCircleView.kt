@@ -190,4 +190,27 @@ class BarExpandWithCircleView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BarExpandWithCircleView) {
+
+        private val animator : Animator = Animator(view)
+        private val bewc : BarExpandWithCircle = BarExpandWithCircle(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bewc.draw(canvas, paint)
+            animator.animate {
+                bewc.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bewc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
