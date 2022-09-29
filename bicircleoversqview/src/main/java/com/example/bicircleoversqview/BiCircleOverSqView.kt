@@ -211,4 +211,13 @@ class BiCircleOverSqView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : BiCircleOverSqView {
+            val view : BiCircleOverSqView = BiCircleOverSqView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
