@@ -46,7 +46,7 @@ fun Canvas.drawBiCircleOverSq(scale : Float, w : Float, h : Float, paint : Paint
         rotate(rot * dsc(2))
         drawRect(RectF(-size / 2, -size * 0.5f * dsc(0), size / 2, 0f), paint)
         for (j in 0..1) {
-            drawXY(-size / 2 + r + (size - 2 * r) * j, -h / 2 - r + (h / 2) * dsc(1)) {
+            drawXY(-size / 2 + r + (size - 2 * r) * j, -h / 2 - (size / 2 + r) + (h / 2) * dsc(1)) {
                 drawCircle(0f, 0f, r, paint)
             }
         }
