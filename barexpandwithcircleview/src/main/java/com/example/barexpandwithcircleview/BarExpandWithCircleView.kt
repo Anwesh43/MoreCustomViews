@@ -22,7 +22,7 @@ val parts : Int = 4
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
-val rFactor : Float = 23.1f
+val rFactor : Float = 14.1f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 90f
@@ -48,8 +48,8 @@ fun Canvas.drawBarExpandWithCircle(scale : Float, w : Float, h : Float, paint : 
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f - 2 * j)
                 drawXY((h / 2 + size) * dsc(3), 0f) {
-                    drawRect(RectF(-size / 2, 0f, -size / 2 + size * dsc(0), size / 4), paint)
-                    drawCircle(size / 2 + 2 * r, (h / 2 + r) * (1 - dsc(1)), r, paint)
+                    drawRect(RectF(-size / 2, 0f, -size / 2 + size * dsc(0), r), paint)
+                    drawCircle(size / 2 + r, r / 2  + (h / 2) * (1 - dsc(1)), r / 2, paint)
                 }
             }
         }
