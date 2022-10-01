@@ -197,7 +197,7 @@ class ArcStretchLineRightView(ctx : Context) : View(ctx) {
         private val aslr : ArcStretchLineRight = ArcStretchLineRight(0)
         private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-        fun render(canvas : Canvas, paint : Paint) {
+        fun render(canvas : Canvas) {
             canvas.drawColor(backColor)
             aslr.draw(canvas, paint)
             animator.animate {
