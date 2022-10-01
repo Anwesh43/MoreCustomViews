@@ -213,4 +213,13 @@ class ArcStretchLineRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : ArcStretchLineRightView {
+            val view : ArcStretchLineRightView = ArcStretchLineRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
