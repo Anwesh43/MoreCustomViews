@@ -138,7 +138,7 @@ class ArcStretchLineRightView(ctx : Context) : View(ctx) {
 
         fun addNeighbor() {
             if (i < colors.size - 1) {
-                next = ASLRNode(0)
+                next = ASLRNode(i + 1)
                 next?.prev = this
             }
         }
