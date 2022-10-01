@@ -209,4 +209,13 @@ class SmallBarOverSqView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : SmallBarOverSqView {
+            val view : SmallBarOverSqView = SmallBarOverSqView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
