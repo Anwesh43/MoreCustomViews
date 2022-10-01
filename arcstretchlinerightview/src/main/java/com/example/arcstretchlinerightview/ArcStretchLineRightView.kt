@@ -38,17 +38,24 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawWithoutDotLine(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2)  < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawArcStretchLineRight(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts)}
     val r : Float = Math.min(w ,h) / rFactor
-    drawXY(w / 2 + (w / 2 + r) * dsc(3), h / 2) {
+    drawXY(w / 2 + (w / 2 + 2 * r) * dsc(3), h / 2) {
         rotate(-rot * dsc(2))
         drawXY(r, -r) {
             drawArc(RectF(-r, -r, r, r), 0f, 360f * dsc(0), true, paint)
         }
         drawXY(0f, -2 * r) {
-            drawLine(0f, 0f, 0f, size * dsc(1), paint)
+            drawWithoutDotLine(0f, 0f, 0f, size * dsc(1), paint)
         }
     }
 }
