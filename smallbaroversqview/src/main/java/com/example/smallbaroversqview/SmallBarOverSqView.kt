@@ -57,3 +57,19 @@ fun Canvas.drawSBOSNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     drawSmallBarOverSq(scale, w, h, paint)
 }
+
+class SmallBarOverSqView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
+}
