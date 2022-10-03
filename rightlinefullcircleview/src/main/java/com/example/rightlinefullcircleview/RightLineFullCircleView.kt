@@ -53,13 +53,14 @@ fun Canvas.drawRightLineFullCircle(scale : Float, w : Float, h : Float, paint : 
         scale.divideScale(it, parts)
     }
     drawXY(w / 2, h / 2) {
+        rotate(deg * dsc(0))
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 rotate(rot * j * dsc(1))
-                drawLine(0f, 0f, size * dsc(0), 0f, paint)
+                drawLineWithoutDot(0f, 0f, size * dsc(0), 0f, paint)
             }
         }
-        drawArc(RectF(-r, -r, r, r), 0f, deg * dsc(1), true, paint)
+        drawArc(RectF(-r, -r, r, r), 0f, rot * dsc(1), true, paint)
     }
 }
 
