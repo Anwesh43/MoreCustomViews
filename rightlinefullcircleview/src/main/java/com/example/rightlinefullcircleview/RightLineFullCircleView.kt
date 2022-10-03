@@ -199,4 +199,27 @@ class RightLineFullCircleView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RightLineFullCircleView) {
+
+        private val animator : Animator = Animator(view)
+        private val rlfc : RightLineFullCircle = RightLineFullCircle(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rlfc.draw(canvas, paint)
+            animator.animate {
+                rlfc.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rlfc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
