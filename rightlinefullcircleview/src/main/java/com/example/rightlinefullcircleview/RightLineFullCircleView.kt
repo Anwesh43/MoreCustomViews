@@ -52,8 +52,8 @@ fun Canvas.drawRightLineFullCircle(scale : Float, w : Float, h : Float, paint : 
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
-        rotate(deg * dsc(0))
+    drawXY(w / 2, h / 2 + (h / 2 + r) * dsc(3)) {
+        rotate(deg * dsc(2))
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 rotate(rot * j * dsc(1))
