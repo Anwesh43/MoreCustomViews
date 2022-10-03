@@ -224,4 +224,13 @@ class RightLineFullCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : RightLineFullCircleView {
+            val view : RightLineFullCircleView = RightLineFullCircleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
