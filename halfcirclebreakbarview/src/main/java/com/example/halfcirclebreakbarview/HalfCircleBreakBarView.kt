@@ -218,4 +218,13 @@ class HalfCircleBreakBarView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : HalfCircleBreakBarView {
+            val view : HalfCircleBreakBarView = HalfCircleBreakBarView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
