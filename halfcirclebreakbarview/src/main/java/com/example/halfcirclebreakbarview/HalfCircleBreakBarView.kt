@@ -42,17 +42,17 @@ fun Canvas.drawHalfCircleBreakBar(scale : Float, w : Float, h : Float, paint : P
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     drawXY(w / 2, h / 2) {
         for (j in 0..1) {
-            drawXY((w /2) * (1 - 2 * j) * dsc(3), 0f) {
-                rotate(rot * (1f - 2 * j) * dsc(0))
+            drawXY((w /2 + size) * -(1 - 2 * j) * dsc(3), 0f) {
+                rotate(rot * (1f - 2 * j) * dsc(1))
                 drawArc(
-                    RectF(-size / 2, -size / 2, size / 2, size / 2),
+                    RectF(-size, -size / 2, 0f, size / 2),
                     0f,
                     deg * dsc(0),
                     true,
                     paint
                 )
                 drawRect(
-                    RectF(-size / 2, -size * 0.5f * dsc(2), size / 2, 0f),
+                    RectF(-size, -size * 0.5f * dsc(2), 0f, 0f),
                     paint
                 )
             }
