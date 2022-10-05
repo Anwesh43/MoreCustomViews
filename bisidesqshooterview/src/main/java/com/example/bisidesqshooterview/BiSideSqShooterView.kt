@@ -207,4 +207,12 @@ class BiSideSqShooterView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : BiSideSqShooterView {
+            val view : BiSideSqShooterView = BiSideSqShooterView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
