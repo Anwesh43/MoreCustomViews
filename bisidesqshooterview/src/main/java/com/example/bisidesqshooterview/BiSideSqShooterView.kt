@@ -41,9 +41,12 @@ fun Canvas.drawBiSideSqShooter(scale : Float, w : Float, h : Float, paint : Pain
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     drawXY(w / 2, h / 2) {
         rotate(rot * dsc(2))
-        drawXY(0f, (h / 2) * dsc(3)) {
-            drawXY(0f, (size / 2) * dsc(1)) {
-                drawRect(RectF(0f, -size / 2, size * dsc(0), size / 2), paint)
+        for (j in 0..1) {
+            scale(1f - 2 * j, 1f - 2 * j)
+            drawXY(0f, (h / 2) * dsc(3)) {
+                drawXY(0f, (size / 2) * dsc(1)) {
+                    drawRect(RectF(0f, -size / 2, size * dsc(0), size / 2), paint)
+                }
             }
         }
     }
