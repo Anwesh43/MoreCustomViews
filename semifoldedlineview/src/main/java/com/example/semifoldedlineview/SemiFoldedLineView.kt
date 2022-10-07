@@ -49,9 +49,9 @@ fun Canvas.drawSemiFoldedLine(scale : Float, w : Float, h : Float, paint : Paint
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     drawXY(w / 2 - (w / 2 + paint.strokeWidth) * dsc(3), h / 2) {
         rotate(rot * dsc(2))
-        drawLine(-size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), 0f, paint)
-        drawLine(-size / 2, 0f, -size / 2 + (size / 2) * dsc(1), -size * 0.5f * dsc(1), paint)
-        drawLine(size / 2, 0f, size / 2, -size * 0.5f * dsc(1), paint)
+        drawLineWithoutDot(-size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), 0f, paint)
+        drawLineWithoutDot(-size / 2, 0f, -size / 2 + (size / 2) * dsc(1), -size * 0.5f * dsc(1), paint)
+        drawLineWithoutDot(size / 2, 0f, size / 2, -size * 0.5f * dsc(1), paint)
     }
 }
 
