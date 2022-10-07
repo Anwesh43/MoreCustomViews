@@ -208,4 +208,12 @@ class SemiFoldedLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activty : Activity) : SemiFoldedLineView {
+            val view : SemiFoldedLineView = SemiFoldedLineView(activty)
+            activty.setContentView(view)
+            return view
+        }
+    }
 }
