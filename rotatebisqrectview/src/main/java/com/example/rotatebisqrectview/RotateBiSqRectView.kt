@@ -208,4 +208,13 @@ class RotateBiSqRectView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : RotateBiSqRectView {
+            val view : RotateBiSqRectView = RotateBiSqRectView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
