@@ -3,7 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.semifoldedlineview.SemiFoldedLineView
+import com.example.rotatebisqrectview.RotateBiSqRectView
 
 
 //import com.example.bilineparallelbarview.BiLineParallelBarView
@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         //setContentView(R.layout.activity_main)
         //LineDownExtenderRotView.create(this)
         //BiLineParallelBarView.create(this)
-        SemiFoldedLineView.create(this)
+        RotateBiSqRectView.create(this)
         fullScreen()
     }
 }
