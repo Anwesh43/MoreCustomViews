@@ -119,4 +119,45 @@ class RotateBiSqRectView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class RBSRNode(var i : Int = 0, val state : State = State()) {
+
+        private var prev : RBSRNode? = null
+        private var next : RBSRNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = RBSRNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawRBSRNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : RBSRNode {
+            var curr : RBSRNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
