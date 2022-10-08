@@ -183,4 +183,27 @@ class RotateBiSqRectView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RotateBiSqRectView) {
+
+        private val animator : Animator = Animator(view)
+        private val rbs : RotateBiSqRect = RotateBiSqRect(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rbs.draw(canvas, paint)
+            animator.animate {
+                rbs.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rbs.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
