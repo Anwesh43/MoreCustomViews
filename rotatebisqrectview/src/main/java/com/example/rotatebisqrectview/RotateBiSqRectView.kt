@@ -20,7 +20,7 @@ val colors : Array<Int> = arrayOf(
 }.toTypedArray()
 val parts : Int = 4
 val scGap : Float = 0.04f / parts
-val sizeFactor : Float = 5.9f
+val sizeFactor : Float = 3.9f
 val rot : Float = 180f
 val backColor : Int = Color.parseColor("#BDBDBD")
 val delay : Long = 20
@@ -39,11 +39,11 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
 fun Canvas.drawRotateBiSqRect(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
-    drawXY(w / 2, h / 2 + (h / 2 + size)) {
+    drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(3)) {
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 *j, 1f)
-                rotate(rot * dsc(2))
+                rotate(rot * dsc(2) * j)
                 drawRect(RectF(0f, -size * dsc(j), size / 2, 0f), paint)
             }
         }
