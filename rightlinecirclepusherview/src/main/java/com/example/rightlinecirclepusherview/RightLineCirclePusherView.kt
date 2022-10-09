@@ -213,4 +213,12 @@ class RightLineCirclePusherView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : RightLineCirclePusherView {
+            val view : RightLineCirclePusherView = RightLineCirclePusherView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
