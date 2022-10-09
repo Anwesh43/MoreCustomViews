@@ -188,4 +188,27 @@ class RightLineCirclePusherView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RightLineCirclePusherView) {
+
+        private val animator : Animator = Animator(view)
+        private val rlcp : RightLineCirclePusher = RightLineCirclePusher(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rlcp.draw(canvas, paint)
+            animator.animate {
+                rlcp.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rlcp.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
