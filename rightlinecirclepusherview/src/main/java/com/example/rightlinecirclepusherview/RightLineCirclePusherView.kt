@@ -38,6 +38,13 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawRightLineCirclePusher(scale : Float, w : Float, h : Float, paint : Paint) {
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     val size : Float = Math.min(w, h) / sizeFactor
@@ -45,8 +52,8 @@ fun Canvas.drawRightLineCirclePusher(scale : Float, w : Float, h : Float, paint 
     drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
        for (j in 0..1) {
            drawXY(-size, 0f) {
-               rotate(rot * (1 - dsc(2)))
-               drawLine(0f, 0f, (size - r) * dsc(1), 0f, paint)
+               rotate(rot * (1 - dsc(2)) * j)
+               drawLineWithoutDot(0f, 0f, (size - r) * dsc(1), 0f, paint)
            }
        }
        drawArc(RectF(-r, -r, r, r), 0f, 360f * dsc(0), true, paint)
