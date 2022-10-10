@@ -215,4 +215,13 @@ class LineRotThreeLineRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineRotThreeLineRightView {
+            val view : LineRotThreeLineRightView = LineRotThreeLineRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
