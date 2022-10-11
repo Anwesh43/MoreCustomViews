@@ -187,4 +187,27 @@ class LineFoldMoreView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineFoldMoreView) {
+
+        private val animator : Animator = Animator(view)
+        private val lfm : LineFoldMore = LineFoldMore(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lfm.draw(canvas, paint)
+            animator.animate {
+                lfm.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lfm.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
