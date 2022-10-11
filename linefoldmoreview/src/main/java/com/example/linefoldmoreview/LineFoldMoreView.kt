@@ -212,4 +212,13 @@ class LineFoldMoreView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineFoldMoreView {
+            val view : LineFoldMoreView = LineFoldMoreView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
