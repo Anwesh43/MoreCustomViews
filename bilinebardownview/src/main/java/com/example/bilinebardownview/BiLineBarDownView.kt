@@ -201,4 +201,27 @@ class BiLineBarDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiLineBarDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val biLineBarDown : BiLineBarDown = BiLineBarDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            biLineBarDown.draw(canvas, paint)
+            animator.animate {
+                biLineBarDown.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            biLineBarDown.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
