@@ -21,8 +21,8 @@ val colors : Array<Int> = arrayOf(
 val parts : Int = 5
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
-val barWFactor : Float = 11.2f
-val sizeFactor : Float = 90f
+val barWFactor : Float = 24.2f
+val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val deg : Float = 180f
@@ -56,7 +56,7 @@ fun Canvas.drawBiLineBarDown(scale : Float, w : Float, h : Float, paint : Paint)
         drawLine(-size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), 0f, paint)
         for (j in 0..1) {
             drawXY(0f, 0f) {
-                scale(1f - 2 * j, 1f - 2 * j)
+                scale(1f - 2 * j, 1f)
                 drawXY(size / 2 - barSize, 0f ) {
                     drawRect(RectF(0f, 0f, barSize, size * dsc(1)), paint)
                 }
