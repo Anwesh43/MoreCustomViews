@@ -38,7 +38,7 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
-fun Canvas.drawLine(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
     if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
         return
     }
@@ -53,7 +53,7 @@ fun Canvas.drawBiLineBarDown(scale : Float, w : Float, h : Float, paint : Paint)
     }
     drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(4)) {
         rotate(deg * dsc(2))
-        drawLine(-size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), 0f, paint)
+        drawLineWithoutDot(-size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), 0f, paint)
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
@@ -62,7 +62,7 @@ fun Canvas.drawBiLineBarDown(scale : Float, w : Float, h : Float, paint : Paint)
                 }
             }
         }
-        drawLine(0f, 0f, 0f, -size * dsc(3), paint)
+        drawLineWithoutDot(0f, 0f, 0f, -size * dsc(3), paint)
     }
 }
 
