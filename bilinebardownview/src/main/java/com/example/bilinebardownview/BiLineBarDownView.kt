@@ -226,4 +226,13 @@ class BiLineBarDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BiLineBarDownView {
+            val view : BiLineBarDownView = BiLineBarDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
