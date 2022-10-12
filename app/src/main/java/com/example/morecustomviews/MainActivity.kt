@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         //setContentView(R.layout.activity_main)
         //LineDownExtenderRotView.create(this)
         //BiLineParallelBarView.create(this)
-        BiLineBarDownView.(this)
+        BiLineBarDownView.create(this)
         fullScreen()
     }
 }
