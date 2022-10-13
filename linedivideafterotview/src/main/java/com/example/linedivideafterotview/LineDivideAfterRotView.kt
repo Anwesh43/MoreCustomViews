@@ -58,3 +58,18 @@ fun Canvas.drawLDARNode(i : Int, scale : Float, paint : Paint) {
     paint.strokeWidth = Math.min(w, h) / strokeFactor
     drawLineDivideAfterRot(scale, w, h, paint)
 }
+
+class LineDivideAfterRotView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
+}
