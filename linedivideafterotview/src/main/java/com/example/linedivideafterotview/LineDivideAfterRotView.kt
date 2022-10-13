@@ -210,4 +210,12 @@ class LineDivideAfterRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineDivideAfterRotView {
+            val view : LineDivideAfterRotView = LineDivideAfterRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
