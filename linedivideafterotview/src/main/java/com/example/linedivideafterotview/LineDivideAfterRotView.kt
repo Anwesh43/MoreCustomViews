@@ -197,6 +197,7 @@ class LineDivideAfterRotView(ctx : Context) : View(ctx) {
 
         fun render(canvas : Canvas) {
             canvas.drawColor(backColor)
+            ldar.draw(canvas, paint)
             animator.animate {
                 ldar.update {
                     animator.stop()
