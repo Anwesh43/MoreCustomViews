@@ -44,7 +44,7 @@ fun Canvas.drawLineDivideAfterRot(scale : Float, w : Float, h : Float, paint : P
         rotate(rot * dsc(1))
         drawLine(0f, -size * 0.5f * dsc(2), 0f, size * 0.5f * dsc(2), paint)
         for (j in 0..1) {
-            translate(0f, -size * 0.5f * dsc(2) * (1f - 2 * j))
+            translate(0f, size * 0.5f * dsc(2) * (1f - 2 * j))
             drawLine(0f, 0f, -size * dsc(0), 0f, paint)
         }
         drawRect(RectF(-size * dsc(3),  -size / 2, 0f, size / 2), paint)
