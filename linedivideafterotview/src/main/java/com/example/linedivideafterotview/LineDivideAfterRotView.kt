@@ -184,4 +184,26 @@ class LineDivideAfterRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineDivideAfterRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val ldar : LineDivideAfterRot = LineDivideAfterRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            animator.animate {
+                ldar.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ldar.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
