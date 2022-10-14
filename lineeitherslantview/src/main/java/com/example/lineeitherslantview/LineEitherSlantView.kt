@@ -49,9 +49,9 @@ fun Canvas.drawLineEitherSlant(scale : Float, w : Float, h : Float, paint : Pain
     drawXY(w / 2, h / 2 + (h / 2 + 2 * size) * dsc(3)) {
         rotate(rot * dsc(2))
         drawLineWithoutDot(-size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), 0f, paint)
-        drawLineWithoutDot(size / 2, 0f, size / 2, size * 0.5f * dsc(1), paint)
+        //drawLineWithoutDot(size / 2, 0f, size / 2, size * 0.5f * dsc(1), paint)
         drawXY(size / 2, 0f) {
-            drawLine(0f, 0f, 0f, size * 0.5f * dsc(1), paint)
+            drawLineWithoutDot(0f, 0f, 0f, size * 0.5f * dsc(1), paint)
         }
         drawXY(-size / 2, 0f) {
             drawLineWithoutDot(0f, 0f, -size * 0.5f * dsc(1), -size * 0.5f * dsc(1), paint)
