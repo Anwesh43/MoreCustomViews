@@ -213,4 +213,12 @@ class LineEitherSlantView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : LineEitherSlantView {
+            val view : LineEitherSlantView = LineEitherSlantView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
