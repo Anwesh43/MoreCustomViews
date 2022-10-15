@@ -38,6 +38,13 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawMirrorBarAboveLine(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val barSize : Float = Math.min(w, h) / barSizeFactor
@@ -46,9 +53,9 @@ fun Canvas.drawMirrorBarAboveLine(scale : Float, w : Float, h : Float, paint : P
     }
     drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(4)) {
         rotate(rot * dsc(3))
-        drawLine(-size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), 0f, paint)
+        drawLineWithoutDot(-size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), 0f, paint)
         for (j in 0..1) {
-            drawXY(-size / 2 + (size - barSize) * dsc(2), 0f) {
+            drawXY(-size / 2 + (size - barSize) * dsc(2) * j, 0f) {
                 drawRect(RectF(0f, -barSize * dsc(1), barSize, 0f), paint)
             }
         }
