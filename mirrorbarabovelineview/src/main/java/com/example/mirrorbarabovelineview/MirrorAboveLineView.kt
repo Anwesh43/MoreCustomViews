@@ -48,8 +48,9 @@ fun Canvas.drawMirrorBarAboveLine(scale : Float, w : Float, h : Float, paint : P
         rotate(rot * dsc(3))
         drawLine(-size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), 0f, paint)
         for (j in 0..1) {
-            drawXY(-size / 2 + (size - barSize) * dsc(2), 0f)
-            drawRect(RectF(0f, -barSize * dsc(1), barSize, 0f), paint)
+            drawXY(-size / 2 + (size - barSize) * dsc(2), 0f) {
+                drawRect(RectF(0f, -barSize * dsc(1), barSize, 0f), paint)
+            }
         }
     }
 }
@@ -123,6 +124,47 @@ class MirrorBarAboveLineView(ctx : Context) : View(ctx) {
             if (animated) {
                 animated = false
             }
+        }
+    }
+
+    data class MALNode(var i : Int, private val state : State = State()) {
+
+        private var next : MALNode? = null
+        private var prev : MALNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = MALNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawMBALNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : MALNode {
+            var curr : MALNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
         }
     }
 }
