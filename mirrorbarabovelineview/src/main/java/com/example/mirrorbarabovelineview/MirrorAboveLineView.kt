@@ -215,4 +215,13 @@ class MirrorBarAboveLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : MirrorBarAboveLineView {
+            val view : MirrorBarAboveLineView = MirrorBarAboveLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
