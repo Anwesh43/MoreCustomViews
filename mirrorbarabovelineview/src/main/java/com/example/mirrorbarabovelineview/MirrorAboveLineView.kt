@@ -190,4 +190,27 @@ class MirrorBarAboveLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : MirrorBarAboveLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val mal : MirrorAboveLine = MirrorAboveLine(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            mal.draw(canvas, paint)
+            animator.animate {
+                mal.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            mal.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
