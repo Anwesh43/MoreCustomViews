@@ -222,4 +222,12 @@ class HalfArcBiLineExtendView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : HalfArcBiLineExtendView {
+            val view : HalfArcBiLineExtendView = HalfArcBiLineExtendView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
