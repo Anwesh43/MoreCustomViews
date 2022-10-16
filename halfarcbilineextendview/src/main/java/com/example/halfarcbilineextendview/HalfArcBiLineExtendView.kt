@@ -49,7 +49,9 @@ fun Canvas.drawHalfArcBiLineExtend(scale : Float, w : Float, h : Float, paint : 
     val size : Float = Math.min(w, h) / sizeFactor
     drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
         rotate(rot * dsc(2))
-        drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 0f, 180f * dsc(0), true, paint)
+        drawXY(-paint.strokeWidth / 2, -paint.strokeWidth / 2) {
+            drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 0f, 180f * dsc(0), true, paint)
+        }
 
         for (j in 0..1) {
             drawXY(0f, 0f) {
