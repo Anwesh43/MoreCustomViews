@@ -3,6 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import com.example.tabletoplinedownview.TableTopLineDownView
 
 
 //import com.example.bilineparallelbarview.BiLineParallelBarView
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         //LineDownExtenderRotView.create(this)
         //BiLineParallelBarView.create(this)
         //HalfArcBiLineExtendView.create(this)
+        TableTopLineDownView.create(this)
         fullScreen()
     }
 }
