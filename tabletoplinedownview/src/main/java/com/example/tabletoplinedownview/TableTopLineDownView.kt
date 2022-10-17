@@ -213,4 +213,13 @@ class TableTopLineDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : TableTopLineDownView {
+            val view : TableTopLineDownView = TableTopLineDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
