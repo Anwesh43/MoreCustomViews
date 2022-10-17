@@ -15,7 +15,7 @@ val colors : Array<Int> = arrayOf(
     "#C51162",
     "#00C853"
 ).map {
-    Color.parseColor("#BDBDBD")
+    Color.parseColor(it)
 }.toTypedArray()
 val parts : Int = 4
 val scGap : Float = 0.04f / parts
@@ -36,18 +36,27 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawTableTopLineDown(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     drawXY(w / 2, h / 2 - (h / 2 + size / 2 + paint.strokeWidth) * dsc(3)) {
-        rotate(deg * dsc(2))
+        //rotate(deg * dsc(2))
+        drawLineWithoutDot(-size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), 0f, paint)
+        drawLineWithoutDot(0f, 0f, 0f, -size  * 0.5f * dsc(2), paint)
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
                 for (k in 0..1) {
                     drawXY(size * 0.5f * dsc(0), 0f) {
                         rotate(deg * dsc(1))
-                        drawLine(0f, 0f, -size * 0.5f * dsc(0), 0f, paint)
+                        drawLineWithoutDot(0f, 0f, -size * 0.5f * dsc(0), 0f, paint)
                     }
                 }
             }
