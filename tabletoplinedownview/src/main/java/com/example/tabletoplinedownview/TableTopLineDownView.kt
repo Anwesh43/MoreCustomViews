@@ -190,4 +190,27 @@ class TableTopLineDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : TableTopLineDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val ttld : TableTopLineDown = TableTopLineDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ttld.draw(canvas, paint)
+            animator.animate {
+                ttld.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ttld.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
