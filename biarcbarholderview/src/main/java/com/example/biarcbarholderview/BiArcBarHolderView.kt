@@ -212,4 +212,13 @@ class BiArcBarHolderView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : BiArcBarHolderView {
+            val view : BiArcBarHolderView = BiArcBarHolderView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
