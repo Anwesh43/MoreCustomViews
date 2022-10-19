@@ -59,7 +59,7 @@ fun Canvas.drawLineArcAngleRot(scale : Float, w : Float, h : Float, paint : Pain
                 drawLineWithoutDot(0f, 0f, 0f, -size * dsc(0), paint)
             }
         }
-        drawArc(RectF(-size / 4, -size / 4, size / 4, size / 4), 270 - rot * dsc(1), rot * dsc(1), true, paint)
+        drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 270 - rot * dsc(1), rot * dsc(1), true, paint)
     }
 }
 
