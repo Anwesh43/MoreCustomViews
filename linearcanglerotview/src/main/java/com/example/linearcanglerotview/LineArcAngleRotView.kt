@@ -190,4 +190,27 @@ class LineArcAngleRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineArcAngleRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val laar : LineArcAngleRot = LineArcAngleRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            laar.draw(canvas, paint)
+            animator.animate {
+                laar.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            laar.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
