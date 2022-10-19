@@ -3,7 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.biarcbarholderview.BiArcBarHolderView
+import com.example.linearcanglerotview.LineArcAngleRotView
 
 
 //import com.example.bilineparallelbarview.BiLineParallelBarView
@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
-        BiArcBarHolderView.create(this)
+        LineArcAngleRotView.create(this)
         fullScreen()
     }
 }
