@@ -214,4 +214,13 @@ class SqAboveLineRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SqAboveLineRotView {
+            val view : SqAboveLineRotView = SqAboveLineRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
