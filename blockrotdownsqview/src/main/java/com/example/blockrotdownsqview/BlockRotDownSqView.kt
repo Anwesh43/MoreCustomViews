@@ -18,7 +18,7 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val parts : Int = 4
+val parts : Int = 5
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
@@ -49,7 +49,7 @@ fun Canvas.drawBlockRotDownSq(scale : Float, w : Float, h : Float, paint : Paint
             rotate(rot * dsc(2))
             drawRect(RectF(-sqSize, -sqSize, 0f, 0f), paint)
         }
-        drawRect(RectF(-size / 2, 0f, size / 2, size * dsc(0)), paint)
+        drawRect(RectF(-size / 2, size * dsc(4), size / 2, size * dsc(0)), paint)
     }
 }
 
