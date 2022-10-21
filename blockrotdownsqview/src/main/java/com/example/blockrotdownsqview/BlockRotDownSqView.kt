@@ -60,3 +60,18 @@ fun Canvas.drawBRDSNode(i : Int, scale : Float, paint : Paint) {
     drawBlockRotDownSq(scale, w, h, paint)
 }
 
+class BlockRotDownSqView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
+}
