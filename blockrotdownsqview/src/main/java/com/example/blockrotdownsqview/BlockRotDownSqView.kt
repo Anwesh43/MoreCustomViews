@@ -211,4 +211,12 @@ class BlockRotDownSqView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : BlockRotDownSqView {
+            val view : BlockRotDownSqView = BlockRotDownSqView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
