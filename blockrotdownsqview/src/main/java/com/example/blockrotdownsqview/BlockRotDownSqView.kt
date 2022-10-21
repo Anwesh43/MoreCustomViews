@@ -186,4 +186,27 @@ class BlockRotDownSqView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BlockRotDownSqView) {
+
+        private val animator : Animator = Animator(view)
+        private val brds : BlockRotDownSq = BlockRotDownSq(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            brds.draw(canvas, paint)
+            animator.animate {
+                brds.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            brds.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
