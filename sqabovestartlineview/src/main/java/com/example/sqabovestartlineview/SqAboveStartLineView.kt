@@ -211,4 +211,12 @@ class SqAboveStartLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : SqAboveStartLineView {
+            val view : SqAboveStartLineView = SqAboveStartLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
