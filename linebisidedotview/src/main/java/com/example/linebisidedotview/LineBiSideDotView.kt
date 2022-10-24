@@ -195,4 +195,27 @@ class LineBiSideDotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBiSideDotView) {
+
+        private val animator : Animator = Animator(view)
+        private val lbsd : LineBiSideDot = LineBiSideDot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lbsd.draw(canvas, paint)
+            animator.animate {
+                lbsd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbsd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
