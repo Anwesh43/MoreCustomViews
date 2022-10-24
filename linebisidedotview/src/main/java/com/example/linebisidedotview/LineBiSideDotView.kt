@@ -220,4 +220,12 @@ class LineBiSideDotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineBiSideDotView {
+            val view : LineBiSideDotView = LineBiSideDotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
