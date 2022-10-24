@@ -214,4 +214,12 @@ class BiSideSqSizeView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : BiSideSqSizeView {
+            val view: BiSideSqSizeView = BiSideSqSizeView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
