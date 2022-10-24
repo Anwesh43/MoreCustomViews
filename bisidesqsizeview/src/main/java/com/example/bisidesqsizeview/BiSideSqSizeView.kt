@@ -189,4 +189,27 @@ class BiSideSqSizeView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiSideSqSizeView) {
+
+        private val animator : Animator = Animator(view)
+        private val bsss : BiSideSqSize = BiSideSqSize(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bsss.draw(canvas, paint)
+            animator.animate {
+                bsss.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bsss.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
