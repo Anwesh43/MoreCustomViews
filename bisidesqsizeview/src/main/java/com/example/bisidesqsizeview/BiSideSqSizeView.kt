@@ -45,9 +45,10 @@ fun Canvas.drawBiSideSqSize(scale : Float, w : Float, h : Float, paint : Paint) 
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
-                drawXY(size / 2, 0f)
-                drawLine(0f, 0f, 0f, -size / 4 - size * 0.25f * dsc(0) * j, paint)
-                drawRect(RectF(0f, -size * 0.25f * (1 + j), size * 0.5f * dsc(1), 0f), paint)
+                drawXY(size / 2, 0f) {
+                    drawLine(0f, 0f, 0f, -size / 4 - size * 0.25f * dsc(0) * j, paint)
+                    drawRect(RectF(0f, -size * 0.25f * (1 + j), size * 0.5f * dsc(1), 0f), paint)
+                }
             }
         }
     }
@@ -60,4 +61,20 @@ fun Canvas.drawBSSSNode(i : Int, scale : Float, paint : Paint) {
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
     drawBiSideSqSize(scale, w, h, paint)
+}
+
+class BiSideSqSizeView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
 }
