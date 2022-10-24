@@ -37,6 +37,13 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawBiSideSqSize(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
@@ -45,8 +52,8 @@ fun Canvas.drawBiSideSqSize(scale : Float, w : Float, h : Float, paint : Paint) 
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
-                drawXY(size / 2, 0f) {
-                    drawLine(0f, 0f, 0f, -size / 4 - size * 0.25f * dsc(0) * j, paint)
+                drawXY(size / 6, 0f) {
+                    drawLineWithoutDot(0f, 0f, 0f, -size * 0.25f * (1 + j) * dsc(0), paint)
                     drawRect(RectF(0f, -size * 0.25f * (1 + j), size * 0.5f * dsc(1), 0f), paint)
                 }
             }
