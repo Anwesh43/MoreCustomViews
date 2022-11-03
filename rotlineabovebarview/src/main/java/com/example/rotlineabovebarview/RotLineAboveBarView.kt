@@ -222,4 +222,13 @@ class RotLineAboveBarView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : RotLineAboveBarView {
+            val view : RotLineAboveBarView = RotLineAboveBarView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
