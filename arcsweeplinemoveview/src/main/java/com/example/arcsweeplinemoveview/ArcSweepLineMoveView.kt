@@ -193,4 +193,27 @@ class ArcSweepLineMoveView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ArcSweepLineMoveView) {
+
+        private val alsm : ArcSweepLineMove = ArcSweepLineMove(0)
+        private val animator  : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            alsm.draw(canvas, paint)
+            animator.animate {
+                alsm.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            alsm.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
