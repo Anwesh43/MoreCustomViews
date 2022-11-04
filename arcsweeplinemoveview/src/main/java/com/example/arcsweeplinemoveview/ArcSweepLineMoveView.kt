@@ -218,4 +218,12 @@ class ArcSweepLineMoveView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : ArcSweepLineMoveView {
+            val view : ArcSweepLineMoveView = ArcSweepLineMoveView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
