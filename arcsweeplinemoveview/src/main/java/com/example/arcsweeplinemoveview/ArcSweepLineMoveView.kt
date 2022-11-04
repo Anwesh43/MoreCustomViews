@@ -18,7 +18,7 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val parts : Int = 4
+val parts : Int = 5
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val delay : Long = 20
@@ -27,6 +27,7 @@ val sizeFactor : Float = 4.9f
 val backColor : Int = Color.parseColor("#BDBDBD")
 val sweep : Float = 180f
 val lSizeFactor : Float = 11.2f
+val deg : Float = 90f
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -39,11 +40,19 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawArcSweepLineMove(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val lSize : Float = Math.min(w, h) / lSizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
-    drawXY(w / 2 + (w  / 2) * dsc(3), h / 2) {
+    drawXY(w / 2, h / 2 + (h / 2) * dsc(4)) {
+        rotate(deg * dsc(3))
         drawArc(
             RectF(-size / 2, -size / 2, size / 2, size / 2),
             -rot,
@@ -51,9 +60,11 @@ fun Canvas.drawArcSweepLineMove(scale : Float, w : Float, h : Float, paint : Pai
             true,
             paint
         )
-        drawXY(0f, -size / 2) {
+        drawXY(0f, 0f) {
             rotate(rot * dsc(2))
-            drawLine(0f, 0f, 0f, -lSize * dsc(1), paint)
+            drawXY(paint.strokeWidth / 2, -size / 2) {
+                drawLineWithoutDot(0f, 0f, 0f, -lSize * dsc(1), paint)
+            }
         }
     }
 }
