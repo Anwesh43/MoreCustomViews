@@ -129,4 +129,45 @@ class ArcSweepLineMoveView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class ALSMNode(var i : Int, val state : State = State()) {
+
+        private var next : ALSMNode? = null
+        private var prev: ALSMNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = ALSMNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawASLMNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : ALSMNode {
+            var curr : ALSMNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
