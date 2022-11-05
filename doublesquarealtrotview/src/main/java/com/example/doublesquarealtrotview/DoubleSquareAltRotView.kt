@@ -25,3 +25,7 @@ val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBBD")
 val rot : Float = 180f
 val barSizeFactor : Float = 6.2f
+
+fun Int.inverse() : Float = 1f / this
+fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
+fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
