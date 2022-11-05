@@ -215,4 +215,12 @@ class DoubleSquareAltRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(actvity : Activity) : DoubleSquareAltRotView {
+            val view : DoubleSquareAltRotView = DoubleSquareAltRotView(actvity)
+            actvity.setContentView(view)
+            return view
+        }
+    }
 }
