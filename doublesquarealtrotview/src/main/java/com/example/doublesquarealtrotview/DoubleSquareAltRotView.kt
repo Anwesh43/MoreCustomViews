@@ -190,4 +190,27 @@ class DoubleSquareAltRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : DoubleSquareAltRotView) {
+
+        private val dsar : DoubleSquareAltRot = DoubleSquareAltRot(0)
+        private var animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            dsar.draw(canvas, paint)
+            animator.animate {
+                dsar.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            dsar.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
