@@ -208,4 +208,12 @@ class JoinBarFromEndView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : JoinBarFromEndView {
+            val view : JoinBarFromEndView = JoinBarFromEndView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
