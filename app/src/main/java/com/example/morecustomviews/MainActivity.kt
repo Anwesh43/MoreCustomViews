@@ -3,7 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.doublesquarealtrotview.DoubleSquareAltRotView
+import com.example.joinbarfromendview.JoinBarFromEndView
 
 
 //import com.example.bilineparallelbarview.BiLineParallelBarView
@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
-        DoubleSquareAltRotView.create(this)
+        JoinBarFromEndView.create(this)
         fullScreen()
     }
 }
