@@ -183,4 +183,27 @@ class JoinBarFromEndView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : JoinBarFromEndView) {
+
+        private val animator : Animator = Animator(view)
+        private val jbfe : JoinBarFromEnd = JoinBarFromEnd(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            jbfe.draw(canvas, paint)
+            animator.animate {
+                jbfe.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            jbfe.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
