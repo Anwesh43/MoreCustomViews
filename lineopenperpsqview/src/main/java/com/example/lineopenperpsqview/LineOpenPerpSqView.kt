@@ -38,16 +38,16 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
 }
 
 fun Canvas.drawLineOpenPerpSq(scale : Float, w : Float, h : Float, paint : Paint) {
-    val size : Float = Math.min(w, h) / strokeFactor
+    val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(4)) {
         for (j in 0..1) {
             drawXY(0f, 0f) {
-                rotate(-rot * dsc(1))
+                rotate(-rot * dsc(1) * j)
                 drawLine(0f, 0f, size * dsc(0), 0f, paint)
             }
         }
-        drawXY(0f, (h / 2) * dsc(2)) {
+        drawXY(0f, (-h / 2) +  (h / 2) * dsc(2)) {
             drawLine(0f, 0f, 0f, -size, paint)
         }
         for (j in 0..1) {
