@@ -217,4 +217,12 @@ class LineOpenPerpSqView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineOpenPerpSqView {
+            val view : LineOpenPerpSqView = LineOpenPerpSqView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
