@@ -3,7 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.lineopenperpsqview.LineOpenPerpSqView
+import com.example.twointoonedroplineview.TwoIntoOneDropLineView
 
 
 //import com.example.bilineparallelbarview.BiLineParallelBarView
@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
-        LineOpenPerpSqView.create(this)
+        TwoIntoOneDropLineView.create(this)
         fullScreen()
     }
 }
