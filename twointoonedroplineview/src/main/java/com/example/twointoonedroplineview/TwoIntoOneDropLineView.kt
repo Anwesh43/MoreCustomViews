@@ -187,4 +187,27 @@ class TwoIntoOneDropLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : TwoIntoOneDropLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val tiodl : TwoIntoOneDropLine = TwoIntoOneDropLine(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            tiodl.draw(canvas, paint)
+            animator.animate {
+                tiodl.update {
+
+                }
+            }
+        }
+
+        fun handleTap() {
+            tiodl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
