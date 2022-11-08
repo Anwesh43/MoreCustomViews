@@ -22,7 +22,7 @@ val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val delay : Long = 20
-val rot : Float = 45f
+val rot : Float = 15f
 val backColor : Int = Color.parseColor("#BDBDBD")
 
 fun Int.inverse() : Float = 1f / this
@@ -50,10 +50,10 @@ fun Canvas.drawTwoIntoOneDropLine(scale : Float, w : Float, h : Float, paint : P
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 rotate(rot * (1f - 2 * j) * dsc(1))
-                drawLine(0f, 0f, 0f, -size * (dsc(0) - dsc(2)), paint)
+                drawLineWithoutDot(0f, 0f, 0f, -size * (dsc(0) - dsc(2)), paint)
             }
             drawXY(0f, (h / 2) * dsc(3)) {
-                drawLine(0f, 0f, 0f, size * dsc(2), paint)
+                drawLineWithoutDot(0f, 0f, 0f, size * dsc(2), paint)
             }
         }
     }
