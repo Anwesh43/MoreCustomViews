@@ -212,4 +212,12 @@ class TwoIntoOneDropLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : TwoIntoOneDropLineView {
+            val view : TwoIntoOneDropLineView = TwoIntoOneDropLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
