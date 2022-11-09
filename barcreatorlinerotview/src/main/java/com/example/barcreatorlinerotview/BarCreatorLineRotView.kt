@@ -212,4 +212,13 @@ class BarCreatorLineRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BarCreatorLineRotView {
+            val view : BarCreatorLineRotView = BarCreatorLineRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
