@@ -217,4 +217,12 @@ class SlantLineJoinRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : SlantLineJoinRotView {
+            val view : SlantLineJoinRotView = SlantLineJoinRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
