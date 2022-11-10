@@ -18,7 +18,7 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val parts : Int = 4
+val parts : Int = 5
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
@@ -29,6 +29,13 @@ val rot : Float = 90f
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
+
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
 
 fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     save()
@@ -44,13 +51,13 @@ fun Canvas.drawSlantLineJoinRot(scale : Float, w : Float, h : Float, paint : Pai
         rotate(rot * dsc(3))
         for (j in 0..1) {
             drawXY(-size / 2 + size * j, 0f) {
-                drawLine(0f, 0f, 0f, -(size / 2 + size * 0.5f * j) * dsc(0), paint)
+                drawLineWithoutDot(0f, 0f, 0f, -(size / 2 + size * 0.5f * j) * dsc(0), paint)
             }
             drawXY(-size / 2, -size / 2) {
-                drawLine(0f, 0f, size * dsc(1), -size * 0.5f * dsc(1), paint)
+                drawLineWithoutDot(0f, 0f, size * dsc(1), -size * 0.5f * dsc(1), paint)
             }
             drawXY(size / 2, -size) {
-                drawLine(0f, 0f, -size * dsc(2), 0f, paint)
+                drawLineWithoutDot(0f, 0f, -size * dsc(2), 0f, paint)
             }
         }
     }
