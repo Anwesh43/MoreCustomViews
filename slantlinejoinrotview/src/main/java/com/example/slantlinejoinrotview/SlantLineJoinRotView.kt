@@ -192,4 +192,27 @@ class SlantLineJoinRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SlantLineJoinRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val sljr : SlantLineJoinRot = SlantLineJoinRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sljr.draw(canvas, paint)
+            animator.animate {
+                sljr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sljr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
