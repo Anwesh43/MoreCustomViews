@@ -40,10 +40,11 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
 fun Canvas.drawLineRotBiSqMove(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(3)) {
+        rotate(rot * dsc(3))
         for (j in 0..1) {
             drawXY(0f, 0f) {
-                rotate(rot * dsc(1))
+                rotate(rot * dsc(1) * 2 * j)
                 drawLine(0f, 0f, 0f, -size * dsc(0), paint)
             }
             drawXY(0f, 0f) {
