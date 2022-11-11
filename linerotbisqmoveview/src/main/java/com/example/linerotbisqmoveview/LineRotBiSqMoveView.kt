@@ -189,4 +189,27 @@ class LineRotBiSqMoveView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRotBiSqMoveView) {
+
+        private val animator : Animator = Animator(view)
+        private val lrbsm : LineRotBiSqMove = LineRotBiSqMove(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrbsm.draw(canvas, paint)
+            animator.animate {
+                lrbsm.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrbsm.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
