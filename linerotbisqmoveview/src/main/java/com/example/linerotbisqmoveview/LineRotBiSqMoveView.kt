@@ -214,4 +214,13 @@ class LineRotBiSqMoveView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : LineRotBiSqMoveView {
+            val view : LineRotBiSqMoveView = LineRotBiSqMoveView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
