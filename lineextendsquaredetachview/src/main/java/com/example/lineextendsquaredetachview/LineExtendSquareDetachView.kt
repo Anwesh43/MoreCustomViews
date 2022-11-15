@@ -8,6 +8,7 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.graphics.Color
 import android.graphics.Canvas
+import android.util.Log
 
 val colors : Array<Int> = arrayOf(
     "#1A237E",
@@ -40,13 +41,14 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
 fun Canvas.drawLineExtendSquareDetatch(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
+    Log.d("DSC  ${scale} ALL", "${dsc(0)} ${dsc(1)} ${dsc(2)} ${dsc(3)}" )
     drawXY(w / 2, h / 2) {
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
                 drawXY((w / 2) * dsc(3), 0f) {
-                    drawXY(0f, 0f) {
-                        for (k in 0..1) {
+                    for (k in 0..1) {
+                        drawXY(0f, 0f) {
                             rotate(rot * k * dsc(1))
                             drawLine(0f, 0f, 0f, -size * dsc(0), paint)
                         }
@@ -99,7 +101,7 @@ class LineExtendSquareDetachView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             if (dir == 0f) {
-                dir = 1f - 2 - prevScale
+                dir = 1f - 2 * prevScale
                 cb()
             }
         }
