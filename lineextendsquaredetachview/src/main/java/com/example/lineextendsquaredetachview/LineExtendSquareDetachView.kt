@@ -219,4 +219,13 @@ class LineExtendSquareDetachView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineExtendSquareDetachView {
+            val view : LineExtendSquareDetachView = LineExtendSquareDetachView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
