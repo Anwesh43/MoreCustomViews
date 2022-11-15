@@ -194,4 +194,27 @@ class LineExtendSquareDetachView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineExtendSquareDetachView) {
+
+        private val animator : Animator = Animator(view)
+        private val lesd : LineExtendSquareDetach = LineExtendSquareDetach(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lesd.draw(canvas, paint)
+            animator.animate {
+                lesd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lesd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
