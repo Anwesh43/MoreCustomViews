@@ -227,4 +227,13 @@ class ZLineBarCreatorView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : ZLineBarCreatorView {
+            val view : ZLineBarCreatorView = ZLineBarCreatorView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
