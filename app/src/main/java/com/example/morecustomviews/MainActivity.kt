@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import com.example.lineextendsquaredetachview.LineExtendSquareDetachView
+import com.example.zlinebarcreatorview.ZLineBarCreatorView
 
 
 //import com.example.bilineparallelbarview.BiLineParallelBarView
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //.create(this)
-        LineExtendSquareDetachView.create(this)
+        ZLineBarCreatorView.create(this)
         fullScreen()
     }
 }
