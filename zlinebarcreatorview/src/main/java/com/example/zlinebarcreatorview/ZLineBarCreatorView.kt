@@ -202,4 +202,27 @@ class ZLineBarCreatorView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ZLineBarCreatorView) {
+
+        private val animator : Animator = Animator(view)
+        private val zlbc : ZLineBarCreator = ZLineBarCreator(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            zlbc.draw(canvas, paint)
+            animator.animate {
+                zlbc.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            zlbc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
