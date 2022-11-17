@@ -27,6 +27,13 @@ val rot : Float = 90f
 val deg : Float = 360f
 val backColor : Int = Color.parseColor("#BDBDBD")
 
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
@@ -44,7 +51,7 @@ fun Canvas.drawLineCreateArcExpand(scale : Float, w : Float, h : Float, paint : 
     drawXY(w / 2, h / 2) {
         drawXY(-(w / 2) * dsc(3), 0f) {
             rotate(rot * dsc(1))
-            drawLine(0f, 0f, -size * dsc(0), 0f, paint)
+            drawLineWithoutDot(0f, 0f, 0f, size * dsc(0), paint)
         }
         drawXY((w / 2) * dsc(4) + size / 2, 0f) {
             drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 180f, deg * dsc(2), false, paint)
