@@ -150,6 +150,7 @@ class LineCreateArcExpandView(ctx : Context) : View(ctx) {
         fun addNeighbor() {
             if (i < colors.size - 1) {
                 next = LCAENode(i + 1)
+                next?.prev = this
             }
         }
 
