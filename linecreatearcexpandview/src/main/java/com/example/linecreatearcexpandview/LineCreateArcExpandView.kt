@@ -212,4 +212,13 @@ class LineCreateArcExpandView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineCreateArcExpandView {
+            val view : LineCreateArcExpandView = LineCreateArcExpandView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
