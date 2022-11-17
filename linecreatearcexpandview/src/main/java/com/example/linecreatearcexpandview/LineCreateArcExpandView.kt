@@ -124,4 +124,44 @@ class LineCreateArcExpandView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class LCAENode(var i : Int = 0, val state : State = State()) {
+
+        private var next : LCAENode? = null
+        private var prev : LCAENode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawLCAENode(i, state.scale, paint)
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = LCAENode(i + 1)
+            }
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : LCAENode {
+            var curr : LCAENode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
