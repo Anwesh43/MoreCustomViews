@@ -187,4 +187,27 @@ class HalfArcRotShiftView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : HalfArcRotShiftView) {
+
+        private val animator : Animator = Animator(view)
+        private val hars : HalfArcRotShift = HalfArcRotShift(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            hars.draw(canvas, paint)
+            animator.animate {
+                hars.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            hars.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
