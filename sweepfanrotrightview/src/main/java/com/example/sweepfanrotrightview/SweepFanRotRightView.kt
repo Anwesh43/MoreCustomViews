@@ -217,4 +217,13 @@ class SweepFanRotRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SweepFanRotRightView {
+            val view : SweepFanRotRightView = SweepFanRotRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
