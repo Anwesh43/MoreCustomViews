@@ -25,7 +25,7 @@ val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 90f
-val sweep : Float = 180f
+val sweep : Float = 120f
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -44,17 +44,20 @@ fun Canvas.drawSweepFanRotRight(scale : Float, w : Float, h : Float, paint : Pai
     drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
         rotate(rot * dsc(3))
         for (j in 0..2) {
-            drawArc(
-                RectF(
-                    -size / 2,
-                    -size / 2,
-                    size / 2,
-                    size / 2),
-                -rot / 2,
-                rot * dsc(j),
-                true,
-                paint
-            )
+            drawXY(0f, 0f) {
+                rotate(sweep * j)
+                drawArc(
+                    RectF(
+                        -size / 2,
+                        -size / 2,
+                        size / 2,
+                        size / 2),
+                    -rot / 2,
+                    rot * dsc(j),
+                    true,
+                    paint
+                )
+            }
         }
     }
 }
