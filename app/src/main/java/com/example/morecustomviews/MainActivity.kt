@@ -3,7 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.halfarcrotshiftview.HalfArcRotShiftView
+import com.example.sweepfanrotrightview.SweepFanRotRightView
 
 
 //import com.example.bilineparallelbarview.BiLineParallelBarView
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //.create(this)
-        HalfArcRotShiftView.create(this)
+        SweepFanRotRightView.create(this)
         fullScreen()
     }
 }
