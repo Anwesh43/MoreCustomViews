@@ -41,7 +41,7 @@ fun Canvas.drawLineStepLinesRot(scale : Float, w : Float, h : Float, paint : Pai
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     drawXY(w / 2 + (w / 2 + size) * dsc(4), h / 2) {
-        rotate(rot * dsc(3))
+        rotate(-rot * dsc(3))
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 rotate(rot * dsc(1) * j)
