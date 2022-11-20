@@ -216,4 +216,13 @@ class LineStepLinesRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineStepLinesRotView {
+            val view : LineStepLinesRotView = LineStepLinesRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
