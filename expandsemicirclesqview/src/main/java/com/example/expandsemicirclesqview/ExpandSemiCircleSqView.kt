@@ -21,7 +21,7 @@ val colors : Array<Int> = arrayOf(
 val parts : Int = 5
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
-val sizeFactor : Float = 4.9f
+val sizeFactor : Float = 9.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 90f
@@ -36,6 +36,12 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     cb()
     restore()
 }
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
 
 fun Canvas.drawExpandSemiCircleSq(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
@@ -47,7 +53,7 @@ fun Canvas.drawExpandSemiCircleSq(scale : Float, w : Float, h : Float, paint : P
             drawXY(0f, 0f) {
                 scale(1f, 1f - 2 * j)
                 drawXY(0f, size * dsc(2)) {
-                    drawLine(0f, 0f, -2 * size * dsc(1), 0f, paint)
+                    drawLineWithoutDot(0f, 0f, -2 * size * dsc(1), 0f, paint)
                 }
             }
         }
