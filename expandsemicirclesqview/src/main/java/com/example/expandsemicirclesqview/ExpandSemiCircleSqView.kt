@@ -215,4 +215,13 @@ class ExpandSemiCircleSqView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : ExpandSemiCircleSqView {
+            val view : ExpandSemiCircleSqView = ExpandSemiCircleSqView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
