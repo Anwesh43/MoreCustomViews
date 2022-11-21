@@ -126,4 +126,45 @@ class ExpandSemiCircleSqView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class ESCSNode(var i : Int = 0, val state : State = State()) {
+
+        private var prev : ESCSNode? = null
+        private var next : ESCSNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = ESCSNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawESCSNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : ESCSNode {
+            var curr : ESCSNode? = next
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
