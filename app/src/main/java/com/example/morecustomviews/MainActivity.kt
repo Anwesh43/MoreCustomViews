@@ -3,7 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.linesteplinesrotview.LineStepLinesRotView
+import com.example.expandsemicirclesqview.ExpandSemiCircleSqView
 
 
 //import com.example.bilineparallelbarview.BiLineParallelBarView
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //.create(this)
-        LineStepLinesRotView.create(this)
+        ExpandSemiCircleSqView.create(this)
         fullScreen()
     }
 }
