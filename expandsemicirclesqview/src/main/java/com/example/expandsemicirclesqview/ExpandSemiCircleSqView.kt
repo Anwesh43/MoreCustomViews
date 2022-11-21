@@ -168,7 +168,7 @@ class ExpandSemiCircleSqView(ctx : Context) : View(ctx) {
         }
     }
 
-    data class ExpandSemiCirclSq(var i : Int) {
+    data class ExpandSemiCircleSq(var i : Int) {
 
         private var curr : ESCSNode = ESCSNode(0)
         private var dir : Int = 1
@@ -188,6 +188,29 @@ class ExpandSemiCircleSqView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : ExpandSemiCircleSqView) {
+
+        private val animator : Animator = Animator(view)
+        private val escs : ExpandSemiCircleSq = ExpandSemiCircleSq(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            escs.draw(canvas, paint)
+            animator.animate {
+                escs.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            escs.startUpdating {
+                animator.start()
+            }
         }
     }
 }
