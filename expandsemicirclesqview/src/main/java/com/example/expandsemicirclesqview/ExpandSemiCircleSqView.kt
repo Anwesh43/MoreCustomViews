@@ -42,7 +42,7 @@ fun Canvas.drawExpandSemiCircleSq(scale : Float, w : Float, h : Float, paint : P
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     drawXY(w / 2, h / 2 + (h / 2 + 2 * size) * dsc(4)) {
         rotate(rot * dsc(3))
-        drawArc(RectF(0f, -size, 2 * size, size), -90f, 180f * dsc(0), true, paint)
+        drawArc(RectF(-size, -size, size, size), -90f, 180f * dsc(0), true, paint)
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f, 1f - 2 * j)
