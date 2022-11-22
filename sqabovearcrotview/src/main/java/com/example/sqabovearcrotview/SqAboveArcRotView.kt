@@ -59,7 +59,7 @@ fun Canvas.drawSqAboveRot(scale : Float, w : Float, h : Float, paint : Paint) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
                 drawXY(size, 0f) {
-                    drawLine(0f, 0f, 0f, -(size / 2) * dsc(4), paint)
+                    drawLineWithoutDot(0f, 0f, 0f, -(size / 2) * dsc(4), paint)
                 }
             }
         }
