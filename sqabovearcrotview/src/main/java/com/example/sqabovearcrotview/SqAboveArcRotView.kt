@@ -18,13 +18,14 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val parts : Int = 5
-val scGap : Float = 0.04f / parts
+val parts : Int = 6
+val scGap : Float = 0.05f / parts
 val rot : Float = 90f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val sizeFactor : Float = 4.9f
-val sqFactor : Float = 5.2f
+val sqFactor : Float = 3.2f
+val strokeFactor : Float = 90f
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -41,11 +42,19 @@ fun Canvas.drawSqAboveRot(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     val sqSize : Float = size / sqFactor
-    drawXY(w / 2 + (w / 2 + size) * dsc(4), h / 2) {
+    drawXY(w / 2 + (w / 2 + size) * dsc(5), h / 2) {
         rotate(-rot * dsc(3))
         drawArc(RectF(-size, -size, size, size), 0f, 180f * dsc(0), true, paint)
         drawXY(-size + (size - sqSize / 2) * dsc(2), 0f) {
             drawRect(RectF(0f, -sqSize * dsc(1), sqSize, 0f), paint)
+        }
+        for (j in 0..1) {
+            drawXY(0f, 0f) {
+                scale(1f - 2 * j, 1f)
+                drawXY(size, 0f) {
+                    drawLine(0f, 0f, 0f, -(size / 2) * dsc(4), paint)
+                }
+            }
         }
     }
 }
@@ -54,6 +63,8 @@ fun Canvas.drawSAARNode(i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
     paint.color = colors[i]
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.strokeCap = Paint.Cap.ROUND
     drawSqAboveRot(scale,w , h, paint)
 }
 
