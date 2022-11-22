@@ -208,4 +208,13 @@ class SqAboveArcRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SqAboveArcRotView {
+            val view : SqAboveArcRotView = SqAboveArcRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
