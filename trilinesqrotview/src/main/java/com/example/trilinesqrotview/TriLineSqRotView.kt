@@ -222,4 +222,12 @@ class TriLineSqRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : TriLineSqRotView {
+            val view : TriLineSqRotView = TriLineSqRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
