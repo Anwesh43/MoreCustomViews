@@ -197,4 +197,27 @@ class TriLineSqRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : TriLineSqRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val tlsr : TriLineSqRot = TriLineSqRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            tlsr.draw(canvas, paint)
+            animator.animate {
+                tlsr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            tlsr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
