@@ -52,11 +52,11 @@ fun Canvas.drawTriLineSqRot(scale : Float, w : Float, h : Float, paint : Paint) 
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 rotate(-rot * j * dsc(1))
-                drawLine(0f, 0f, 0f, -size * dsc(0), paint)
+                drawLineWithoutDot(0f, 0f, 0f, -size * dsc(0), paint)
             }
         }
         drawXY(-size, 0f) {
-            drawLine(0f, 0f, size * dsc(2), -size * dsc(2), paint)
+            drawLineWithoutDot(0f, 0f, size * dsc(2), -size * dsc(2), paint)
         }
         drawRect(RectF(0f, -size, size * dsc(3), 0f), paint)
     }
