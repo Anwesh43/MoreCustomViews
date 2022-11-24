@@ -3,7 +3,8 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.trilinesqrotview.TriLineSqRotView
+import com.example.lineupsqbreakview.LineSqUpBreakView
+
 
 
 //import com.example.bilineparallelbarview.BiLineParallelBarView
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //.create(this)
-        TriLineSqRotView.create(this)
+        LineSqUpBreakView.create(this)
         fullScreen()
     }
 }
