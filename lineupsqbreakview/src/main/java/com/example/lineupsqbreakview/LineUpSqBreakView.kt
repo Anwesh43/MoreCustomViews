@@ -42,10 +42,11 @@ fun Canvas.drawLineUpSqBreak(scale : Float, w : Float, h : Float, paint : Paint)
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
     val barW : Float = Math.min(w, h) / barWFactor
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 - (w / 2) * dsc(3), h / 2) {
         for (j in 0..1) {
             drawXY(0f, 0f) {
-                rotate(rot * dsc(2) * j)
+                scale(1f - 2 * j, 1f)
+                rotate(-rot * dsc(2) * j)
                 drawLine(0f, 0f, -size * dsc(0), 0f, paint)
                 drawXY(-size, 0f) {
                     drawRect(RectF(0f, -size * dsc(1), barW, 0f), paint)
