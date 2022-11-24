@@ -215,4 +215,13 @@ class LineSqUpBreakView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineSqUpBreakView {
+            val view : LineSqUpBreakView = LineSqUpBreakView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
