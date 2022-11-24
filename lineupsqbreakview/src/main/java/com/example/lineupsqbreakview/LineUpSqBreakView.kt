@@ -190,4 +190,27 @@ class LineSqUpBreakView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineSqUpBreakView) {
+
+        private val animator : Animator = Animator(view)
+        private val lusb : LineUpSqBreak = LineUpSqBreak(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lusb.draw(canvas, paint)
+            animator.animate {
+                lusb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lusb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
