@@ -215,4 +215,13 @@ class TBarBreakDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : TBarBreakDownView {
+            val view : TBarBreakDownView = TBarBreakDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
