@@ -191,4 +191,26 @@ class TBarBreakDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : TBarBreakDownView) {
+        private val animator : Animator = Animator(view)
+        private val tbbd : TBarBreakDown = TBarBreakDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            tbbd.draw(canvas, paint)
+            animator.animate {
+                tbbd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            tbbd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
