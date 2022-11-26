@@ -23,7 +23,7 @@ val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val delay : Long = 20
-val bakcColor : Int = Color.parseColor("#BDBDBD")
+val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 90f
 
 fun Int.inverse() : Float = 1f / this
@@ -193,6 +193,29 @@ class SquareBiArcSweepView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : SquareBiArcSweepView) {
+
+        private val animator : Animator = Animator(view)
+        private val sbas : SquareBiArcSweep = SquareBiArcSweep(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sbas.draw(canvas, paint)
+            animator.animate {
+                sbas.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sbas.startUpdating {
+                animator.start()
+            }
         }
     }
 }
