@@ -220,4 +220,12 @@ class SquareBiArcSweepView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(actvity : Activity) : SquareBiArcSweepView {
+            val view : SquareBiArcSweepView = SquareBiArcSweepView(actvity)
+            actvity.setContentView(view)
+            return view
+        }
+    }
 }
