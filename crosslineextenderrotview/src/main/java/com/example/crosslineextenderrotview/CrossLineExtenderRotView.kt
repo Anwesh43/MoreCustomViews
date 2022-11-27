@@ -212,4 +212,13 @@ class CrossLineExtenderRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : CrossLineExtenderRotView {
+            val view : CrossLineExtenderRotView = CrossLineExtenderRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
