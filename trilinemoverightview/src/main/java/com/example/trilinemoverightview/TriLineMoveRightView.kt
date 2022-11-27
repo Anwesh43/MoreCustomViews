@@ -24,7 +24,7 @@ val backColor : Int = Color.parseColor("#BDBDBD")
 val delay : Long = 20
 val rot : Float = 90f
 val scGap : Float = 0.04f / parts
-val deg : Float = 45f
+val deg : Float = 45f / 2
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -40,7 +40,7 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
 fun Canvas.drawTriLineMoveRight(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
-    drawXY(w / 2 + (w / 2) * dsc(4), h / 2) {
+    drawXY(w / 2 + (w / 2 + size) * dsc(4), h / 2) {
         rotate(rot * dsc(3))
         drawXY(-(w / 2 + size / 2) * (1 - dsc(0)), 0f) {
             drawLine(-size / 2, 0f, size / 2, 0f, paint)
