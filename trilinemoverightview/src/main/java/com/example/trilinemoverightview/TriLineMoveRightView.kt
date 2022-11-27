@@ -192,4 +192,27 @@ class TriLineMoveRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : TriLineMoveRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val tlmr : TriLineMoveRight = TriLineMoveRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            tlmr.draw(canvas, paint)
+            animator.animate {
+                tlmr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            tlmr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
