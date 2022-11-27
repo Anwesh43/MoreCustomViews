@@ -127,4 +127,46 @@ class TriLineMoveRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class TLMRNode(var i : Int) {
+
+        private var prev : TLMRNode? = null
+        private var next : TLMRNode? = null
+        private val state : State = State()
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = TLMRNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawTLMRNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : TLMRNode {
+            var curr : TLMRNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
