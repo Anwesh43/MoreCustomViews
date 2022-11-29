@@ -188,4 +188,27 @@ class LineSquareRightDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineSquareRightDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val lsrd : LineSquareRightDown = LineSquareRightDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lsrd.draw(canvas, paint)
+            animator.animate {
+                lsrd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lsrd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
