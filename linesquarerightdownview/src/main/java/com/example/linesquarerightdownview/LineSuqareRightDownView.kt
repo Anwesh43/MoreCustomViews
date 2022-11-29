@@ -213,4 +213,12 @@ class LineSquareRightDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : LineSquareRightDownView {
+            val view : LineSquareRightDownView = LineSquareRightDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
