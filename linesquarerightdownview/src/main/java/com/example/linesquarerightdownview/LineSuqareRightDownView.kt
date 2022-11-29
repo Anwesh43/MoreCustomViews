@@ -42,7 +42,7 @@ fun Canvas.drawLineSquareRightDown(scale : Float, w : Float, h : Float, paint : 
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(3)) {
         rotate(90f * dsc(2))
         drawXY(-w / 2 + (w / 2) * dsc(0), 0f) {
             drawLine(0f, 0f, -size, 0f, paint)
