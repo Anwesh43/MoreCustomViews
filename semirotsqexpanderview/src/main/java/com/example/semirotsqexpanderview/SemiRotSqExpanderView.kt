@@ -64,14 +64,16 @@ fun Canvas.drawSRSENode(i : Int, scale : Float, paint : Paint) {
 
 class SemiRotSqExpanderView(ctx : Context) : View(ctx) {
 
-    override fun onDraw(canvas : Canvas) {
+    private val renderer : Renderer = Renderer(this)
 
+    override fun onDraw(canvas : Canvas) {
+        renderer.render(canvas)
     }
 
     override fun onTouchEvent(event : MotionEvent) : Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-
+                renderer.handleTap()
             }
         }
         return true
@@ -195,7 +197,7 @@ class SemiRotSqExpanderView(ctx : Context) : View(ctx) {
         private var animator : Animator = Animator(view)
         private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-        fun render(canvas : Canvas, paint : Paint) {
+        fun render(canvas : Canvas) {
             canvas.drawColor(backColor)
             srse.draw(canvas, paint)
             animator.animate {
