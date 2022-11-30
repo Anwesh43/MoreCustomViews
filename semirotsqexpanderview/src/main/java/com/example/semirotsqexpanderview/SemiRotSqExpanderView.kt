@@ -213,4 +213,12 @@ class SemiRotSqExpanderView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : SemiRotSqExpanderView {
+            val view : SemiRotSqExpanderView = SemiRotSqExpanderView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
