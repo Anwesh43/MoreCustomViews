@@ -117,6 +117,12 @@ class SemiRotSqExpanderView(ctx : Context) : View(ctx) {
                 view.postInvalidate()
             }
         }
+
+        fun stop() {
+            if (animated) {
+                animated = false
+            }
+        }
     }
 
     data class SRSENode(var i : Int, val state : State = State()) {
@@ -180,6 +186,29 @@ class SemiRotSqExpanderView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : SemiRotSqExpanderView) {
+
+        private var srse : SemiRotSqExpander = SemiRotSqExpander(0)
+        private var animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            srse.draw(canvas, paint)
+            animator.animate {
+                srse.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            srse.startUpdating {
+                animator.start()
+            }
         }
     }
 }
