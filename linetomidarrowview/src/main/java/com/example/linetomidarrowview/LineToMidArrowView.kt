@@ -37,6 +37,13 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawLineToMidArrow(scale : Float, w : Float, h : Float, paint : Paint) {
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
@@ -47,10 +54,10 @@ fun Canvas.drawLineToMidArrow(scale : Float, w : Float, h : Float, paint : Paint
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f, 1f - 2 * j)
-                drawLine(0f, 0f, 0f, size * dsc(0), paint)
-                drawLine(0f, size, size * dsc(1), size * (1 - dsc(1)), paint)
+                drawLineWithoutDot(0f, 0f, 0f, size * dsc(0), paint)
+                drawLineWithoutDot(0f, size, size * dsc(1), size * (1 - dsc(1)), paint)
                 drawXY(size, 0f) {
-                    drawLine(0f, 0f, 0f, size * 0.5f * dsc(2), paint)
+                    drawLineWithoutDot(0f, 0f, 0f, size * 0.5f * dsc(2), paint)
                 }
             }
 
