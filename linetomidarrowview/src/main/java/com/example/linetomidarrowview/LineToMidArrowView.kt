@@ -193,4 +193,27 @@ class LineToMidArrowView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineToMidArrowView) {
+
+        private val animator : Animator = Animator(view)
+        private val ltma : LineToMidArrow = LineToMidArrow(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ltma.draw(canvas, paint)
+            animator.animate {
+                ltma.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ltma.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
