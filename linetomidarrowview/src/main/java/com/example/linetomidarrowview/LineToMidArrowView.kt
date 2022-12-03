@@ -7,7 +7,6 @@ import android.content.Context
 import android.graphics.Paint
 import android.graphics.Canvas
 import android.graphics.Color
-import kotlinx.coroutines.delay
 
 val colors : Array<Int> = arrayOf(
     "#AB47BC",
