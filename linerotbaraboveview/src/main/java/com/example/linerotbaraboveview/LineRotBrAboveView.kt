@@ -191,4 +191,27 @@ class LineRotBrAboveView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRotBrAboveView) {
+
+        private val lrba : LineRotBarAbove = LineRotBarAbove(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrba.draw(canvas, paint)
+            animator.animate {
+                lrba.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrba.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
