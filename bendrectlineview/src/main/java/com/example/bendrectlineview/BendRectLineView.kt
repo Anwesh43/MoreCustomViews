@@ -37,6 +37,12 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
 fun Canvas.drawBendRectLine(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = {
@@ -44,13 +50,13 @@ fun Canvas.drawBendRectLine(scale : Float, w : Float, h : Float, paint : Paint) 
     }
     drawXY(w / 2, h / 2 + (h / 2) * dsc(4)) {
         rotate(rot * dsc(3))
-        drawLine(0f, -size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), paint)
+        drawLineWithoutDot(0f, -size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), paint)
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f, 1f - 2 * j)
                 drawXY(0f, size * 0.5f) {
                     rotate(-deg * dsc(2))
-                    drawLine(0f, 0f, size * dsc(1), 0f, paint)
+                    drawLineWithoutDot(0f, 0f, size * dsc(1), 0f, paint)
                 }
             }
         }
