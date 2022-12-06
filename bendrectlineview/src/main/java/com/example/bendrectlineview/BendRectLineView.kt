@@ -217,4 +217,12 @@ class BendRectLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : BendRectLineView {
+            val view : BendRectLineView = BendRectLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
