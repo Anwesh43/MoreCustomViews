@@ -192,4 +192,27 @@ class BendRectLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BendRectLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val brl : BendRectLine = BendRectLine(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            brl.draw(canvas, paint)
+            animator.animate {
+                brl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            brl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
