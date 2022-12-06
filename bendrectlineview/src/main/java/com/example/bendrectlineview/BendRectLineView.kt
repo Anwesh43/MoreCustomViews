@@ -49,7 +49,7 @@ fun Canvas.drawBendRectLine(scale : Float, w : Float, h : Float, paint : Paint) 
             drawXY(0f, 0f) {
                 scale(1f, 1f - 2 * j)
                 drawXY(0f, size * 0.5f) {
-                    rotate(deg * dsc(2))
+                    rotate(-deg * dsc(2))
                     drawLine(0f, 0f, size * dsc(1), 0f, paint)
                 }
             }
