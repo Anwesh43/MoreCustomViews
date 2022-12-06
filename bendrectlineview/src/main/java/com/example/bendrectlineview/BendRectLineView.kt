@@ -50,11 +50,11 @@ fun Canvas.drawBendRectLine(scale : Float, w : Float, h : Float, paint : Paint) 
     }
     drawXY(w / 2, h / 2 + (h / 2) * dsc(4)) {
         rotate(rot * dsc(3))
-        drawLineWithoutDot(0f, -size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), paint)
+        drawLineWithoutDot(0f, -size * dsc(0), 0f, size * dsc(0), paint)
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f, 1f - 2 * j)
-                drawXY(0f, size * 0.5f) {
+                drawXY(0f, size) {
                     rotate(-deg * dsc(2))
                     drawLineWithoutDot(0f, 0f, size * dsc(1), 0f, paint)
                 }
