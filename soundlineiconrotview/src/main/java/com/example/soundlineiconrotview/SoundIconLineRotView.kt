@@ -75,3 +75,18 @@ fun Canvas.drawSILRNode(i : Int, scale : Float, paint : Paint) {
     drawSoundLineIconRot(scale, w, h, paint)
 }
 
+class SoundIconLineRotView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+
+            }
+        }
+        return true
+    }
+}
