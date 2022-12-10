@@ -18,7 +18,7 @@ val colors : Array<Int> = arrayOf(
     Color.parseColor(it)
 }.toTypedArray()
 val parts : Int = 6
-val scGap : Float = 0.05f / parts
+val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val delay : Long = 20
@@ -37,7 +37,7 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
 }
 
 fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
-    if (Math.abs(x1 - x2) < 0f && Math.abs(y1 - y2) < 0f) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
         return
     }
     drawLine(x1, y1, x2, y2, paint)
@@ -46,7 +46,7 @@ fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, pa
 fun Canvas.drawSoundLineIconRot(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
-    drawXY(w / 2, h / 2 + (h / 2) * dsc(5)) {
+    drawXY(w / 2, h / 2 - (h / 2 + size) * dsc(5)) {
         rotate(rot * dsc(4))
         for (j in 0..1) {
             drawXY(0f, 0f) {
