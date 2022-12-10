@@ -201,4 +201,27 @@ class SoundIconLineRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SoundIconLineRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val silr : SoundIconLineRot = SoundIconLineRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            silr.draw(canvas, paint)
+            animator.animate {
+                silr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            silr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
