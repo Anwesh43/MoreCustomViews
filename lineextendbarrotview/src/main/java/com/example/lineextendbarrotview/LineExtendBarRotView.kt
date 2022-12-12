@@ -215,4 +215,12 @@ class LineExtendBarRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineExtendBarRotView {
+            val view : LineExtendBarRotView = LineExtendBarRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
