@@ -42,15 +42,23 @@ fun Canvas.drawLineExtendBarRot(scale : Float, w : Float, h : Float, paint : Pai
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
+    val x : Float = -paint.strokeWidth * Math.floor(dsc(1).toDouble()).toFloat()
     drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(4)) {
         rotate(rot * dsc(3))
         for (j in 0..1) {
-            drawXY(0f, size * (1 - j) * dsc(2)) {
+            drawXY(0f, -size * (1 - j) * dsc(2)) {
+                scale(1f - 2 * j, 1f)
                 rotate(rot * dsc(1))
-                drawLine(0f, 0f, 0f, -size * dsc(0), paint)
+                drawLine(
+                    x,
+                    0f,
+                    x,
+                     -size * dsc(0),
+                    paint
+                )
             }
         }
-        drawRect(RectF(0f, -size * dsc(2), size, 0f), paint)
+        drawRect(RectF(0f, -(size + paint.strokeWidth) * dsc(2), size, 0f), paint)
     }
 }
 
