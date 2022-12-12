@@ -190,4 +190,27 @@ class LineExtendBarRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineExtendBarRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val lerb : LineExtendBarRot = LineExtendBarRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lerb.draw(canvas, paint)
+            animator.animate {
+                lerb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lerb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
