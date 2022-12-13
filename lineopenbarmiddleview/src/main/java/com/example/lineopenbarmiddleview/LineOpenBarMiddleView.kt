@@ -190,4 +190,27 @@ class LineOpenBarMiddleView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineOpenBarMiddleView) {
+
+        private val lobm : LineOpenBarMiddle = LineOpenBarMiddle(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lobm.draw(canvas, paint)
+            animator.animate {
+                lobm.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lobm.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
