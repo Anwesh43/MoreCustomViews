@@ -38,6 +38,13 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawLineOpenBarMiddle(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
@@ -46,7 +53,7 @@ fun Canvas.drawLineOpenBarMiddle(scale : Float, w : Float, h : Float, paint : Pa
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 rotate(90f * (1 - 2 * j) * dsc(1))
-                drawLine(0f, 0f, 0f, -size * dsc(0), paint)
+                drawLineWithoutDot(0f, 0f, 0f, -size * dsc(0), paint)
             }
             drawXY(-size + (size - barW / 2) * dsc(3), 0f) {
                 drawRect(RectF(0f, -size * dsc(2), barW, 0f), paint)
@@ -104,7 +111,7 @@ class LineOpenBarMiddleView(ctx : Context) : View(ctx) {
     data class Animator(var view : View, var animated : Boolean = false) {
 
         fun animate(cb : () -> Unit) {
-            if (!animated) {
+            if (animated) {
                 cb()
                 try {
                     Thread.sleep(delay)
