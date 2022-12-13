@@ -126,4 +126,45 @@ class LineOpenBarMiddleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class LOBMNode(var i : Int = 0, val state : State = State()) {
+
+        private var prev : LOBMNode? = null
+        private var next : LOBMNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = LOBMNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawLOBMNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : LOBMNode {
+            var curr : LOBMNode ?= prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
