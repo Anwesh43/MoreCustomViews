@@ -215,4 +215,13 @@ class LineOpenBarMiddleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineOpenBarMiddleView {
+            val view : LineOpenBarMiddleView = LineOpenBarMiddleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
