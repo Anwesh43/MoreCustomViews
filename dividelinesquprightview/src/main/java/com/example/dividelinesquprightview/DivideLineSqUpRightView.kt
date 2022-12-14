@@ -214,4 +214,12 @@ class DivideLineSqUpRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : DivideLineSqUpRightView {
+            val view : DivideLineSqUpRightView = DivideLineSqUpRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
