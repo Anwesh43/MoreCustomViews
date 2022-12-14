@@ -125,4 +125,45 @@ class DivideLineSqUpRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class DLSURNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : DLSURNode? = null
+        private var prev : DLSURNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = DLSURNode( i+ 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawDLSURNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : DLSURNode {
+            var curr : DLSURNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
