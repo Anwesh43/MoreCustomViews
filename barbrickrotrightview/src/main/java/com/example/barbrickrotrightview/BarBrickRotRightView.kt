@@ -187,4 +187,27 @@ class BarBrickRotRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BarBrickRotRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val bbrr : BarBrickRotRight = BarBrickRotRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bbrr.draw(canvas, paint)
+            animator.animate {
+                bbrr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bbrr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
