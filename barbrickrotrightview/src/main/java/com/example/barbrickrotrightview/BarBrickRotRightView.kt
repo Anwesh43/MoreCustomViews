@@ -212,4 +212,12 @@ class BarBrickRotRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : BarBrickRotRightView {
+            val view : BarBrickRotRightView = BarBrickRotRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
