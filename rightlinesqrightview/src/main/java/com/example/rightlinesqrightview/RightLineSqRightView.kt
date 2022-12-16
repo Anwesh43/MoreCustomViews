@@ -187,4 +187,27 @@ class RightLineSqRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RightLineSqRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val rlsr : RightLineSqRight = RightLineSqRight(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rlsr.draw(canvas, paint)
+            animator.animate {
+                rlsr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rlsr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
