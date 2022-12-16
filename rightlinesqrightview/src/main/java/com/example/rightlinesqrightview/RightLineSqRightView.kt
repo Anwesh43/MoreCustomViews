@@ -212,4 +212,12 @@ class RightLineSqRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : RightLineSqRightView {
+            val view : RightLineSqRightView = RightLineSqRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
