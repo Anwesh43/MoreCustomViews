@@ -40,9 +40,10 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
 fun Canvas.drawRotLineSqJoin(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
         for (j in 0..1) {
             drawXY(0f, 0f) {
+                scale(1f, 1f - 2 * j)
                 rotate(rot * dsc(2))
                 drawRect(RectF(-size / 2, -size * dsc(1), 0f, 0f), paint)
             }
