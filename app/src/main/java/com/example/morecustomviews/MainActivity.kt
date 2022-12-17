@@ -3,7 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.rightlinesqrightview.RightLineSqRightView
+import com.example.rotlinesqjoinview.RotLineSqJoinView
 
 //import com.example.bilineparallelbarview.BiLineParallelBarView
 
@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //.create(this)
-        RightLineSqRightView.create(this)
+        RotLineSqJoinView.create(this)
         fullScreen()
     }
 }
