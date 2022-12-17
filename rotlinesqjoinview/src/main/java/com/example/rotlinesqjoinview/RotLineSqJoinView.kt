@@ -213,4 +213,12 @@ class RotLineSqJoinView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : RotLineSqJoinView {
+            val view : RotLineSqJoinView = RotLineSqJoinView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
