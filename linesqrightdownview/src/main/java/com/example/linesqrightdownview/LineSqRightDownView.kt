@@ -49,7 +49,7 @@ fun Canvas.drawLineSqRightDown(scale : Float, w : Float, h : Float, paint : Pain
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2 + (w / 4) * dsc(2), h / 2 + (h / 2 + size) * dsc(4)) {
+    drawXY(size + (w - 2.1f * size) * dsc(2), h / 2 + (h / 2 + size) * dsc(4)) {
         rotate(rot * dsc(3))
         drawRect(RectF(0f, -size / 2, size * dsc(0), size / 2), paint)
         drawLineWithoutDot(0f, 0f, -size * dsc(1), 0f, paint)
