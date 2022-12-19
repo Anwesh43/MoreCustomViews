@@ -18,7 +18,7 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val parts : Int = 4
+val parts : Int = 5
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 8.9f
@@ -37,6 +37,13 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawLineSqRightDown(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = {
@@ -45,7 +52,7 @@ fun Canvas.drawLineSqRightDown(scale : Float, w : Float, h : Float, paint : Pain
     drawXY(w / 2 + (w / 4) * dsc(2), h / 2 + (h / 2 + size) * dsc(4)) {
         rotate(rot * dsc(3))
         drawRect(RectF(0f, -size / 2, size * dsc(0), size / 2), paint)
-        drawLine(0f, 0f, -size * dsc(1), 0f, paint)
+        drawLineWithoutDot(0f, 0f, -size * dsc(1), 0f, paint)
     }
 }
 
@@ -99,6 +106,7 @@ class LineSqRightDownView(ctx : Context) : View(ctx) {
 
         fun animate(cb : () -> Unit) {
             if (animated) {
+                cb()
                 try {
                     Thread.sleep(delay)
                     view.invalidate()
