@@ -214,4 +214,12 @@ class LineDivertSqExpandView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : LineDivertSqExpandView {
+            val view : LineDivertSqExpandView = LineDivertSqExpandView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
