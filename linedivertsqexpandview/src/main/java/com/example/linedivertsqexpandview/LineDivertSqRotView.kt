@@ -189,4 +189,27 @@ class LineDivertSqExpandView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineDivertSqExpandView) {
+
+        private val animator : Animator = Animator(view)
+        private val ldsr : LineDivertSqExpand = LineDivertSqExpand(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ldsr.draw(canvas, paint)
+            animator.animate {
+                ldsr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ldsr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
