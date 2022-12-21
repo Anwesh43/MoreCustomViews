@@ -40,7 +40,7 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
 fun Canvas.drawSquareArcRotMove(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = { scale.divideScale(it, parts) }
-    drawXY(w / 2 + (w / 2 + size) * dsc(4) , h / 2) {
+    drawXY(w / 2 - (w / 2 + size) * dsc(4) , h / 2) {
         drawXY(0f, 0f) {
             rotate(-rot * dsc(2))
             drawRect(RectF(0f, 0f, size * dsc(0), size), paint)
