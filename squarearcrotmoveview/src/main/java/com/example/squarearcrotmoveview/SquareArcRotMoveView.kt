@@ -185,4 +185,27 @@ class SquareArcRotMoveView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SquareArcRotMoveView) {
+
+        private val animator : Animator = Animator(view)
+        private val sarm : SquareArcRotMove = SquareArcRotMove(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sarm.draw(canvas, paint)
+            animator.animate {
+                sarm.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sarm.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
