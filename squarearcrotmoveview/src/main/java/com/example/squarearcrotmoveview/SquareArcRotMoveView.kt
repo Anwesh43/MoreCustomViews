@@ -210,4 +210,12 @@ class SquareArcRotMoveView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : SquareArcRotMoveView {
+            val view : SquareArcRotMoveView = SquareArcRotMoveView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
