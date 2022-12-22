@@ -195,8 +195,9 @@ class LineRotAlongSqView(ctx : Context) : View(ctx) {
 
         private val animator : Animator = Animator(view)
         private val lrsa : LineRotAlongSq = LineRotAlongSq(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-        fun render(canvas : Canvas, paint : Paint) {
+        fun render(canvas : Canvas) {
             canvas.drawColor(backColor)
             lrsa.draw(canvas, paint)
             animator.animate {
@@ -210,6 +211,14 @@ class LineRotAlongSqView(ctx : Context) : View(ctx) {
             lrsa.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+        fun create(activity : Activity) : LineRotAlongSqView {
+            val view : LineRotAlongSqView = LineRotAlongSqView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }
