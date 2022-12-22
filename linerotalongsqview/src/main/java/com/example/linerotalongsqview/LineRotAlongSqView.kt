@@ -188,4 +188,26 @@ class LineRotAlongSqView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRotAlongSqView) {
+
+        private val animator : Animator = Animator(view)
+        private val lrsa : LineRotAlongSq = LineRotAlongSq(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            lrsa.draw(canvas, paint)
+            animator.animate {
+                lrsa.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrsa.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
