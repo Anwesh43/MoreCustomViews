@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import com.example.linerotalongsqview.LineRotAlongSqView
-import com.example.squarearcrotmoveview.SquareArcRotMoveView
 
 //import com.example.bilineparallelbarview.BiLineParallelBarView
 
