@@ -191,4 +191,27 @@ class BarMiddleRotLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BarMiddleRotLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val bmrl : BarMiddleRotLine = BarMiddleRotLine(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bmrl.draw(canvas, paint)
+            animator.animate {
+                bmrl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bmrl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
