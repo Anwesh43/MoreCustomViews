@@ -216,4 +216,12 @@ class BarMiddleRotLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(actvity : Activity) : BarMiddleRotLineView {
+            val view : BarMiddleRotLineView = BarMiddleRotLineView(actvity)
+            actvity.setContentView(view)
+            return view
+        }
+    }
 }
