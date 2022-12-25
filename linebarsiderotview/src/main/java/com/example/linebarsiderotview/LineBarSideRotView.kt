@@ -38,7 +38,7 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
 }
 
 fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
-    if (Math.abs(x1 - x2) < 0.1 && Math.abs(y1 - y2) < 0.1) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
         return
     }
     drawLine(x1, y1, x2, y2, paint)
