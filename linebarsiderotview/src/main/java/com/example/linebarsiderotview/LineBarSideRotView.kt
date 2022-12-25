@@ -184,4 +184,27 @@ class LineBarSideRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBarSideRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val lbsr : LineBarSideRot = LineBarSideRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lbsr.draw(canvas, paint)
+            animator.animate {
+                lbsr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbsr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
