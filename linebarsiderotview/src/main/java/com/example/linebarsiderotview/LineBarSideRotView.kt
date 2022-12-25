@@ -120,4 +120,45 @@ class LineBarSideRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class LBSRNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : LBSRNode? = null
+        private var prev : LBSRNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = LBSRNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawLBSRNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : LBSRNode {
+            var curr : LBSRNode? = this.prev
+            if (dir == 1) {
+                curr = this.next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
