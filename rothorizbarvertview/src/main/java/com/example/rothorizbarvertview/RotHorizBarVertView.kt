@@ -220,4 +220,12 @@ class RotHorizBarVertView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : RotHorizBarVertView {
+            val view : RotHorizBarVertView = RotHorizBarVertView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
