@@ -195,4 +195,27 @@ class RotHorizBarVertView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RotHorizBarVertView) {
+
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val rhbv : RotHorzBarVert = RotHorzBarVert(0)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rhbv.draw(canvas, paint)
+            animator.animate {
+                rhbv.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rhbv.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
