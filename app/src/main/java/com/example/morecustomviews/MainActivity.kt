@@ -3,7 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.linebarsiderotview.LineBarSideRotView
+import com.example.drawtlinedownview.DrawTLineDownView
 
 //import com.example.bilineparallelbarview.BiLineParallelBarView
 
@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //.create(this)
-        LineBarSideRotView.create(this)
+        DrawTLineDownView.create(this)
         fullScreen()
     }
 }
