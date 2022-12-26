@@ -49,12 +49,12 @@ fun Canvas.drawRotHorizBarVert(scale : Float, w : Float, h : Float, paint : Pain
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f, 1f - 2 * j)
-                rotate(deg * dsc(2))
-                drawRect(RectF(0f, 0f, size * dsc(0), barH), paint)
+                rotate(deg * dsc(3))
+                drawRect(RectF(0f, 0f, size * dsc(j * 2), barH), paint)
             }
         }
         drawXY(0f, 0f) {
-            rotate(rot * dsc(1) - deg * dsc(2))
+            rotate(rot * dsc(1) - deg * dsc(3))
             drawLine(0f, 0f, 0f, barH * Math.floor(dsc(0).toDouble()).toFloat(), paint)
         }
     }
