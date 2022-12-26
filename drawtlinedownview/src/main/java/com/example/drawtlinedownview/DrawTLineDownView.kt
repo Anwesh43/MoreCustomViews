@@ -222,4 +222,12 @@ class DrawTLineDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : DrawTLineDownView {
+            val view : DrawTLineDownView = DrawTLineDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
