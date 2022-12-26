@@ -31,6 +31,12 @@ fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
 
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
 fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     save()
     translate(x, y)
@@ -45,15 +51,15 @@ fun Canvas.drawTLineDown(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(4)) {
         rotate(deg * dsc(3))
-        drawLine(0f, 0f, 0f, size * dsc(0), paint)
+        drawLineWithoutDot(0f, 0f, 0f, size * dsc(0), paint)
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
                 drawXY(size * 0.5f * dsc(1), 0f) {
-                    for(j in 0..1) {
+                    for(k in 0..1) {
                         drawXY(0f, 0f) {
-                            rotate(rot * dsc(2))
-                            drawLine(-size * 0.5f * dsc(1), 0f, 0f, 0f, paint)
+                            rotate(rot * dsc(2) * k)
+                            drawLineWithoutDot(-size * 0.5f * dsc(1), 0f, 0f, 0f, paint)
                         }
                     }
                 }
@@ -68,7 +74,7 @@ fun Canvas.drawTLDNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
-    drawTLDNode(i, scale, paint)
+    drawTLineDown(scale, w, h, paint)
 }
 
 class DrawTLineDownView(ctx : Context) : View(ctx) {
