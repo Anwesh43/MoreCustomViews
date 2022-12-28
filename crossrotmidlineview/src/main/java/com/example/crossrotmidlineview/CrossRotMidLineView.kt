@@ -214,4 +214,12 @@ class CrossRotMidLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : CrossRotMidLineView {
+            val view : CrossRotMidLineView = CrossRotMidLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
