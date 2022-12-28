@@ -119,6 +119,12 @@ class ArcRotAboveSqView(ctx : Context) : View(ctx) {
                 view.postInvalidate()
             }
         }
+
+        fun stop() {
+            if (animated) {
+                animated = false
+            }
+        }
     }
 
     data class ARASNode(var i : Int = 0, val state : State = State()) {
@@ -182,6 +188,28 @@ class ArcRotAboveSqView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : ArcRotAboveSqView) {
+
+        private val animator : Animator = Animator(view)
+        private val aras : ArcRotAboveSq = ArcRotAboveSq(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            animator.animate {
+                aras.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            aras.startUpdating {
+                animator.start()
+            }
         }
     }
 }
