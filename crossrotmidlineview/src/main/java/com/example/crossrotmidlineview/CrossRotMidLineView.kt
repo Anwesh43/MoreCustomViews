@@ -189,4 +189,27 @@ class CrossRotMidLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : CrossRotMidLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val crml : CrossRotMidLine = CrossRotMidLine(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            crml.draw(canvas, paint)
+            animator.animate {
+                crml.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            crml.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
