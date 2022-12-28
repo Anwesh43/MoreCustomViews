@@ -212,4 +212,12 @@ class ArcRotAboveSqView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : ArcRotAboveSqView {
+            val view : ArcRotAboveSqView = ArcRotAboveSqView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
