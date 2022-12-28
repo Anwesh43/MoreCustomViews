@@ -101,7 +101,7 @@ class CrossRotMidLineView(ctx : Context) : View(ctx) {
     }
 
     data class Animator(var view : View, var animated : Boolean = false) {
-        fun animate() {
+        fun animate(cb : () -> Unit) {
             if (animated) {
                 cb()
                 try {
@@ -123,6 +123,47 @@ class CrossRotMidLineView(ctx : Context) : View(ctx) {
             if (animated) {
                 animated = false
             }
+        }
+    }
+
+    data class CRMLNode(var i : Int = 0, val state : State = State()) {
+
+        private var prev : CRMLNode? = null
+        private var next : CRMLNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = CRMLNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawCRMLNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : CRMLNode {
+            var curr : CRMLNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
         }
     }
 }
