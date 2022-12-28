@@ -201,6 +201,7 @@ class ArcRotAboveSqView(ctx : Context) : View(ctx) {
 
         fun render(canvas : Canvas) {
             canvas.drawColor(backColor)
+            aras.draw(canvas, paint)
             animator.animate {
                 aras.update {
                     animator.stop()
