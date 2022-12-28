@@ -99,4 +99,30 @@ class CrossRotMidLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class Animator(var view : View, var animated : Boolean = false) {
+        fun animate() {
+            if (animated) {
+                cb()
+                try {
+                    Thread.sleep(delay)
+                    view.invalidate()
+                } catch(ex : Exception) {
+
+                }
+            }
+        }
+        fun start() {
+            if (!animated) {
+                animated = true
+                view.postInvalidate()
+            }
+        }
+
+        fun stop() {
+            if (animated) {
+                animated = false
+            }
+        }
+    }
 }
