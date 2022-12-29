@@ -55,10 +55,10 @@ fun Canvas.drawLineRightArcExpand(scale : Float, w : Float, h : Float, paint : P
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 rotate(deg * dsc(1) * (1 - 2 * j))
-                drawLine(0f, 0f, 0f, -size * dsc(0), paint)
+                drawLineWithoutDot(0f, 0f, 0f, -size * dsc(0), paint)
             }
-            drawXY(0f, -size + size * j) {
-                drawArc(RectF(0f, -size / 2, size, size / 2), rot * j, rot * dsc(2), true, paint)
+            drawXY(-size + size * j, 0f) {
+                drawArc(RectF(0f, -size / 2, size, size / 2), rot * (1 - j), rot * dsc(2), true, paint)
             }
         }
     }
