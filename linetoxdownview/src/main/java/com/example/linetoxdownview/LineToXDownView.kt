@@ -214,4 +214,14 @@ class LineToXDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activiy : Activity) : LineToXDownView {
+            val view : LineToXDownView = LineToXDownView(activiy)
+            activiy.setContentView(view)
+            return view
+
+        }
+    }
 }
