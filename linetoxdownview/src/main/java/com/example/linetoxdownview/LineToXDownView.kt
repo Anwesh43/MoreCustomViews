@@ -41,12 +41,12 @@ fun Canvas.drawLineToXDown(scale : Float, w : Float, h : Float, paint : Paint) {
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(3)) {
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
-                drawXY(-size * 0.5f * (dsc(0) + dsc(2)), 0f) {
-                    rotate(rot * (dsc(2) - dsc(1)))
+                drawXY(-size * 0.5f * (dsc(0) - dsc(2)), 0f) {
+                    rotate(-rot * (dsc(2) + dsc(1)))
                     drawLine(0f, 0f, size * dsc(0), 0f, paint)
                 }
             }
