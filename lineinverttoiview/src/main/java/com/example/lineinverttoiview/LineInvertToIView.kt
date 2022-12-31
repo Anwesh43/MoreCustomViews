@@ -212,4 +212,12 @@ class LineInvertToIView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineInvertToIView {
+            val view : LineInvertToIView = LineInvertToIView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
