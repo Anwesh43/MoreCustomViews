@@ -36,19 +36,30 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawLineInvertToI(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
-        rotate(rot * dsc(2))
-        for (j in 0..1) {
-            drawXY(size * (1f - 2 * j) * dsc(1), 0f) {
-                drawLine(0f, -size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), paint)
+    drawXY(w / 2, h / 2) {
+        for (k in 0..1) {
+            drawXY((w / 2 + size) * dsc(3) * (1 - 2 * k), 0f) {
+                rotate(rot * dsc(2))
+                for (j in 0..1) {
+                    drawXY(size * (1f - 2 * j) * dsc(1), 0f) {
+                        drawLineWithoutDot(0f, -size * 0.5f * dsc(0), 0f, size * 0.5f * dsc(0), paint)
+                    }
+                }
+                drawLineWithoutDot(-size * dsc(1), 0f, size * dsc(1), 0f, paint)
             }
         }
-        drawLine(-size * dsc(1), 0f, size * dsc(1), 0f, paint)
     }
 }
 
