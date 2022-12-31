@@ -187,4 +187,27 @@ class LineInvertToIView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineInvertToIView) {
+
+        private val liti : LineInvertToI = LineInvertToI(0)
+        private val animator : Animator = Animator(view)
+        private var paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            liti.draw(canvas, paint)
+            animator.animate {
+                liti.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            liti.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
