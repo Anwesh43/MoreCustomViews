@@ -193,4 +193,27 @@ class BulletHeadArcView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BulletHeadArcView) {
+
+        private val bha : BulletHeadArc = BulletHeadArc(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bha.draw(canvas, paint)
+            animator.animate {
+                bha.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bha.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
