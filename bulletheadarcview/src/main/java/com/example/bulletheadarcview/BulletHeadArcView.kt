@@ -25,6 +25,7 @@ val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 45f
+val deg : Float = 90f
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -43,7 +44,7 @@ fun Canvas.drawBulletHeadArc(scale : Float, w : Float, h : Float, paint : Paint)
         scale.divideScale(it, parts)
     }
     drawXY(w / 2, h / 2 - (h / 2 + size) * dsc(4)) {
-        rotate(rot * dsc(3))
+        rotate(deg * dsc(3))
         drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 90f, 180f * dsc(0), false, paint)
         for (j in 0..1) {
             drawXY(0f, 0f) {
