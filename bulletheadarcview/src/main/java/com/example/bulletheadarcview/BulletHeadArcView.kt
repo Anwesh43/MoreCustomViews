@@ -218,4 +218,12 @@ class BulletHeadArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : BulletHeadArcView {
+            val view : BulletHeadArcView = BulletHeadArcView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
