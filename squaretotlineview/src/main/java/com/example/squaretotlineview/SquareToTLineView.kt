@@ -51,7 +51,7 @@ fun Canvas.drawSquareToTLine(scale : Float, w : Float, h : Float, paint : Paint)
     }
     val sc2 : Float = Math.floor(dsc(2).toDouble()).toFloat()
     drawXY(w / 2, h / 2 + (h / 2) * dsc(5)) {
-        rotate(rot * dsc(3))
+        rotate(-rot * dsc(3))
         drawXY(-w / 2 + (w / 2 - size) * dsc(1) + size * dsc(2), 0f) {
             for (j in 0..1) {
                 drawXY(0f, (1f - 2 * j) * (size / 2) * dsc(4)) {
@@ -60,7 +60,7 @@ fun Canvas.drawSquareToTLine(scale : Float, w : Float, h : Float, paint : Paint)
             }
         }
         drawRect(RectF(-size, -size * 0.5f * dsc(4), 0f, size * 0.5f * dsc(4)), paint)
-        drawRect(RectF(-size * dsc(0), -size / 2, 0f, size / 2), paint)
+        drawRect(RectF(-size * (dsc(0) - dsc(2)), -size / 2, 0f, size / 2), paint)
         drawLineWithoutDot(0f, -size * 0.5f * sc2, 0f, size * 0.5f * sc2, paint)
     }
 }
