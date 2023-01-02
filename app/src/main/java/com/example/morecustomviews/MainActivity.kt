@@ -3,7 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.bulletheadarcview.BulletHeadArcView
+import com.example.squaretotlineview.SquareToTLineView
 
 
 //import com.example.bilineparallelbarview.BiLineParallelBarView
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //.create(this)
-        BulletHeadArcView.create(this)
+        SquareToTLineView.create(this)
         fullScreen()
     }
 }
