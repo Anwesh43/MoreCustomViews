@@ -3,7 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.squaretotlineview.SquareToTLineView
+import com.example.biendarcdownview.BiEndArcDownView
 
 
 //import com.example.bilineparallelbarview.BiLineParallelBarView
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //.create(this)
-        SquareToTLineView.create(this)
+        BiEndArcDownView.create(this)
         fullScreen()
     }
 }
