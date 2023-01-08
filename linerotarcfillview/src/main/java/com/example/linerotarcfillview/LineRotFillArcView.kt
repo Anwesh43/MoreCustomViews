@@ -126,4 +126,45 @@ class LineRotFillArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class LRFANode(var i : Int = 0, val state : State = State()) {
+
+        private var prev : LRFANode? = null
+        private var next : LRFANode? = null
+
+        init {
+
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = LRFANode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawLRFANode(i, state.scale,paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : LRFANode {
+            var curr : LRFANode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
