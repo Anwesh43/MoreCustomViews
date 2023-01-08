@@ -190,4 +190,27 @@ class LineRotFillArcView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRotFillArcView) {
+
+        private val animator : Animator = Animator(view)
+        private val lrfa : LineRotFillArc = LineRotFillArc(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrfa.draw(canvas, paint)
+            animator.animate {
+                lrfa.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrfa.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
