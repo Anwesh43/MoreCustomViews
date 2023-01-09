@@ -225,4 +225,13 @@ class SquareLineToArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SquareLineToArcView {
+            val view : SquareLineToArcView = SquareLineToArcView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
