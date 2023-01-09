@@ -44,14 +44,14 @@ fun Canvas.drawSquareToLineArc(scale : Float, w : Float, h : Float, paint : Pain
     }
     drawXY(w / 2 + (w / 2 + size) * dsc(4) , h / 2) {
         rotate(rot * dsc(3))
-        drawXY(0f, (h / 2 + size / 2) * dsc(0)) {
+        drawXY(0f, (h / 2 + size / 2) * (1 - dsc(0))) {
             drawRect(RectF(-size / 2, -size / 2, size / 2, size / 2), paint)
         }
         drawXY(0f, -size / 2 - (h / 2 - size / 2) * (1 - dsc(1))) {
             for (j in 0..1) {
                 drawXY(0f, 0f) {
                     rotate(rot * dsc(2) * (1 - 2 * j))
-                    drawLine(0f, 0f, 0f, -size, paint)
+                    drawLine(0f, 0f, 0f, -size / 2, paint)
                 }
             }
             drawArc(
