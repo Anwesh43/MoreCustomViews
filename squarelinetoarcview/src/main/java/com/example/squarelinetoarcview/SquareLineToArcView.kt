@@ -200,4 +200,27 @@ class SquareLineToArcView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SquareLineToArcView) {
+
+        private val slta : SquareLineToArc = SquareLineToArc(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            slta.draw(canvas, paint)
+            animator.animate {
+                slta.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            slta.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
