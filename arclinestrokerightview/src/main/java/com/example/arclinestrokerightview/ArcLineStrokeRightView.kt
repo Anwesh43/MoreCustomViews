@@ -48,7 +48,7 @@ fun Canvas.drawArcLineStrokeRight(scale : Float, w : Float, h : Float, paint : P
         rotate(rot * dsc(2))
         drawArc(RectF(-r, -r, r, r), 90f, 360f * dsc(0), false, paint)
         drawXY(0f, r) {
-            drawLine(0f, 0f, size * dsc(0), 0f, paint)
+            drawLine(0f, 0f, 0f, size * dsc(1), paint)
         }
     }
 }
@@ -59,6 +59,7 @@ fun Canvas.drawALSRNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
     drawArcLineStrokeRight(scale, w, h, paint)
 }
 
