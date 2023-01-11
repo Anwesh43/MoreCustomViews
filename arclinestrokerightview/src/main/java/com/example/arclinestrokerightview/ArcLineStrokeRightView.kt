@@ -51,7 +51,7 @@ fun Canvas.drawArcLineStrokeRight(scale : Float, w : Float, h : Float, paint : P
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
+    drawXY(w / 2 + (w / 2 + size + r) * dsc(3), h / 2) {
         rotate(rot * dsc(2))
         drawArc(RectF(-r, -r, r, r), 90f, 360f * dsc(0), false, paint)
         drawXY(0f, r) {
