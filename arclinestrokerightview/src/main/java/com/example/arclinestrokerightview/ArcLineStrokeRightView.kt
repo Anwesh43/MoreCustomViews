@@ -188,4 +188,27 @@ class ArcLineStrokeRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ArcLineStrokeRightView) {
+
+        private val alsr : ArcLineStrokeRight = ArcLineStrokeRight(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            alsr.draw(canvas, paint)
+            animator.animate {
+                alsr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            alsr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
