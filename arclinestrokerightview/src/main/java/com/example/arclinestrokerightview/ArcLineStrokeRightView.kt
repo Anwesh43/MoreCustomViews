@@ -38,6 +38,13 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawArcLineStrokeRight(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val r : Float = Math.min(w, h) / rFactor
@@ -48,7 +55,7 @@ fun Canvas.drawArcLineStrokeRight(scale : Float, w : Float, h : Float, paint : P
         rotate(rot * dsc(2))
         drawArc(RectF(-r, -r, r, r), 90f, 360f * dsc(0), false, paint)
         drawXY(0f, r) {
-            drawLine(0f, 0f, 0f, size * dsc(1), paint)
+            drawLineWithoutDot(0f, 0f, 0f, size * dsc(1), paint)
         }
     }
 }
