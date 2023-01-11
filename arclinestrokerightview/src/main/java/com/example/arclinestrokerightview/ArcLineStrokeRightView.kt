@@ -213,4 +213,12 @@ class ArcLineStrokeRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : ArcLineStrokeRightView {
+            val view : ArcLineStrokeRightView = ArcLineStrokeRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
