@@ -188,4 +188,27 @@ class LineBarJoinRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBarJoinRotView) {
+
+        private var lbjr : LineBarJoinRot = LineBarJoinRot(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lbjr.draw(canvas, paint)
+            animator.animate {
+                lbjr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbjr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
