@@ -46,9 +46,9 @@ fun Canvas.drawLineBarJoinRot(scale : Float, w : Float, h : Float, paint : Paint
         rotate(rot * dsc(4))
         for (j in 0..1) {
             scale(1f, 1f - 2 * j)
-            rotate((rot) * dsc(1) + rot * dsc(2))
+            rotate((rot) * dsc(1) + rot * dsc(3))
             drawLine(0f, 0f, 0f, size * dsc(0), paint)
-            drawRect(RectF(0f, 0f, size * dsc(0), size), paint)
+            drawRect(RectF(0f, 0f, size * dsc(2), size), paint)
         }
     }
 }
