@@ -213,4 +213,12 @@ class LineBarJoinRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineBarJoinRotView {
+            val view : LineBarJoinRotView = LineBarJoinRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
