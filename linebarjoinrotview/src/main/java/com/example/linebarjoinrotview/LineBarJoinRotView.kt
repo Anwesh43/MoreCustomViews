@@ -18,7 +18,7 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val parts : Int = 4
+val parts : Int = 6
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
@@ -42,11 +42,11 @@ fun Canvas.drawLineBarJoinRot(scale : Float, w : Float, h : Float, paint : Paint
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(5)) {
+    drawXY(w / 2 + (size / 2) * dsc(4), h / 2 + (h / 2 + size) * dsc(5)) {
         rotate(rot * dsc(4))
         for (j in 0..1) {
             scale(1f, 1f - 2 * j)
-            rotate((rot) * dsc(1) + rot * dsc(3))
+            rotate((rot * (dsc(1) + dsc(3)))* j)
             drawLine(0f, 0f, 0f, size * dsc(0), paint)
             drawRect(RectF(0f, 0f, size * dsc(2), size), paint)
         }
