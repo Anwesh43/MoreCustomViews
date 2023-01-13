@@ -218,4 +218,12 @@ class DotLineSquareView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : DotLineSquareView {
+            val view : DotLineSquareView = DotLineSquareView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
