@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import com.example.dotlinesquareview.DotLineSquareView
-import com.example.linebarjoinrotview.LineBarJoinRotView
 
 
 //import com.example.bilineparallelbarview.BiLineParallelBarView
