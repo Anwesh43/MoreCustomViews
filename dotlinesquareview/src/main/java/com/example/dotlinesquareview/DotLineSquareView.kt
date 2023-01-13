@@ -193,4 +193,27 @@ class DotLineSquareView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : DotLineSquareView) {
+
+        private val animator : Animator = Animator(view)
+        private val dls : DotLineSquare = DotLineSquare(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            dls.draw(canvas, paint)
+            animator.animate {
+                dls.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            dls.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
