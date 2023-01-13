@@ -3,6 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import com.example.dotlinesquareview.DotLineSquareView
 import com.example.linebarjoinrotview.LineBarJoinRotView
 
 
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //.create(this)
-        LineBarJoinRotView.create(this)
+        DotLineSquareView.create(this)
         fullScreen()
     }
 }
