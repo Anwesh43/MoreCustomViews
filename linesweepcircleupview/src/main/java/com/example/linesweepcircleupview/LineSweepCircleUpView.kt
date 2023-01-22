@@ -216,4 +216,12 @@ class LineSweepCircleUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineSweepCircleUpView {
+            val view : LineSweepCircleUpView = LineSweepCircleUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
