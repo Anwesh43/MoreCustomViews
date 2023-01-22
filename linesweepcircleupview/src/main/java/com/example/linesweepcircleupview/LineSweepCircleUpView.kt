@@ -191,4 +191,27 @@ class LineSweepCircleUpView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineSweepCircleUpView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val lscu : LineSweepCircleUp = LineSweepCircleUp(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lscu.draw(canvas, paint)
+            animator.animate {
+                lscu.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lscu.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
