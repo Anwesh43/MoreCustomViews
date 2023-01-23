@@ -217,4 +217,13 @@ class LineRotSqExpandView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineRotSqExpandView {
+            val view : LineRotSqExpandView = LineRotSqExpandView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
