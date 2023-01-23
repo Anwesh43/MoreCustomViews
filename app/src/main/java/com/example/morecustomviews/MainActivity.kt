@@ -3,7 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.linesweepcircleupview.LineSweepCircleUpView
+import com.example.linerotsqexpandview.LineRotSqExpandView
 
 //import com.example.dotlinesquareview.DotLineSquareView
 
@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //.create(this)
-        LineSweepCircleUpView.create(this)
+        LineRotSqExpandView.create(this)
         fullScreen()
     }
 }
