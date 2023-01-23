@@ -47,10 +47,10 @@ fun Canvas.drawLineRotSqExpand(scale : Float, w : Float, h : Float, paint : Pain
         rotate(rot * dsc(4))
         for (j in 0..1) {
             drawXY(0f, 0f) {
-                rotate(rot * j * dsc(1))
+                rotate(-sweep * j * dsc(1))
                 drawXY(-(size / 2) * dsc(3), 0f) {
                     drawLine(0f, 0f, size * dsc(0), 0f, paint)
-                    drawRect(RectF(0f, 0f, size * dsc(2), size), paint)
+                    drawRect(RectF(0f, 0f, size, size * dsc(2)), paint)
                 }
             }
         }
