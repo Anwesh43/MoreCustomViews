@@ -192,4 +192,27 @@ class LineRotSqExpandView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRotSqExpandView) {
+
+        private val animator : Animator = Animator(view)
+        private val lrse : LineRotSqExpand = LineRotSqExpand(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrse.draw(canvas, paint)
+            animator.animate {
+                lrse.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrse.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
