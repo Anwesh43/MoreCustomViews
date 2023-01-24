@@ -3,7 +3,9 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.linerotsqexpandview.LineRotSqExpandView
+import com.example.linesquprightview.LineSqUpRightView
+
+//import com.example.linerotsqexpandview.LineRotSqExpandView
 
 //import com.example.dotlinesquareview.DotLineSquareView
 
@@ -17,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //.create(this)
-        LineRotSqExpandView.create(this)
+        LineSqUpRightView.create(this)
         fullScreen()
     }
 }
