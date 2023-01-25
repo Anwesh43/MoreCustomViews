@@ -211,4 +211,12 @@ class BoxToMidLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : BoxToMidLineView {
+            val view : BoxToMidLineView = BoxToMidLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
