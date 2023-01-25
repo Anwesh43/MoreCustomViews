@@ -19,7 +19,7 @@ val colors : Array<Int> = arrayOf(
     Color.parseColor(it)
 }.toTypedArray()
 val parts : Int = 4
-val scGap : Float = 0.04f
+val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val boxSizeFactor : Float = 11.2f
@@ -102,7 +102,7 @@ class BoxToMidLineView(ctx : Context) : View(ctx) {
     data class Animator(var view : View, var animated : Boolean = false) {
 
         fun animate(cb : () -> Unit) {
-            if (!animated) {
+            if (animated) {
                 cb()
                 try {
                     Thread.sleep(delay)
@@ -201,7 +201,9 @@ class BoxToMidLineView(ctx : Context) : View(ctx) {
             canvas.drawColor(backColor)
             btml.draw(canvas, paint)
             animator.animate {
-                animator.stop()
+                btml.update {
+                    animator.stop()
+                }
             }
         }
 
