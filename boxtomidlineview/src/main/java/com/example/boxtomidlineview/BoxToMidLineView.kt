@@ -188,4 +188,25 @@ class BoxToMidLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BoxToMidLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val btml : BoxToMidLine = BoxToMidLine(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            btml.draw(canvas, paint)
+            animator.animate {
+                animator.stop()
+            }
+        }
+
+        fun handleTap() {
+            btml.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
