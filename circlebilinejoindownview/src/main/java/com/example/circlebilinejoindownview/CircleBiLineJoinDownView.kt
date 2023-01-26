@@ -218,4 +218,13 @@ class CircleBiLineJoinDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : CircleBiLineJoinDownView {
+            val view : CircleBiLineJoinDownView = CircleBiLineJoinDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
