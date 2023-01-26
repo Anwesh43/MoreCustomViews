@@ -193,4 +193,27 @@ class CircleBiLineJoinDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : CircleBiLineJoinDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val cbljd : CircleBiLineJoinDown = CircleBiLineJoinDown(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            cbljd.draw(canvas, paint)
+            animator.animate {
+                cbljd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            cbljd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
