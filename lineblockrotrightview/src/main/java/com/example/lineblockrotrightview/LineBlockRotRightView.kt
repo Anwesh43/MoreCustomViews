@@ -214,4 +214,12 @@ class LineBlockRotRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : LineBlockRotRightView {
+            val view : LineBlockRotRightView = LineBlockRotRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
