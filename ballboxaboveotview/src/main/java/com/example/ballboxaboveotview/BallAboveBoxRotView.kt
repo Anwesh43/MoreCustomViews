@@ -211,4 +211,13 @@ class BallAboveBoxRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BallAboveBoxRotView {
+            val view : BallAboveBoxRotView = BallAboveBoxRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
