@@ -44,9 +44,9 @@ fun Canvas.drawLineBlockRotRight(scale : Float, w : Float, h : Float, paint : Pa
     }
     drawXY(w / 2 + (w / 2 + size) * dsc(4), h / 2) {
         drawXY(-w / 2 + (w / 2) * dsc(0), 0f) {
-            drawLine(0f, 0f, -size, 0f, paint)
+            drawLine(0f, 0f, -size + size * dsc(3), 0f, paint)
         }
-        drawXY(0f, -(h / 2) + (1 - dsc(1))) {
+        drawXY(0f, -(h / 2) + (h / 2) * dsc(1)) {
             rotate(rot * dsc(2))
             drawRect(RectF(0f, -size, size, 0f), paint)
         }
