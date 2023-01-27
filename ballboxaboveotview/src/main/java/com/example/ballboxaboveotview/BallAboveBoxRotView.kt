@@ -164,7 +164,7 @@ class BallAboveBoxRotView(ctx : Context) : View(ctx) {
         }
     }
 
-    data class BarAboveBoxRot(var i : Int = 0) {
+    data class BallAboveBoxRot(var i : Int = 0) {
 
         private var curr : BABRNode = BABRNode(0)
         private var dir : Int = 1
@@ -184,6 +184,29 @@ class BallAboveBoxRotView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : BallAboveBoxRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val babr : BallAboveBoxRot = BallAboveBoxRot(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            babr.draw(canvas, paint)
+            animator.animate {
+                babr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            babr.startUpdating {
+                animator.start()
+            }
         }
     }
 }
