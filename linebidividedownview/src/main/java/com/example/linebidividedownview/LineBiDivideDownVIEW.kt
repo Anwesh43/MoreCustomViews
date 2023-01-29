@@ -215,4 +215,12 @@ class LineBiDivideDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineBiDivideDownView {
+            val view : LineBiDivideDownView = LineBiDivideDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
