@@ -190,4 +190,27 @@ class LineBiDivideDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBiDivideDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val lbdd : LineBiDivideDown = LineBiDivideDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lbdd.draw(canvas, paint)
+            animator.animate {
+                lbdd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbdd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
