@@ -50,8 +50,8 @@ fun Canvas.drawSquareBiHalfCircle(scale : Float, w : Float, h : Float, paint : P
         drawRect(RectF(0f, -size * dsc(0), size, 0f), paint)
         for (j in 0..1) {
             drawXY(0f, 0f) {
-                rotate(deg * j)
-                drawArc(RectF(0f, -r, 2 * r, r), 0f, 180f * dsc(j + 1), true, paint)
+                rotate(-deg * j)
+                drawArc(RectF(0f, -r, 2 * r, r), 180f * j, 180f * dsc(j + 1), true, paint)
             }
         }
     }
