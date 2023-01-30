@@ -192,4 +192,27 @@ class SquareBiHalfCircleView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SquareBiHalfCircleView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val sbhc : SquareBiHalfCircle = SquareBiHalfCircle(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sbhc.draw(canvas, paint)
+            animator.animate {
+                sbhc.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sbhc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
