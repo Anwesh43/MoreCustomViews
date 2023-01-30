@@ -217,4 +217,12 @@ class SquareBiHalfCircleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : SquareBiHalfCircleView {
+            val view : SquareBiHalfCircleView = SquareBiHalfCircleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
