@@ -51,7 +51,7 @@ fun Canvas.drawLineBarDownRot(scale : Float, w : Float, h : Float, paint : Paint
         }
         drawXY(-size / 2, h / 2 - (h / 2 - barH) * dsc(3)) {
             rotate(rot * dsc(2))
-            drawRect(RectF(0f, -size * dsc(1), barH, 0f), paint)
+            drawRect(RectF(-barH, -size * dsc(1), 0f, 0f), paint)
         }
     }
 }
