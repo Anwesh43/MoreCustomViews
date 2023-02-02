@@ -30,3 +30,37 @@ val barHFactor : Float = 13.2f
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
+
+fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
+    save()
+    translate(x, y)
+    cb()
+    restore()
+}
+
+fun Canvas.drawLineBarDownRot(scale : Float, w : Float, h : Float, paint : Paint) {
+    val size : Float = Math.min(w, h) / sizeFactor
+    val dsc : (Int) -> Float = {
+        scale.divideScale(it, parts)
+    }
+    val barH : Float = Math.min(w, h) / barHFactor
+    drawXY(w / 2, h / 2  + (h / 2 + size) * dsc(4)) {
+
+        drawXY(0f, -(h / 2 + size) * (1 - dsc(0))) {
+            drawLine(0f, 0f, 0f, -size, paint)
+        }
+        drawXY(-size / 2, h / 2 - (h / 2 - barH) * dsc(3)) {
+            rotate(rot * dsc(2))
+            drawRect(RectF(0f, -size * dsc(1), barH, 0f), paint)
+        }
+    }
+}
+
+fun Canvas.drawLBDRNode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    paint.color = colors[i]
+    paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    drawLineBarDownRot(scale, w, h, paint)
+}
