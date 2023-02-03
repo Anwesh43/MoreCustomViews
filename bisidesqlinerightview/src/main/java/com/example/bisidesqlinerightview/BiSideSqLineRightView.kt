@@ -8,7 +8,6 @@ import android.graphics.Paint
 import android.graphics.Color
 import android.graphics.RectF
 import android.graphics.Canvas
-import kotlin.math.acos
 
 val colors : Array<Int> = arrayOf(
     "#1A237E",
@@ -63,6 +62,7 @@ fun Canvas.drawBSSLRNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    drawBiSideSqLineRight(scale, w, h, paint)
 }
 
 class BiSideSqLineRightView(ctx : Context) : View(ctx) {
