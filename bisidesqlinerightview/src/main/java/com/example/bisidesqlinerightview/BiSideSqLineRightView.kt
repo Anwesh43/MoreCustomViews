@@ -19,7 +19,7 @@ val colors : Array<Int> = arrayOf(
     Color.parseColor(it)
 }.toTypedArray()
 val parts : Int = 4
-val scGap : Float = 0.04f
+val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val rot : Float = 90f
 val sizeFactor : Float = 4.9f
@@ -42,14 +42,15 @@ fun Canvas.drawBiSideSqLineRight(scale : Float, w : Float, h : Float, paint : Pa
     val dsc: (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2 + (w / 2) * dsc(3), h / 2) {
+    drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
         rotate(-rot * dsc(2))
         drawXY(0f, -h / 2 + (h / 2) * dsc(0)) {
             drawLine(0f, 0f, 0f, -size, paint)
         }
         for (j in 0..1) {
+            scale(1f - 2 * j, 1f)
             drawXY((w / 2) * (1 - dsc(1)), 0f) {
-                scale(1f - 2 * j, 1f)
+                //scale(1f - 2 * j, 1f)
                 drawRect(RectF(0f, 0f, size, size), paint)
             }
         }
