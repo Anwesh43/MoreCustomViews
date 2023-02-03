@@ -8,6 +8,7 @@ import android.graphics.Paint
 import android.graphics.Color
 import android.graphics.RectF
 import android.graphics.Canvas
+import kotlin.math.acos
 
 val colors : Array<Int> = arrayOf(
     "#1A237E",
@@ -188,6 +189,29 @@ class BiSideSqLineRightView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : BiSideSqLineRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val bsslr : BiSideSqLineRight = BiSideSqLineRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bsslr.draw(canvas, paint)
+            animator.animate {
+                bsslr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bsslr.startUpdating {
+                animator.start()
+            }
         }
     }
 }
