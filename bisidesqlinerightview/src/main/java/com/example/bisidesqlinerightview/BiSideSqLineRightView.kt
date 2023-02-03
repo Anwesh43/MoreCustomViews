@@ -216,4 +216,12 @@ class BiSideSqLineRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : BiSideSqLineRightView {
+            val view : BiSideSqLineRightView = BiSideSqLineRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
