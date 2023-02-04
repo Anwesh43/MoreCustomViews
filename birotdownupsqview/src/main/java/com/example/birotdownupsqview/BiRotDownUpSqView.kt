@@ -44,14 +44,14 @@ fun Canvas.drawBiRotDownUpSq(scale : Float, w : Float, h : Float, paint : Paint)
     }
     drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(3)) {
         drawXY(0f, h / 2 * (1 - dsc(0))) {
-            drawRect(RectF(-size / 2, 0f, size / 2, size / 2), paint)
+            drawRect(RectF(-size / 2, 0f, size / 2, size), paint)
         }
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
-                drawXY(size + (w / 2 - size) * (1 - dsc(1)), 0f) {
+                drawXY(size / 2 + (w / 2 - size / 2) * (1 - dsc(1)), 0f) {
                     rotate(-rot * dsc(2))
-                    drawLine(0f, 0f, 0f, -size, paint)
+                    drawLine(0f, 0f, size, 0f, paint)
                 }
             }
 
