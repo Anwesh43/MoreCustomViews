@@ -219,4 +219,13 @@ class BiRotDownUpSqView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BiRotDownUpSqView {
+            val view : BiRotDownUpSqView = BiRotDownUpSqView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
