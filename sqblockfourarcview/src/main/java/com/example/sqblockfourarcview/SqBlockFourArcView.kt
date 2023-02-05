@@ -225,4 +225,12 @@ class SqBlockFourArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : SqBlockFourArcView {
+            val view : SqBlockFourArcView = SqBlockFourArcView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
