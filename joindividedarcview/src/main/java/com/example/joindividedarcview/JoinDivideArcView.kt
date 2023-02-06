@@ -24,7 +24,7 @@ val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
-val rot : Float = 45f
+val rot : Float = 30f
 val rFactor : Float = 15.6f
 
 fun Int.inverse() : Float = 1f / this
@@ -51,7 +51,7 @@ fun Canvas.drawJoinDivideArc(scale : Float, w : Float, h : Float, paint : Paint)
                 rotate(rot * (1f - dsc(2)))
                 drawLine(0f, 0f, size * dsc(0), 0f, paint)
                 drawXY(size - r, 0f) {
-                    drawArc(RectF(-r, r, r, r), 0f, 180f * dsc(1), true, paint)
+                    drawArc(RectF(-r, -r, r, r), 0f, 180f * dsc(1), true, paint)
                 }
             }
         }
