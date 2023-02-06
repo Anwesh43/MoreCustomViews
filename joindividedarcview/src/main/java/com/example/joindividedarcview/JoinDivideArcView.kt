@@ -218,4 +218,12 @@ class JoinDivideArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : JoinDivideArcView {
+            val view : JoinDivideArcView = JoinDivideArcView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
