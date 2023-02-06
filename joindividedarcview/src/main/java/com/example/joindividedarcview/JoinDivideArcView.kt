@@ -66,3 +66,17 @@ fun Canvas.drawJDANode(i : Int, scale : Float, paint : Paint) {
     paint.strokeWidth = Math.min(w, h) / strokeFactor
     drawJoinDivideArc(scale, w, h, paint)
 }
+
+class JoinDivideArcView(ctx : Context) : View(ctx) {
+
+    override fun onDraw(canvas : Canvas) {
+
+    }
+
+    override fun onTouchEvent(event : MotionEvent) : Boolean {
+        when (event.action) {
+
+        }
+        return true
+    }
+}
