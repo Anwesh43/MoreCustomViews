@@ -191,4 +191,27 @@ class JoinDivideArcView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : JoinDivideArcView) {
+
+        private val animator : Animator = Animator(view)
+        private val jda : JoinDivideArc = JoinDivideArc(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            jda.draw(canvas, paint)
+            animator.animate {
+                jda.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            jda.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
