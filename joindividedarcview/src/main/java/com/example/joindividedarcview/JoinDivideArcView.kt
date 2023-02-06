@@ -30,3 +30,39 @@ val rFactor : Float = 15.6f
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
+
+fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
+    save()
+    translate(x, y)
+    cb()
+    restore()
+}
+
+fun Canvas.drawJoinDivideArc(scale : Float, w : Float, h : Float, paint : Paint) {
+    val size : Float = Math.min(w, h) / sizeFactor
+    val dsc : (Int) -> Float = {
+        scale.divideScale(it, parts)
+    }
+    val r : Float = Math.min(w, h) / rFactor
+    drawXY(w / 2 + (w / 2) * dsc(3), h / 2) {
+        for (j in 0..1) {
+            drawXY(0f, 0f) {
+                scale(1f, 1f - 2 * j)
+                rotate(rot * (1f - dsc(2)))
+                drawLine(0f, 0f, size * dsc(0), 0f, paint)
+                drawXY(size - r, 0f) {
+                    drawArc(RectF(-r, r, r, r), 0f, 180f * dsc(1), true, paint)
+                }
+            }
+        }
+    }
+}
+
+fun Canvas.drawJDANode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    paint.color = colors[i]
+    paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    drawJoinDivideArc(scale, w, h, paint)
+}
