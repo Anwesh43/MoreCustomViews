@@ -211,4 +211,12 @@ class SemiCircleJoinRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : SemiCircleJoinRotView {
+            val view : SemiCircleJoinRotView = SemiCircleJoinRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
