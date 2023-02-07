@@ -46,6 +46,7 @@ fun Canvas.drawSemiCircleJoinRot(scale : Float, w : Float, h : Float, paint : Pa
         rotate(deg * dsc(2))
         for (j in 0..1) {
             drawXY(0f, 0f) {
+                scale(1f - 2 * j, 1f)
                 rotate(rot * dsc(1))
                 drawArc(RectF(0f, -size / 2, size, size / 2), deg, deg * dsc(0), true, paint)
             }
