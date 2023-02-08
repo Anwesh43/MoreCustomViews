@@ -213,4 +213,13 @@ class SqStickLineExpandView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SqStickLineExpandView {
+            val view : SqStickLineExpandView = SqStickLineExpandView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
