@@ -48,7 +48,7 @@ fun Canvas.drawSqStickLineExpand(scale : Float, w : Float, h : Float, paint : Pa
         rotate(-rot * dsc(3))
         drawLine(0f, 0f, 0f, -size * dsc(0), paint)
         drawXY(w / 2 * (1 - dsc(1)), 0f) {
-            drawRect(RectF(0f, -sqSize - (size - sqSize) * dsc(2), size, 0f), paint)
+            drawRect(RectF(0f, -sqSize - (size - sqSize) * dsc(2), sqSize, 0f), paint)
         }
     }
 }
