@@ -122,4 +122,41 @@ class BarBallJoinRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class BBJRNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : BBJRNode? = null
+        private var prev : BBJRNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = BBJRNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawBBJRNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : BBJRNode {
+            var curr : BBJRNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
