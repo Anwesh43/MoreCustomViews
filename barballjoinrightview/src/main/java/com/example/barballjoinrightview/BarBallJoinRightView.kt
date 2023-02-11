@@ -211,4 +211,12 @@ class BarBallJoinRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : BarBallJoinRightView {
+            val view : BarBallJoinRightView = BarBallJoinRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
