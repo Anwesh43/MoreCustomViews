@@ -50,7 +50,7 @@ fun Canvas.drawTriangle(x : Float, y : Float, size : Float, paint : Paint) {
     }
 }
 
-fun Canvas.drawTriRotLine(scale : Float, w : Float, h : Float, paint : Paint) {
+fun Canvas.drawTriRotLineDown(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
@@ -68,13 +68,13 @@ fun Canvas.drawTriRotLine(scale : Float, w : Float, h : Float, paint : Paint) {
     }
 }
 
-fun Canvas.drawTRLNode(i : Int, scale : Float, paint : Paint) {
+fun Canvas.drawTRLDNode(i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
-    drawTriRotLine(scale, w, h, paint)
+    drawTriRotLineDown(scale, w, h, paint)
 }
 
 class TriRotLineDownView(ctx : Context) : View(ctx) {
@@ -137,6 +137,47 @@ class TriRotLineDownView(ctx : Context) : View(ctx) {
             if (animated) {
                 animated = false
             }
+        }
+    }
+
+    data class TRLDNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : TRLDNode? = null
+        private var prev : TRLDNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = TRLDNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawTRLDNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : TRLDNode {
+            var curr : TRLDNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
         }
     }
 }
