@@ -228,4 +228,12 @@ class TriRotLineDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : TriRotLineDownView {
+            val view : TriRotLineDownView = TriRotLineDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
