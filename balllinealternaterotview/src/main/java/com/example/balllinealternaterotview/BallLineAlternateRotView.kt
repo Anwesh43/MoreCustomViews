@@ -213,4 +213,13 @@ class BallLineAlternateRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BallLineAlternateRotView {
+            val view : BallLineAlternateRotView = BallLineAlternateRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
