@@ -44,7 +44,7 @@ fun Canvas.drawBallLineAlternateRot(scale : Float, w : Float, h : Float, sf : Fl
         scale.divideScale(it, parts)
     }
     val r : Float = Math.min(w, h) / rFactor
-    drawXY(w / 2 + (w / 2 + size) * sf, h / 2) {
+    drawXY(w / 2 + (w / 2 + size) * sf * dsc(3), h / 2) {
         rotate(rot * dsc(2) * sf)
         drawXY(0f, h / 2 * (1 - dsc(0))) {
             drawLine(0f, 0f, 0f, size, paint)
