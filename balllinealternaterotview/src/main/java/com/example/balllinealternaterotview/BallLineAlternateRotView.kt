@@ -166,7 +166,7 @@ class BallLineAlternateRotView(ctx : Context) : View(ctx) {
         }
     }
 
-    data class BallLineAlternatingRot(var i : Int) {
+    data class BallLineAlternateRot(var i : Int) {
 
         private var curr : BLARNode = BLARNode(0)
         private var dir : Int = 1
@@ -186,6 +186,29 @@ class BallLineAlternateRotView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : BallLineAlternateRotView) {
+
+        private var blar : BallLineAlternateRot = BallLineAlternateRot(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            blar.draw(canvas, paint)
+            animator.animate {
+                blar.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            blar.startUpdating {
+                animator.start()
+            }
         }
     }
 }
