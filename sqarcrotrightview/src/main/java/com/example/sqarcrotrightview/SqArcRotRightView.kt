@@ -222,4 +222,13 @@ class SqArcRotRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : SqArcRotRightView {
+            val view : SqArcRotRightView = SqArcRotRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
