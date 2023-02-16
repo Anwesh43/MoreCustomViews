@@ -45,8 +45,8 @@ fun Canvas.drawSqArcRotRight(scale : Float, w : Float, h : Float, paint : Paint)
     val uSize : Float = size * 0.5f * dsc(0)
     drawXY(w / 2, h / 2) {
         for (j in 0..1) {
-            drawXY((w / 2 + size) * dsc(3) * (1 - j), (h / 2 + size) * dsc(3)) {
-                rotate(rot * dsc(2))
+            drawXY((w / 2 + size) * dsc(3) * (1 - j), (h / 2 + size) * dsc(3) * j) {
+                rotate(rot * dsc(2) * j)
                 drawRect(RectF(-uSize, -uSize, uSize, uSize), paint)
                 drawXY(size / 2, 0f) {
                     drawArc(
@@ -69,6 +69,7 @@ fun Canvas.drawSARRNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    drawSqArcRotRight(scale, w, h, paint)
 }
 
 class SqArcRotRightView(ctx : Context) : View(ctx) {
