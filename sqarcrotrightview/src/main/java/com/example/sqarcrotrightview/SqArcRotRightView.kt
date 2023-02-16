@@ -46,7 +46,7 @@ fun Canvas.drawSqArcRotRight(scale : Float, w : Float, h : Float, paint : Paint)
     drawXY(w / 2, h / 2) {
         for (j in 0..1) {
             drawXY((w / 2 + size) * dsc(3) * (1 - j), (h / 2 + size) * dsc(3)) {
-                rotate(90f * dsc(2))
+                rotate(rot * dsc(2))
                 drawRect(RectF(-uSize, -uSize, uSize, uSize), paint)
                 drawXY(size / 2, 0f) {
                     drawArc(
@@ -73,14 +73,16 @@ fun Canvas.drawSARRNode(i : Int, scale : Float, paint : Paint) {
 
 class SqArcRotRightView(ctx : Context) : View(ctx) {
 
-    override fun onDraw(canvas : Canvas) {
+    private val renderer : Renderer = Renderer(this)
 
+    override fun onDraw(canvas : Canvas) {
+        renderer.render(canvas)
     }
 
     override fun onTouchEvent(event : MotionEvent) : Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-
+                renderer.handleTap()
             }
         }
         return true
