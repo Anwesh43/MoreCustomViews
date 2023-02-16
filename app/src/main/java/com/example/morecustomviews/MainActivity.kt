@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
 import com.example.balllinealternaterotview.BallLineAlternateRotView
+import com.example.sqarcrotrightview.SqArcRotRightView
 
 //import com.example.linerotsqexpandview.LineRotSqExpandView
 
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //.create(this)
-        BallLineAlternateRotView.create(this)
+        SqArcRotRightView.create(this)
         fullScreen()
     }
 }
