@@ -46,13 +46,13 @@ fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, pa
 }
 
 fun Canvas.drawLineRotArcDown(scale : Float, w : Float, h : Float, paint : Paint) {
-    val size : Float = Math.min(w, h) / strokeFactor
+    val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
     val arcSize : Float = size / arcSizeFactor
     val r : Float = arcSize / 2
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(3)) {
         for(j in 0..1) {
             drawXY(0f, 0f) {
                 rotate(-rot * dsc(1) * j)
