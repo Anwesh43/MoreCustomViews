@@ -225,4 +225,12 @@ class LineRotBiArcDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineRotBiArcDownView {
+            val view : LineRotBiArcDownView = LineRotBiArcDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
