@@ -191,4 +191,27 @@ class RightLineBarContainerView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RightLineBarContainerView) {
+
+        private val rlbc : RightLineBarContainer = RightLineBarContainer(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            rlbc.draw(canvas, paint)
+            animator.animate {
+                rlbc.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rlbc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
