@@ -216,4 +216,12 @@ class RightLineBarContainerView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : RightLineBarContainerView {
+            val view : RightLineBarContainerView = RightLineBarContainerView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
