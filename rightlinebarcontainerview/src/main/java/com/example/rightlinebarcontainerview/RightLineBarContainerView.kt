@@ -45,10 +45,12 @@ fun Canvas.drawRightLineBarContainer(scale : Float, w : Float, h : Float, paint 
         scale.divideScale(it, parts)
     }
     val barH : Float = Math.min(w, h) / barHFactor
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 - (w /2 + size) * dsc(4), h / 2) {
         for (j in 0..1) {
-            rotate((-rot * dsc(1) - deg * dsc(3)) * j)
-            drawLine(0f, 0f, size * dsc(0), 0f, paint)
+            drawXY(0f, 0f) {
+                rotate((-rot * dsc(1) - deg * dsc(3)) * j)
+                drawLine(0f, 0f, size * dsc(0), 0f, paint)
+            }
         }
         drawXY((w / 2) * (1 - dsc(2)), 0f) {
             drawRect(RectF(0f, -barH, size,0f), paint)
@@ -105,7 +107,7 @@ class RightLineBarContainerView(ctx : Context) : View(ctx) {
     data class Animator(var view : View, var animated : Boolean = false) {
 
         fun animate(cb : () -> Unit) {
-            if (!animated) {
+            if (animated) {
                 cb()
                 try {
                     Thread.sleep(delay)
