@@ -196,4 +196,27 @@ class LineRightMoveRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRightMoveRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val lrmr : LineRightMoveRot = LineRightMoveRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrmr.draw(canvas, paint)
+            animator.animate {
+                lrmr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrmr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
