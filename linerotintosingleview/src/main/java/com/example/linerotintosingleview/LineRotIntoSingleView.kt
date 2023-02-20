@@ -189,4 +189,27 @@ class LineRotIntoSingleView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRotIntoSingleView) {
+
+        private val animator : Animator = Animator(view)
+        private val lris : LineRotIntoSingle = LineRotIntoSingle(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lris.draw(canvas, paint)
+            animator.animate {
+                lris.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lris.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
