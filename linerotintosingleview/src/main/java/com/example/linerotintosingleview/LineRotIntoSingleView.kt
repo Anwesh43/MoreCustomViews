@@ -214,4 +214,13 @@ class LineRotIntoSingleView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineRotIntoSingleView {
+            val view : LineRotIntoSingleView = LineRotIntoSingleView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
