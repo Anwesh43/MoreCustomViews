@@ -184,4 +184,27 @@ class LineBarExpandRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBarExpandRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val lber : LineBarExpandRot = LineBarExpandRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lber.draw(canvas, paint)
+            animator.animate {
+                lber.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lber.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
