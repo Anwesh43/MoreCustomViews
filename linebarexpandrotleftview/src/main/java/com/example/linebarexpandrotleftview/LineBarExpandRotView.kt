@@ -209,4 +209,13 @@ class LineBarExpandRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineBarExpandRotView {
+            val view : LineBarExpandRotView = LineBarExpandRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
