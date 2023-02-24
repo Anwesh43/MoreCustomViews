@@ -212,4 +212,12 @@ class BiSemiArcStartEndView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : BiSemiArcStartEndView {
+            val view : BiSemiArcStartEndView = BiSemiArcStartEndView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
