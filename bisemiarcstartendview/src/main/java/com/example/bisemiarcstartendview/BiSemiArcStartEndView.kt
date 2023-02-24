@@ -18,15 +18,15 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val parts : Int = 4
-val scGap : Float = 0.04f / parts
+val arcs : Int = 6
+val parts : Int = 2 * arcs
+val scGap : Float = 0.06f / parts
 val strokeFactor : Float = 90f
-val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val start : Float = 180f
 val end : Float = 180f
-val arcs : Int = 2
+
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -40,14 +40,13 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
 }
 
 fun Canvas.drawBiSemiArcStartEnd(scale : Float, w : Float, h : Float, paint : Paint) {
-    val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
     val r : Float = w / arcs
     for (j in 0..(arcs - 1)) {
-        drawXY(w * 0.5f * j, h / 2) {
-            drawArc(RectF(0f, -r / 2, r, r / 2), start + end * dsc(2 + j), end * dsc(j), false, paint)
+        drawXY(r * j, h / 2) {
+            drawArc(RectF(0f, -r / 2, r, r / 2), start + end * dsc(arcs + j), end * (dsc(j) - dsc(arcs + j)), false, paint)
         }
     }
 }
@@ -58,6 +57,7 @@ fun Canvas.drawBSASENode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
     drawBiSemiArcStartEnd(scale, w, h, paint)
 }
 
