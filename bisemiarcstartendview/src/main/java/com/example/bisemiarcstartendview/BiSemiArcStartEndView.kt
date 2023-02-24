@@ -187,4 +187,27 @@ class BiSemiArcStartEndView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiSemiArcStartEndView) {
+
+        private val animator : Animator = Animator(view)
+        private val bsase : BiSemiArcStartEnd = BiSemiArcStartEnd(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bsase.draw(canvas, paint)
+            animator.animate {
+                bsase.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bsase.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
