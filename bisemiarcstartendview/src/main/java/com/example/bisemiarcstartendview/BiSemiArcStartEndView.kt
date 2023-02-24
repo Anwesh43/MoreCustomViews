@@ -31,3 +31,32 @@ val arcs : Int = 2
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
+
+fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
+    save()
+    translate(x, y)
+    cb()
+    restore()
+}
+
+fun Canvas.drawBiSemiArcStartEnd(scale : Float, w : Float, h : Float, paint : Paint) {
+    val size : Float = Math.min(w, h) / sizeFactor
+    val dsc : (Int) -> Float = {
+        scale.divideScale(it, parts)
+    }
+    val r : Float = w / arcs
+    for (j in 0..(arcs - 1)) {
+        drawXY(w * 0.5f * j, h / 2) {
+            drawArc(RectF(0f, -r / 2, r, r / 2), start + end * dsc(2 + j), end * dsc(j), false, paint)
+        }
+    }
+}
+
+fun Canvas.drawBSASENode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    paint.color = colors[i]
+    paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    drawBiSemiArcStartEnd(scale, w, h, paint)
+}
