@@ -187,4 +187,27 @@ class LineBendRotRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBendRotRightView) {
+
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val animator : Animator = Animator(view)
+        private val lbrr : LineBendRotRight = LineBendRotRight(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lbrr.draw(canvas, paint)
+            animator.animate {
+                lbrr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbrr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
