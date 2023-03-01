@@ -29,6 +29,13 @@ fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
 
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     save()
     translate(x, y)
@@ -44,9 +51,9 @@ fun Canvas.drawLineBendRotRight(scale : Float, w : Float, h : Float, paint : Pai
     drawXY(w / 2 + (w / 2) * dsc(4), h / 2) {
         rotate(rot * dsc(3))
         drawXY(0f, h * 0.5f * (1 - dsc(2))) {
-            drawLine(0f, 0f, 0f, -size * dsc(0), paint)
+            drawLineWithoutDot(0f, 0f, 0f, -size * dsc(0), paint)
             drawXY(0f, -size) {
-                drawLine(0f, 0f, size * 0.33f * dsc(1), 0f, paint)
+                drawLineWithoutDot(0f, 0f, size * 0.33f * dsc(1), 0f, paint)
             }
         }
     }
