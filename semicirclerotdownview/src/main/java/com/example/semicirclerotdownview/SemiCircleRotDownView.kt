@@ -211,4 +211,13 @@ class SemiCircleRotDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : SemiCircleRotDownView {
+            val view : SemiCircleRotDownView = SemiCircleRotDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
