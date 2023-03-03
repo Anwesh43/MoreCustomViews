@@ -186,4 +186,27 @@ class SemiCircleRotDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SemiCircleRotDownView) {
+
+        private val scrd : SemiCircleRotDown = SemiCircleRotDown(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            scrd.draw(canvas, paint)
+            animator.animate {
+                scrd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            scrd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
