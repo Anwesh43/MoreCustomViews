@@ -216,4 +216,14 @@ class StepBallDropLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : StepBallDropLineView {
+            val view : StepBallDropLineView = StepBallDropLineView(activity)
+            activity.setContentView(view)
+            return view
+
+        }
+    }
 }
