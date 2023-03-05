@@ -45,7 +45,7 @@ fun Canvas.drawStepBallDropLine(scale : Float, w : Float, h : Float, paint : Pai
     drawXY(0f, h / 2) {
         for (j in 0..(steps - 1)) {
             drawXY(wGap * j, 0f) {
-                drawCircle(size / 2 + wGap * j, (-h / 2 - size) * (1 - dsc(j * 2)), size / 2, paint)
+                drawCircle(size / 2, (-h / 2 - size) * (1 - dsc(j * 2)), size / 2, paint)
             }
         }
         for (j in 0..(steps - 1)) {
