@@ -191,4 +191,27 @@ class StepBallDropLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : StepBallDropLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val sbdl : StepBallDropLine = StepBallDropLine(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            sbdl.draw(canvas, paint)
+            animator.animate {
+                sbdl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sbdl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
