@@ -18,7 +18,7 @@ val colors : Array<Int> = arrayOf(
     Color.parseColor(it)
 }.toTypedArray()
 val steps : Int = 3
-val parts : Int = 2 * steps - 1
+val parts : Int = 2 * steps
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 13.9f
@@ -28,6 +28,13 @@ val backColor : Int = Color.parseColor("#BDBDBD")
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
+
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
 
 fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     save()
@@ -42,7 +49,7 @@ fun Canvas.drawStepBallDropLine(scale : Float, w : Float, h : Float, paint : Pai
         scale.divideScale(it, parts)
     }
     val wGap : Float = (w - size) / (steps - 1)
-    drawXY(0f, h / 2) {
+    drawXY(w * dsc(2 * steps - 1), h / 2) {
         for (j in 0..(steps - 1)) {
             drawXY(wGap * j, 0f) {
                 drawCircle(size / 2, (-h / 2 - size) * (1 - dsc(j * 2)), size / 2, paint)
@@ -50,7 +57,7 @@ fun Canvas.drawStepBallDropLine(scale : Float, w : Float, h : Float, paint : Pai
         }
         for (j in 0..(steps - 1)) {
             drawXY((w / 2) * j, 0f) {
-                drawLine(0f, 0f, w * 0.5f * dsc(2 * j + 1), 0f, paint)
+                drawLineWithoutDot(0f, 0f, w * 0.5f * dsc(2 * j + 1), 0f, paint)
             }
         }
     }
