@@ -211,4 +211,13 @@ class RotQuarterCircleRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : RotQuarterCircleRightView {
+            val view : RotQuarterCircleRightView = RotQuarterCircleRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
