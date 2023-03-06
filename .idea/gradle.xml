@@ -79,6 +79,7 @@
             <option value="$PROJECT_DIR$/joinbarfromendview" />
             <option value="$PROJECT_DIR$/joindividedarcview" />
             <option value="$PROJECT_DIR$/jointbarrotupview" />
+            <option value="$PROJECT_DIR$/line" />
             <option value="$PROJECT_DIR$/linearcanglerotview" />
             <option value="$PROJECT_DIR$/linearcattachdownview" />
             <option value="$PROJECT_DIR$/linearcrotsidewiseview" />
@@ -158,6 +159,7 @@
             <option value="$PROJECT_DIR$/rothorizbarvertview" />
             <option value="$PROJECT_DIR$/rotlineabovebarview" />
             <option value="$PROJECT_DIR$/rotlinesqjoinview" />
+            <option value="$PROJECT_DIR$/rotquartercirclerightview" />
             <option value="$PROJECT_DIR$/semicirclejoinrotview" />
             <option value="$PROJECT_DIR$/semicirclerotdownview" />
             <option value="$PROJECT_DIR$/semifoldedlineview" />
