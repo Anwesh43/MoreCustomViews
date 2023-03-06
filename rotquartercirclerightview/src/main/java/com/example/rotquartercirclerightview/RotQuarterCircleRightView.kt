@@ -42,9 +42,9 @@ fun Canvas.drawRotQuarterCircleRight(scale : Float, w : Float, h : Float, paint 
         scale.divideScale(it, parts)
     }
     val size : Float = Math.min(w, h) / sizeFactor
-    drawXY(w / 2 + (w / 2) * dsc(3), h / 2) {
+    drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
         rotate(rot * dsc(2))
-        drawXY(0f, h * 0.5f * (1 - dsc(1))) {
+        drawXY(paint.strokeWidth / 2, h * 0.5f * (1 - dsc(1))) {
             drawLine(0f, 0f, 0f, size, paint)
         }
         drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), -90f, rot * dsc(0), true, paint)
