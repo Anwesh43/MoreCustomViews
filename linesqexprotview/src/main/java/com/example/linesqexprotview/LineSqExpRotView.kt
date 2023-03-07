@@ -209,4 +209,12 @@ class LineSqExpRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : LineSqExpRotView {
+            val view : LineSqExpRotView = LineSqExpRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
