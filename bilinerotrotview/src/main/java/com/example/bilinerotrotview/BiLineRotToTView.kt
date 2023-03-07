@@ -165,7 +165,7 @@ class BiLineRotToTView(ctx : Context) : View(ctx) {
         }
     }
 
-    data class BiLineRotToTView(var i : Int = 0) {
+    data class BiLineRotToT(var i : Int = 0) {
 
         private var curr : BLRTTNode = BLRTTNode(0)
         private var dir : Int = 1
@@ -185,6 +185,29 @@ class BiLineRotToTView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdaitng(cb)
+        }
+    }
+
+    data class Renderer(var view : BiLineRotToTView) {
+
+        private val blrtt : BiLineRotToT = BiLineRotToT(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            blrtt.draw(canvas, paint)
+            animator.animate {
+                blrtt.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            blrtt.startUpdating {
+                animator.start()
+            }
         }
     }
 }
