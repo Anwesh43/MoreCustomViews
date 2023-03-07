@@ -18,7 +18,7 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val parts : Int = 4
+val parts : Int = 5
 val scGap : Float = 0.04f / parts
 val rot : Float = 90f
 val delay : Long = 20
@@ -42,7 +42,7 @@ fun Canvas.drawRotQuarterCircleRight(scale : Float, w : Float, h : Float, paint 
         scale.divideScale(it, parts)
     }
     val size : Float = Math.min(w, h) / sizeFactor
-    drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
+    drawXY(w / 2 + (w / 2 + size) * dsc(4), h / 2) {
         rotate(rot * dsc(2))
         drawXY(paint.strokeWidth / 2, h * 0.5f * (1 - dsc(1))) {
             drawLine(0f, 0f, 0f, size, paint)
