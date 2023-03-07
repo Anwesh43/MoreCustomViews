@@ -212,4 +212,12 @@ class BiLineRotToTView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : BiLineRotToTView {
+            val view : BiLineRotToTView = BiLineRotToTView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
