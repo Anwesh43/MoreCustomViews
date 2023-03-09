@@ -215,4 +215,13 @@ class ParallelLineToUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : ParallelLineToUpView {
+            val view : ParallelLineToUpView = ParallelLineToUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
