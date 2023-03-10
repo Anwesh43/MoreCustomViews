@@ -185,4 +185,27 @@ class JumpShrinkBarView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : JumpShrinkBarView) {
+
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val jsb : JumpShrinkBar = JumpShrinkBar(0)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            jsb.draw(canvas, paint)
+            animator.animate {
+                jsb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            jsb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
