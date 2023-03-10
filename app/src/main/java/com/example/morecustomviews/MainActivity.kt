@@ -3,7 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.parallellinetovupview.ParallelLineToUpView
+import com.example.jumpshrinkbarview.JumpShrinkBarView
 
 //import com.example.linerotsqexpandview.LineRotSqExpandView
 
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //.create(this)
-        ParallelLineToUpView.create(this)
+        JumpShrinkBarView.create(this)
         fullScreen()
     }
 }
