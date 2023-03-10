@@ -210,4 +210,12 @@ class JumpShrinkBarView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : JumpShrinkBarView {
+            val view : JumpShrinkBarView = JumpShrinkBarView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
