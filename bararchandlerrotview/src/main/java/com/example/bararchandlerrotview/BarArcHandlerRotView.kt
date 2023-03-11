@@ -211,4 +211,13 @@ class BarArcHandlerRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BarArcHandlerRotView {
+            val view : BarArcHandlerRotView = BarArcHandlerRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
