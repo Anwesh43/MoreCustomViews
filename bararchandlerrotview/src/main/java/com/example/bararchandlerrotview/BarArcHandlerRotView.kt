@@ -47,7 +47,7 @@ fun Canvas.drawBarArcHandler(scale : Float, w : Float, h : Float, paint : Paint)
         paint.style = Paint.Style.FILL
         drawRect(RectF(-size / 2, -size * 0.25f * dsc(0), size / 2, 0f), paint)
         paint.style = Paint.Style.STROKE
-        drawArc(RectF(-size / 2, -size / 2, -size / 4, size / 4), 0f, rot * dsc(1), false, paint)
+        drawArc(RectF(-size / 2, -size / 4, size / 2, size / 4), 0f, rot * dsc(1), false, paint)
     }
 }
 
