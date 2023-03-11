@@ -186,4 +186,27 @@ class BarArcHandlerRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BarArcHandlerRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val bahr : BarArcHandlerRot = BarArcHandlerRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bahr.draw(canvas, paint)
+            animator.animate {
+                bahr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bahr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
