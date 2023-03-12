@@ -184,4 +184,27 @@ class BarBallLeftDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BarBallLeftDownView) {
+
+        private val bbld : BarBallLeftDown = BarBallLeftDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bbld.draw(canvas, paint)
+            animator.animate {
+                bbld.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bbld.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
