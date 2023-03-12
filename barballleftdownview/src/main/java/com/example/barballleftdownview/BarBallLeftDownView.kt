@@ -209,4 +209,13 @@ class BarBallLeftDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BarBallLeftDownView {
+            val view : BarBallLeftDownView = BarBallLeftDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
