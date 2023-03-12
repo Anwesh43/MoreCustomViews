@@ -44,9 +44,11 @@ fun Canvas.drawBarBallLeftDown(scale : Float, w : Float, h : Float, paint : Pain
     }
     drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(3)) {
         rotate(rot * dsc(2))
-        drawRect(RectF(-size, -size * dsc(0), 0f, 0f), paint)
-        drawXY((w / 2) * (1 - dsc(1)), 0f) {
-            drawArc(RectF(0f, -size, size, 0f), 0f, 360f, true, paint)
+        drawXY(0f, size / 2) {
+            drawRect(RectF(-size, -size * dsc(0), 0f, 0f), paint)
+            drawXY((w / 2) * (1 - dsc(1)), 0f) {
+                drawArc(RectF(0f, -size, size, 0f), 0f, 360f, true, paint)
+            }
         }
     }
 }
