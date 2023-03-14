@@ -51,7 +51,7 @@ fun Canvas.drawBarBiHalfArc(scale : Float, w : Float, h : Float, paint : Paint) 
                 scale(1f - 2 * j, 1f)
                 paint.style = Paint.Style.STROKE
                 drawXY(size / 2, 0f) {
-                    drawArc(RectF(0f, -size / 2, size, size / 2), 180f, 180f * dsc(1), false, paint)
+                    drawArc(RectF(0f, -size / 2, size, size / 2), 180f, rot * dsc(1), false, paint)
                 }
             }
         }
