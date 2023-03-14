@@ -189,4 +189,27 @@ class BarBiHalfArcView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BarBiHalfArcView) {
+
+        private val animator : Animator = Animator(view)
+        private val bbha : BarBiHalfArc = BarBiHalfArc(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bbha.draw(canvas, paint)
+            animator.animate {
+                bbha.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bbha.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
