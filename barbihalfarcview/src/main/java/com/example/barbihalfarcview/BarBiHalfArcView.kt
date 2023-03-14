@@ -44,11 +44,15 @@ fun Canvas.drawBarBiHalfArc(scale : Float, w : Float, h : Float, paint : Paint) 
     }
     drawXY(w / 2 + (w / 2) * dsc(3), h / 2) {
         rotate(rot * dsc(2))
+        paint.style = Paint.Style.FILL
         drawRect(RectF(-size / 2, -size * 0.25f * dsc(0), size / 2, 0f), paint)
         for (j in 0..1) {
             drawXY(0f, -size / 4) {
                 scale(1f - 2 * j, 1f)
-                drawArc(RectF(0f, -size / 2, size, size / 2), 180f, 180f * dsc(1), false, paint)
+                paint.style = Paint.Style.STROKE
+                drawXY(size / 2, 0f) {
+                    drawArc(RectF(0f, -size / 2, size, size / 2), 180f, 180f * dsc(1), false, paint)
+                }
             }
         }
     }
@@ -60,6 +64,7 @@ fun Canvas.drawBBHANode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeWidth = Math.min(w, h) / strokeFactor
     paint.strokeCap = Paint.Cap.ROUND
+
     drawBarBiHalfArc(scale, w, h, paint)
 }
 
