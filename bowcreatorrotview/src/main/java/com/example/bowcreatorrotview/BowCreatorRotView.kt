@@ -66,6 +66,7 @@ fun Canvas.drawBCRNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
     drawBowCreatorRot(scale, w, h, paint)
 }
 
