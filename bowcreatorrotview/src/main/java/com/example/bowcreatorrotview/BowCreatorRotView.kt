@@ -196,4 +196,27 @@ class BowCreatorRotView(ctx : Context) : View(ctx) {
 
         }
     }
+
+    data class Renderer(var view : BowCreatorRotView) {
+
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val animator : Animator = Animator(view)
+        private val bcr : BowCreatorRot = BowCreatorRot(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bcr.draw(canvas, paint)
+            animator.animate {
+                bcr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bcr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
