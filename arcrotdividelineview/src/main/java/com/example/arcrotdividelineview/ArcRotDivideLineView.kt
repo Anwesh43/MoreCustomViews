@@ -192,4 +192,27 @@ class ArcRotDivideLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ArcRotDivideLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val ardl : ArcRotDivideLine = ArcRotDivideLine(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            ardl.draw(canvas, paint)
+            animator.animate {
+                ardl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            ardl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
