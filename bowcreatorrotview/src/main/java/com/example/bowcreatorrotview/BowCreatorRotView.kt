@@ -221,4 +221,13 @@ class BowCreatorRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BowCreatorRotView {
+            val view : BowCreatorRotView = BowCreatorRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
