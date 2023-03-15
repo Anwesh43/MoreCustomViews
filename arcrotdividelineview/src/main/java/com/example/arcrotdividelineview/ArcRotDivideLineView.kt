@@ -47,7 +47,7 @@ fun Canvas.drawArcRotDivideLine(scale : Float, w : Float, h : Float, paint : Pai
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
                 rotate(-rot * dsc(1))
-                drawArc(RectF(0f, 0f, size, -size / 2), 180f, 180f * dsc(0), false, paint)
+                drawArc(RectF(0f, -size / 2, size, size / 2), 180f, 180f * dsc(0), false, paint)
             }
         }
         drawXY(w * 0.5f * (1f - dsc(2)), 0f) {
