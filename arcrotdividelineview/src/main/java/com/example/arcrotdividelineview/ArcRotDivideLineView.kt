@@ -217,4 +217,12 @@ class ArcRotDivideLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : ArcRotDivideLineView {
+            val view : ArcRotDivideLineView = ArcRotDivideLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
