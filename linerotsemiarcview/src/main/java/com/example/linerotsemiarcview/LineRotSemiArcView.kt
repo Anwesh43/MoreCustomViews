@@ -45,7 +45,7 @@ fun Canvas.drawLineRotSemiArc(scale : Float, w : Float, h : Float, paint : Paint
     }
     drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(3)) {
         drawXY(0f, 0f) {
-            rotate(rot * dsc(1))
+            rotate(-rot * dsc(1))
             drawLine(0f, 0f, size * dsc(0), 0f, paint)
         }
         drawXY(0f, size / 2) {
