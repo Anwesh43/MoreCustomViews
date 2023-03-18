@@ -215,4 +215,12 @@ class ArcRotLeftCompleteView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : ArcRotLeftCompleteView {
+            val view : ArcRotLeftCompleteView = ArcRotLeftCompleteView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
