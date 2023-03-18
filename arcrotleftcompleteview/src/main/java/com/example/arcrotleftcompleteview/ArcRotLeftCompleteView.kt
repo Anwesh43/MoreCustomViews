@@ -190,4 +190,27 @@ class ArcRotLeftCompleteView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ArcRotLeftCompleteView) {
+
+        private val animator : Animator = Animator(view)
+        private val arlc : ArcRotLeftComplete = ArcRotLeftComplete(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            arlc.draw(canvas, paint)
+            animator.animate {
+                arlc.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            arlc.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
