@@ -209,4 +209,12 @@ class ArcSweepBarLeftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : ArcSweepBarLeftView {
+            val view : ArcSweepBarLeftView = ArcSweepBarLeftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
