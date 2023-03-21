@@ -62,7 +62,7 @@ class BallDropArcRotView(ctx : Context) : View(ctx) {
     private val renderer : Renderer = Renderer(this)
 
     override fun onDraw(canvas : Canvas) {
-        rendere.render(canvas)
+        renderer.render(canvas)
     }
 
     override fun onTouchEvent(event : MotionEvent) : Boolean {
@@ -206,6 +206,15 @@ class BallDropArcRotView(ctx : Context) : View(ctx) {
             bdar.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+
+        fun create(activity : Activity) : BallDropArcRotView {
+            val view : BallDropArcRotView = BallDropArcRotView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }
