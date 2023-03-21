@@ -23,7 +23,7 @@ val delay : Long = 20
 val sizeFactor : Float = 4.9f
 val rot : Float = 180f
 val deg : Float = 90f
-val bakcColor : Int = Color.parseColor("#BDBDBD")
+val backColor : Int = Color.parseColor("#BDBDBD")
 val scGap : Float = 0.04f / parts
 
 fun Int.inverse() : Float = 1f / this
@@ -181,6 +181,29 @@ class BallDropArcRotView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : BallDropArcRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val bdar : BallDropArcRot = BallDropArcRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bdar.draw(canvas, paint)
+            animator.animate {
+                bdar.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bdar.startUpdating {
+                animator.start()
+            }
         }
     }
 }
