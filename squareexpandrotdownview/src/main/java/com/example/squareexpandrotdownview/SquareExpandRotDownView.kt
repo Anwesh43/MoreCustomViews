@@ -211,4 +211,13 @@ class SquareExpandRotDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SquareExpandRotDownView {
+            val view : SquareExpandRotDownView = SquareExpandRotDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
