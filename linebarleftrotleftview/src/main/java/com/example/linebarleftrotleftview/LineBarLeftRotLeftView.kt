@@ -188,4 +188,27 @@ class LineBarLeftRotLeftView(ctx: Context) : View(ctx) {
             lblrl.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBarLeftRotLeftView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val lblrl : LineBarLeftRotLeft = LineBarLeftRotLeft(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lblrl.draw(canvas, paint)
+            animator.animate {
+                lblrl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lblrl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
