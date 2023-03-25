@@ -165,4 +165,27 @@ class LineBarLeftRotLeftView(ctx: Context) : View(ctx) {
             return this
         }
     }
+
+    data class LineBarLeftRotLeft(var i : Int) {
+
+        private var lblrl : LBLRLNode = LBLRLNode(0)
+        private var dir : Int = 1
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            lblrl.draw(canvas, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            lblrl.update {
+                lblrl = lblrl.getNext(dir) {
+                    dir *= -1
+                }
+                cb(it)
+            }
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            lblrl.startUpdating(cb)
+        }
+    }
 }
