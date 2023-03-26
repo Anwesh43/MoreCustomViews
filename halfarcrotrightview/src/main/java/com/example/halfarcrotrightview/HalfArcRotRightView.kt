@@ -18,7 +18,7 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val parts : Int = 4
+val parts : Int = 5
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
@@ -42,16 +42,18 @@ fun Canvas.drawHalfArcRotRight(scale : Float, w : Float, h : Float, paint : Pain
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2 + (w / 2 + size) * dsc(3), (h / 2) * dsc(1)) {
-        rotate(-rot * dsc(1))
-        drawArc(
-            RectF(-size / 2, -size / 2, -size / 2, size / 2),
-            0f,
-            180f * dsc(0),
-            true,
-            paint
-        )
-        drawLine(0f, 0f, -size * dsc(2), 0f, paint)
+    drawXY(w / 2 + (w / 2 + size) * dsc(4), (h / 2) * dsc(1)) {
+        drawXY(0f, 0f) {
+            rotate(-rot * dsc(2))
+            drawArc(
+                RectF(-size / 2, -size / 2, size / 2, size / 2),
+                0f,
+                180f * dsc(0),
+                true,
+                paint
+            )
+        }
+        drawLine(0f, 0f, -size * dsc(3), 0f, paint)
     }
 }
 
