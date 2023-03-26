@@ -215,4 +215,12 @@ class HalfArcRotRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(actvity : Activity) : HalfArcRotRightView {
+            val view : HalfArcRotRightView = HalfArcRotRightView(actvity)
+            actvity.setContentView(view)
+            return view
+        }
+    }
 }
