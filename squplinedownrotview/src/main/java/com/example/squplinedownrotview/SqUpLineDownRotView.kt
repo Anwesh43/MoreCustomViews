@@ -211,4 +211,13 @@ class SqUpLineDownRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SqUpLineDownRotView {
+            val view : SqUpLineDownRotView = SqUpLineDownRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
