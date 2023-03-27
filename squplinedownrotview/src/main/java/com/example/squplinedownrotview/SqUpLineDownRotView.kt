@@ -186,4 +186,27 @@ class SqUpLineDownRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SqUpLineDownRotView) {
+
+        private var suldr : SqUpLineDownRot = SqUpLineDownRot(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            suldr.draw(canvas, paint)
+            animator.animate {
+                suldr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            suldr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
