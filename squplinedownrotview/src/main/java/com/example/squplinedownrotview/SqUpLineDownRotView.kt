@@ -42,7 +42,7 @@ fun Canvas.drawSqUpLineDownRot(scale : Float, w : Float, h : Float, paint : Pain
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2 + (w / 2 + size) * dsc(4), h / 2) {
+    drawXY(w / 2 + (w / 2) * dsc(4), h / 2) {
         drawRect(RectF(0f, -size * (dsc(0) - dsc(3)), size, 0f), paint)
         drawXY(0f, -h / 2 + (h / 2 - size) * dsc(1) + size * dsc(3)) {
             rotate(rot * dsc(2))
