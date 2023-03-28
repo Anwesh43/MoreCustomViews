@@ -194,4 +194,27 @@ class LineSweepQuarterArcView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineSweepQuarterArcView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val lsqa : LineSweepQuarterArc = LineSweepQuarterArc(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lsqa.draw(canvas, paint)
+            animator.animate {
+                lsqa.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lsqa.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
