@@ -3,7 +3,8 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.squplinedownrotview.SqUpLineDownRotView
+import com.example.linesweepquarterarcview.LineSweepQuarterArcView
+
 
 
 //import com.example.linerotsqexpandview.LineRotSqExpandView
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //.create(this)
-        SqUpLineDownRotView.create(this)
+        LineSweepQuarterArcView.create(this)
         fullScreen()
     }
 }
