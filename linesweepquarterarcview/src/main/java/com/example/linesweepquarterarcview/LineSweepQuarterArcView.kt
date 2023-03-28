@@ -219,4 +219,12 @@ class LineSweepQuarterArcView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineSweepQuarterArcView {
+            val view : LineSweepQuarterArcView = LineSweepQuarterArcView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
