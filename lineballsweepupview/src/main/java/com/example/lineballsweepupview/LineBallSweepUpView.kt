@@ -44,7 +44,7 @@ fun Canvas.drawLineBallSweepUp(scale : Float, w : Float, h : Float, paint : Pain
     }
     drawXY(w / 2, h / 2) {
         drawXY(0f, -h * 0.5f * dsc(3)) {
-            drawLine(0f, 0f, 0f, -size * dsc(0))
+            drawLine(0f, 0f, 0f, -size * dsc(0), paint)
         }
         drawXY(size / 2, -h / 2 - size / 2 + (h / 2) * dsc(1)) {
             drawArc(
@@ -127,6 +127,47 @@ class LineBallSweepUpView(ctx : Context) : View(ctx) {
 
                 }
             }
+        }
+    }
+
+    data class LBSUNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : LBSUNode? = null
+        private var prev : LBSUNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = LBSUNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawLBSUNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : LBSUNode {
+            var curr : LBSUNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
         }
     }
 }
