@@ -171,7 +171,7 @@ class LineBallSweepUpView(ctx : Context) : View(ctx) {
         }
     }
 
-    data class LineBarSweepUp(var i : Int) {
+    data class LineBallSweepUp(var i : Int) {
 
         private var curr : LBSUNode = LBSUNode(0)
         private var dir : Int = 1
@@ -191,6 +191,29 @@ class LineBallSweepUpView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : LineBallSweepUpView) {
+
+        private val animator : Animator = Animator(view)
+        private val lbsu : LineBallSweepUp = LineBallSweepUp(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lbsu.draw(canvas, paint)
+            animator.animate {
+                lbsu.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbsu.startUpdating {
+                animator.start()
+            }
         }
     }
 }
