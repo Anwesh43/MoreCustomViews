@@ -218,4 +218,12 @@ class LineBallSweepUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : LineBallSweepUpView {
+            val view : LineBallSweepUpView = LineBallSweepUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
