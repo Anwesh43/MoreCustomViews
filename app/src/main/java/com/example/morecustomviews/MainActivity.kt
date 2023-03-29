@@ -3,7 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.linesweepquarterarcview.LineSweepQuarterArcView
+import com.example.lineballsweepupview.LineBallSweepUpView
 
 
 
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //.create(this)
-        LineSweepQuarterArcView.create(this)
+        LineBallSweepUpView.create(this)
         fullScreen()
     }
 }
