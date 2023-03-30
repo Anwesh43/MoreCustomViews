@@ -209,4 +209,13 @@ class LineRotBallRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineRotBallRightView {
+            val view : LineRotBallRightView = LineRotBallRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
