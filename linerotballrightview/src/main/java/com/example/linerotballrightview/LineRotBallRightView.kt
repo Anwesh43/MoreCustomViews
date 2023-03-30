@@ -155,7 +155,10 @@ class LineRotBallRightView(ctx : Context) : View(ctx) {
         }
 
         fun getNext(dir : Int, cb : () -> Unit) : LRBRNode {
-            var curr : LRBRNode? = null
+            var curr : LRBRNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
             if (curr != null) {
                 return curr
             }
