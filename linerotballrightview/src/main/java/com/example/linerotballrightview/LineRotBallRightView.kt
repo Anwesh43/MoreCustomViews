@@ -123,4 +123,42 @@ class LineRotBallRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class LRBRNode(var i : Int = 0, val state : State  = State()) {
+
+        private var next : LRBRNode? = null
+        private var prev : LRBRNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = LRBRNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawLRBRNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : LRBRNode {
+            var curr : LRBRNode? = null
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
