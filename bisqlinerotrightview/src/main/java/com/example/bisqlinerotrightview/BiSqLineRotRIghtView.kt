@@ -218,4 +218,13 @@ class BiSqLineRotRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BiSqLineRotRightView {
+            val view : BiSqLineRotRightView = BiSqLineRotRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
