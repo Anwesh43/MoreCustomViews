@@ -193,4 +193,27 @@ class BiSqLineRotRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiSqLineRotRightView) {
+
+        private val animator: Animator = Animator(view)
+        private val bslrr : BiSqLineRotRight = BiSqLineRotRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bslrr.draw(canvas, paint)
+            animator.animate {
+                bslrr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bslrr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
