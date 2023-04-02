@@ -219,4 +219,13 @@ class MirrorArcLineMoverView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : MirrorArcLineMoverView {
+            val view : MirrorArcLineMoverView = MirrorArcLineMoverView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
