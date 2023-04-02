@@ -194,4 +194,27 @@ class MirrorArcLineMoverView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : MirrorArcLineMoverView) {
+
+        private val malm : MirrorArcLineMover = MirrorArcLineMover(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            malm.draw(canvas, paint)
+            animator.animate {
+                malm.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            malm.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
