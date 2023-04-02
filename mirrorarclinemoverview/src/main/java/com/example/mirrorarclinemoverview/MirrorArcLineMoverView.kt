@@ -50,7 +50,7 @@ fun Canvas.drawMirrorArcLineMover(scale : Float, w : Float, h : Float, paint : P
                 scale(1f - 2 * j, 1f)
                 drawXY(h * 0.5f * dsc(3), 0f) {
                     drawArc(RectF(-size, -size, size, size), -rot, deg * dsc(0), true, paint)
-                    drawXY(w * 0.5f * (1 - dsc(1)), 0f) {
+                    drawXY((w * 0.5f - size) * (1 - dsc(1)) + size, 0f) {
                         drawLine(0f, 0f, size, 0f, paint)
                     }
                 }
