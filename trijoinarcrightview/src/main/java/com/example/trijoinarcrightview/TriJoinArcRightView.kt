@@ -189,4 +189,27 @@ class TriJoinArcRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : TriJoinArcRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val traj : TriJoinArcRight = TriJoinArcRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            traj.draw(canvas, paint)
+            animator.animate {
+                traj.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            traj.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
