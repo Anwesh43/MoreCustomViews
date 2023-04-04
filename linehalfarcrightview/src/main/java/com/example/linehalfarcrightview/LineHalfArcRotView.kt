@@ -213,4 +213,13 @@ class LineHalfArcRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineHalfArcRotView {
+            val view : LineHalfArcRotView = LineHalfArcRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
