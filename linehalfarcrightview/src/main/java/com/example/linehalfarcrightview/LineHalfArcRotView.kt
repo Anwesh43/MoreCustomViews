@@ -188,4 +188,27 @@ class LineHalfArcRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineHalfArcRotView) {
+
+        private val lhar : LineHalfArcRot = LineHalfArcRot(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lhar.draw(canvas, paint)
+            animator.animate {
+                lhar.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lhar.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
