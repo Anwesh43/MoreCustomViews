@@ -212,4 +212,13 @@ class BarExpandRotUpRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BarExpandRotUpRightView {
+            val view : BarExpandRotUpRightView = BarExpandRotUpRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
