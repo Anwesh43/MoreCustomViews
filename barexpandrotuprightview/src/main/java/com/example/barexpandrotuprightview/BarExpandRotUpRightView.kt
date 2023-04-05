@@ -187,4 +187,27 @@ class BarExpandRotUpRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BarExpandRotUpRightView) {
+
+        private val berur : BarExpandRotRight = BarExpandRotRight(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            berur.draw(canvas, paint)
+            animator.animate {
+                berur.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            berur.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
