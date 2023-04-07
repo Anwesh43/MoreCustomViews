@@ -3,7 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.barexpandrotuprightview.BarExpandRotUpRightView
+import com.example.fillarclinerightview.FillArcLineRightView
 
 
 //import com.example.linerotsqexpandview.LineRotSqExpandView
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //.create(this)
-        BarExpandRotUpRightView.create(this)
+        FillArcLineRightView.create(this)
         fullScreen()
     }
 }
