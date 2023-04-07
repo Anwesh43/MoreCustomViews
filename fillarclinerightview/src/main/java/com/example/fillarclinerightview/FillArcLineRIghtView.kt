@@ -215,4 +215,13 @@ class FillArcLineRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : FillArcLineRightView {
+            val view : FillArcLineRightView = FillArcLineRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
