@@ -18,14 +18,14 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val parts : Int = 4
+val parts : Int = 5
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val rFactor : Float = 11.2f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
-val rot : Float = 90f
+val rot : Float = -90f
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -48,7 +48,7 @@ fun Canvas.drawFillArcLineRight(scale : Float, w : Float, h : Float, paint : Pai
         rotate(rot * dsc(3))
         drawXY(0f, r) {
             for (j in 0..1) {
-                drawArc(RectF(-r, -r, r, r), 90f + 180f * j, 180f * dsc(j * 2), true, paint)
+                drawArc(RectF(-r, -r, r, r), 90f + 180f * j, 180f * dsc(j * 2), false, paint)
             }
         }
         drawLine(0f, 0f, 0f, -size * dsc(1), paint)
@@ -61,6 +61,7 @@ fun Canvas.drawFALRNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
     drawFillArcLineRight(scale, w, h, paint)
 }
 
