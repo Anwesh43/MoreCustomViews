@@ -61,7 +61,8 @@ fun Canvas.drawMRLNode(i : Int, scale : Float, paint : Paint) {
     val h : Float = height.toFloat()
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
-    paint.color = colors[i]
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+
     drawMirrorRotLine(scale, w, h, paint)
 }
 
