@@ -201,7 +201,7 @@ class MirrorRotLineView(ctx : Context) : View(ctx) {
         private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
         private val animator : Animator = Animator(view)
 
-        fun render(canvas : Canvas, paint : Paint) {
+        fun render(canvas : Canvas) {
             canvas.drawColor(backColor)
             mrl.draw(canvas, paint)
             animator.animate {
