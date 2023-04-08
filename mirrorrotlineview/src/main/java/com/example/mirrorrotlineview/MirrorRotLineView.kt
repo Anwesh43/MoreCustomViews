@@ -217,4 +217,12 @@ class MirrorRotLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : MirrorRotLineView {
+            val view : MirrorRotLineView = MirrorRotLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
