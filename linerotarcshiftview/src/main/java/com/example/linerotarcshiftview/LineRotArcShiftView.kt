@@ -188,4 +188,27 @@ class LineRotArcShiftView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRotArcShiftView) {
+
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val lras : LineRotArcShift = LineRotArcShift(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lras.draw(canvas, paint)
+            animator.animate {
+                lras.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lras.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
