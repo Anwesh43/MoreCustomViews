@@ -42,11 +42,11 @@ fun Canvas.drawLineRotArcShift(scale : Float, w : Float, h : Float, paint : Pain
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 + (w / 2 + size) * dsc(3) , h / 2) {
         for (j in 0..1) {
             drawXY(0f, -size * 0.5f * dsc(2) * j) {
                 rotate(rot * j * dsc(1))
-                drawLine(0f, 0f, size * dsc(0), 0f, paint)
+                drawLine(0f, 0f, 0f, -size * dsc(0), paint)
             }
         }
         drawArc(RectF(-size / 2, -size, size / 2, 0f), -90f, 180f * dsc(2), false, paint)
@@ -59,6 +59,7 @@ fun Canvas.drawLRASNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    paint.style = Paint.Style.STROKE
     drawLineRotArcShift(scale, w, h, paint)
 }
 
