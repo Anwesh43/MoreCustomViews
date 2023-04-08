@@ -192,4 +192,27 @@ class MirrorRotLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : MirrorRotLineView) {
+
+        private val mrl : MirroRotLine = MirroRotLine(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            mrl.draw(canvas, paint)
+            animator.animate {
+                mrl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            mrl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
