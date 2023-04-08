@@ -213,4 +213,13 @@ class LineRotArcShiftView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineRotArcShiftView {
+            val view : LineRotArcShiftView = LineRotArcShiftView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
