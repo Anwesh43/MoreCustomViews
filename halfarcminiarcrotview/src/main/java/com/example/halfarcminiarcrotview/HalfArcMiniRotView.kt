@@ -212,4 +212,12 @@ class HalfArcMiniRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : HalfArcMiniRotView {
+            val view : HalfArcMiniRotView = HalfArcMiniRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
