@@ -43,7 +43,7 @@ fun Canvas.drawHalfArcMiniRot(scale : Float, w : Float, h : Float, paint : Paint
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2 - (w / 2 + size) * dsc(0), h / 2) {
+    drawXY(w / 2 - (w / 2 + size) * dsc(3), h / 2) {
         rotate(rot * dsc(2))
         drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), -90f, 180f * dsc(0), true, paint)
         drawXY(0f, size / 4) {
