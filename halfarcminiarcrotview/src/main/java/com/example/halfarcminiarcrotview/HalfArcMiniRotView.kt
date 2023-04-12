@@ -187,4 +187,27 @@ class HalfArcMiniRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : HalfArcMiniRotView) {
+
+        private val animator : Animator = Animator(view)
+        private val hamr : HalfArcMiniRot = HalfArcMiniRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            hamr.draw(canvas, paint)
+            animator.animate {
+                hamr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            hamr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
