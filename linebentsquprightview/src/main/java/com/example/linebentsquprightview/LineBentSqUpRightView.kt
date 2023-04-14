@@ -59,6 +59,7 @@ fun Canvas.drawLBSURNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
+    drawLineBentSqUpRight(scale, w, h, paint)
 }
 
 class LineBentSqUpRightView(ctx : Context) : View(ctx) {
