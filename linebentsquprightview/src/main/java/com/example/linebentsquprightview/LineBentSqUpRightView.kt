@@ -212,4 +212,13 @@ class LineBentSqUpRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineBentSqUpRightView {
+            val view : LineBentSqUpRightView = LineBentSqUpRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
