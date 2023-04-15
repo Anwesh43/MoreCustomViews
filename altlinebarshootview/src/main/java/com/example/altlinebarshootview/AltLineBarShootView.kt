@@ -213,4 +213,13 @@ class AltLineBarShootView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : AltLineBarShootView {
+            val view : AltLineBarShootView = AltLineBarShootView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
