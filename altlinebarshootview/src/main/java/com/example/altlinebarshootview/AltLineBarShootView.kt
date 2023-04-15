@@ -188,4 +188,27 @@ class AltLineBarShootView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : AltLineBarShootView) {
+
+        private val animator : Animator = Animator(view)
+        private val albs : AltLineBarShoot = AltLineBarShoot(0)
+        private var paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            albs.draw(canvas, paint)
+            animator.animate {
+                albs.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            albs.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
