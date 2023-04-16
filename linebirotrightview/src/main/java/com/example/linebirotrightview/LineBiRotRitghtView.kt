@@ -46,7 +46,7 @@ fun Canvas.drawLineBiRotRight(scale : Float, w : Float, h : Float, paint : Paint
         rotate(rot * dsc(3))
         drawLine(0f, 0f, 0f, -size * dsc(0), paint)
         for (j in 1..2) {
-            drawXY(0f, -size * j * dsc(0)) {
+            drawXY(0f, -size * (j - 1) * dsc(0)) {
                 val iy1 : Int = j % 2
                 val iy2 : Int = j / 2
                 rotate(rot * (1 - 2 * (j - 1)) * dsc(j))
