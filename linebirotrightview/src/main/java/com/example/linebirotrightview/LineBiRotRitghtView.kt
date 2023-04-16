@@ -18,7 +18,7 @@ val colors : Array<Int> = arrayOf(
 ).map {
     Color.parseColor(it)
 }.toTypedArray()
-val parts : Int = 4
+val parts : Int = 5
 val scGap : Float = 0.04f / parts
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
@@ -29,3 +29,38 @@ val rot : Float = 90f
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
+
+fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
+    save()
+    translate(x, y)
+    cb()
+    restore()
+}
+
+fun Canvas.drawLineBiRotRight(scale : Float, w : Float, h : Float, paint : Paint) {
+    val dsc : (Int) -> Float = {
+        scale.divideScale(it, parts)
+    }
+    val size : Float = Math.min(w, h) / sizeFactor
+    drawXY(w / 2 + (w / 2) * dsc(4), h / 2) {
+        rotate(rot * dsc(3))
+        drawLine(0f, 0f, 0f, -size * dsc(0), paint)
+        for (j in 1..2) {
+            drawXY(0f, -size * j * dsc(0)) {
+                val iy1 : Int = j % 2
+                val iy2 : Int = j / 2
+                rotate(rot * (1 - 2 * (j - 1)) * dsc(j))
+                drawLine(0f, 0f, 0f, size * (2 * (j - 1)  - 1) * dsc(0), paint)
+            }
+        }
+    }
+}
+
+fun Canvas.drawLBRRNode(i : Int, scale : Float, paint : Paint) {
+    val w : Float = width.toFloat()
+    val h : Float = height.toFloat()
+    paint.color = colors[i]
+    paint.strokeCap = Paint.Cap.ROUND
+    paint.strokeWidth = Math.min(w, h) / strokeFactor
+    drawLineBiRotRight(scale, w, h, paint)
+}
