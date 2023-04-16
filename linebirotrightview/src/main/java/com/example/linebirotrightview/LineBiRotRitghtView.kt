@@ -216,4 +216,13 @@ class LineBiRotRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineBiRotRightView {
+            val view : LineBiRotRightView = LineBiRotRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
