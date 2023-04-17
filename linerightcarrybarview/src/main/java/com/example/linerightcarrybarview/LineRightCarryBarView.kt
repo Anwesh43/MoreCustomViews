@@ -45,7 +45,7 @@ fun Canvas.drawLineRightCarryBar(scale : Float, w : Float, h : Float, paint : Pa
     drawXY(w / 2 + (w / 2) * dsc(3), h / 2) {
         drawXY(0f, 0f) {
             rotate(-rot * dsc(1))
-            drawLine(0f, 0f, size, 0f, paint)
+            drawLine(0f, 0f, size * dsc(0), 0f, paint)
         }
         drawRect(RectF(0f, -size * 0.5f * dsc(2), size, 0f), paint)
     }
