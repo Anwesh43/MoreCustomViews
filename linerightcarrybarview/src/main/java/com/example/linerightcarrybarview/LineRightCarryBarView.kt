@@ -211,4 +211,12 @@ class LineRightCarryBarView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineRightCarryBarView {
+            val view : LineRightCarryBarView = LineRightCarryBarView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
