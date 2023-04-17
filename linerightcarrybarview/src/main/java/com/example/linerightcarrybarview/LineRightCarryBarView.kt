@@ -186,4 +186,27 @@ class LineRightCarryBarView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineRightCarryBarView) {
+
+        private val animator : Animator = Animator(view)
+        private val lrcb : LineRightCarryBar = LineRightCarryBar(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrcb.draw(canvas, paint)
+            animator.animate {
+                lrcb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrcb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
