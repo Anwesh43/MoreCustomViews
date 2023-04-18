@@ -225,4 +225,12 @@ class LineBiSineWaveView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineBiSineWaveView {
+            val view : LineBiSineWaveView = LineBiSineWaveView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
