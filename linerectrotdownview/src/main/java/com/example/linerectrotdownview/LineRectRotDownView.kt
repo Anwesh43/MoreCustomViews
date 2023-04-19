@@ -211,4 +211,13 @@ class LineRectRotDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineRectRotDownView {
+            val view : LineRectRotDownView = LineRectRotDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
