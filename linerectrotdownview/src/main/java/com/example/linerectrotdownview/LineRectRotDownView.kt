@@ -131,7 +131,7 @@ class LineRectRotDownView(ctx : Context) : View(ctx) {
         private var next : LRRDNode? = null
 
         init {
-
+            addNeighbor()
         }
 
         fun addNeighbor() {
