@@ -211,6 +211,13 @@ class ArcLineCapDownView(ctx : Context) : View(ctx) {
                 animator.start()
             }
         }
+    }
 
+    companion object {
+        fun create(activity : Activity) : ArcLineCapDownView {
+            val view : ArcLineCapDownView = ArcLineCapDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
     }
 }
