@@ -44,10 +44,12 @@ fun Canvas.drawArcLineCapDown(scale : Float, w : Float, h : Float, paint : Paint
     }
     drawXY(w / 2, h / 2) {
         rotate(rot * dsc(2))
+        paint.style = Paint.Style.FILL
         drawXY(0f, 0f) {
             drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 90f, 180f * dsc(0), true, paint)
         }
-        drawLine(0f, 0f, size * dsc(1), 0f, paint)
+        paint.style = Paint.Style.STROKE
+        drawLine(0f, 0f, size * 0.5f * dsc(1), 0f, paint)
         drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), -45f * dsc(2), 90f * dsc(2), false, paint)
     }
 }
