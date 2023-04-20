@@ -42,8 +42,8 @@ fun Canvas.drawArcLineCapDown(scale : Float, w : Float, h : Float, paint : Paint
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
-        rotate(rot * dsc(2))
+    drawXY(w / 2, h / 2 + (h / 2 + size / 2) * dsc(4)) {
+        rotate(rot * dsc(3))
         paint.style = Paint.Style.FILL
         drawXY(0f, 0f) {
             drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 90f, 180f * dsc(0), true, paint)
