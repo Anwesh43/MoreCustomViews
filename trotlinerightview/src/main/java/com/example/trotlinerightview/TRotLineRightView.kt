@@ -186,4 +186,27 @@ class TRotLineRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : TRotLineRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val trlr : TRotLineRight = TRotLineRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            trlr.draw(canvas, paint)
+            animator.animate {
+                trlr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            trlr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
