@@ -186,4 +186,27 @@ class RectToLineShooterView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : RectToLineShooterView) {
+
+        private val animator : Animator = Animator(view)
+        private val rlts : RectToLineShooter = RectToLineShooter(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            rlts.draw(canvas, paint)
+            animator.animate {
+                rlts.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            rlts.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
