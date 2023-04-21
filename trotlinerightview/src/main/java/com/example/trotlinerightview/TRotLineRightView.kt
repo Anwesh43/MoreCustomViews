@@ -37,6 +37,13 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawTRotLineRight(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = {
@@ -45,9 +52,9 @@ fun Canvas.drawTRotLineRight(scale : Float, w : Float, h : Float, paint : Paint)
     drawXY(w / 2 + (w / 2) * dsc(3), h / 2) {
         rotate(rot * dsc(2))
         drawXY(-(w / 2 + size / 4) * (1 - dsc(0)), -size * dsc(1)) {
-            drawLine(-size / 4, 0f, size / 4, 0f, paint)
+            drawLineWithoutDot(-size / 4, 0f, size / 4, 0f, paint)
         }
-        drawLine(0f, 0f, 0f, -size * dsc(1), paint)
+        drawLineWithoutDot(0f, 0f, 0f, -size * dsc(1), paint)
     }
 }
 
