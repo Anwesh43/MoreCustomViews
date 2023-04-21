@@ -62,14 +62,16 @@ fun Canvas.drawRTLSNode(i : Int, scale : Float, paint : Paint) {
 
 class RectToLineShooterView(ctx : Context) : View(ctx) {
 
-    override fun onDraw(canvas : Canvas) {
+    private val renderer : Renderer = Renderer(this)
 
+    override fun onDraw(canvas : Canvas) {
+        renderer.render(canvas)
     }
 
     override fun onTouchEvent(event : MotionEvent) : Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-
+                renderer.handleTap()
             }
         }
         return true
@@ -193,7 +195,7 @@ class RectToLineShooterView(ctx : Context) : View(ctx) {
         private val rlts : RectToLineShooter = RectToLineShooter(0)
         private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-        fun draw(canvas : Canvas, paint : Paint) {
+        fun render(canvas : Canvas, paint : Paint) {
             canvas.drawColor(backColor)
             rlts.draw(canvas, paint)
             animator.animate {
