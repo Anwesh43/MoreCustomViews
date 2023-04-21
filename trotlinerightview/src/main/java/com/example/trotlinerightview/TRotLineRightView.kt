@@ -211,4 +211,13 @@ class TRotLineRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity: Activity) : TRotLineRightView {
+            val view : TRotLineRightView = TRotLineRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
