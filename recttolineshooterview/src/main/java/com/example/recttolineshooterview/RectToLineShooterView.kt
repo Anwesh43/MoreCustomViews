@@ -195,7 +195,7 @@ class RectToLineShooterView(ctx : Context) : View(ctx) {
         private val rlts : RectToLineShooter = RectToLineShooter(0)
         private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
-        fun render(canvas : Canvas, paint : Paint) {
+        fun render(canvas : Canvas) {
             canvas.drawColor(backColor)
             rlts.draw(canvas, paint)
             animator.animate {
@@ -209,6 +209,15 @@ class RectToLineShooterView(ctx : Context) : View(ctx) {
             rlts.startUpdating {
                 animator.start()
             }
+        }
+    }
+
+    companion object {
+
+        fun create(activity : Activity) : RectToLineShooterView {
+            val view : RectToLineShooterView = RectToLineShooterView(activity)
+            activity.setContentView(view)
+            return view
         }
     }
 }
