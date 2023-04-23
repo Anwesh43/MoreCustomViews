@@ -224,4 +224,13 @@ class BarLineBiArcRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BarLineBiArcRotView {
+            val view : BarLineBiArcRotView = BarLineBiArcRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
