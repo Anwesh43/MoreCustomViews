@@ -37,6 +37,13 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawBarLineBiArcRot(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = {
@@ -48,7 +55,7 @@ fun Canvas.drawBarLineBiArcRot(scale : Float, w : Float, h : Float, paint : Pain
             paint.style = Paint.Style.FILL
             drawRect(RectF(-size / 2, 0f, size / 2, size / 2), paint)
         }
-        drawLine(0f, 0f, 0f, -size * 0.5f * dsc(1), paint)
+        drawLineWithoutDot(0f, 0f, 0f, -size * 0.5f * dsc(1), paint)
         paint.style = Paint.Style.STROKE
         for (j in 0..1) {
             drawXY(0f, 0f) {
