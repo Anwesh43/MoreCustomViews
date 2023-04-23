@@ -25,8 +25,7 @@ val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 90f
-val start : Float = rot * 1.5f
-
+val start : Float = rot * 3
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
@@ -46,9 +45,11 @@ fun Canvas.drawBarLineBiArcRot(scale : Float, w : Float, h : Float, paint : Pain
     drawXY(w / 2 + (w / 2 + size / 2) * dsc(4), h / 2) {
         rotate(rot * dsc(3))
         drawXY((w / 2 + size / 2) * (1 - dsc(0)), 0f) {
+            paint.style = Paint.Style.FILL
             drawRect(RectF(-size / 2, 0f, size / 2, size / 2), paint)
         }
         drawLine(0f, 0f, 0f, -size * 0.5f * dsc(1), paint)
+        paint.style = Paint.Style.STROKE
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
@@ -70,7 +71,7 @@ fun Canvas.drawBLBARNode(i : Int, scale : Float, paint : Paint) {
     paint.color = colors[i]
     paint.strokeCap = Paint.Cap.ROUND
     paint.strokeWidth = Math.min(w, h) / strokeFactor
-    paint.style = Paint.Style.STROKE
+
     drawBarLineBiArcRot(scale, w, h, paint)
 }
 
