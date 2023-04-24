@@ -123,4 +123,45 @@ class LLineShooterView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    data class LLSNode(var i : Int = 0, val state : State = State()) {
+
+        private var prev : LLSNode? = null
+        private var next : LLSNode? = null
+
+        init {
+
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = LLSNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawLLSNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir: Int, cb : () -> Unit) : LLSNode {
+            var curr : LLSNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
+        }
+    }
 }
