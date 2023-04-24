@@ -132,7 +132,7 @@ class LLineShooterView(ctx : Context) : View(ctx) {
         private var next : LLSNode? = null
 
         init {
-
+            addNeighbor()
         }
 
         fun addNeighbor() {
