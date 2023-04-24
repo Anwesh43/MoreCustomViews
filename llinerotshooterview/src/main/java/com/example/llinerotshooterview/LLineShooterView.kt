@@ -187,4 +187,27 @@ class LLineShooterView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LLineShooterView) {
+
+        private val lls : LLineShooter = LLineShooter(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lls.draw(canvas, paint)
+            animator.animate {
+                lls.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lls.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
