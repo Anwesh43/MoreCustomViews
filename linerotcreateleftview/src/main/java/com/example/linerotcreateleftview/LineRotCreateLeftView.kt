@@ -22,7 +22,7 @@ val parts : Int = 4
 val scGap : Float = 0.04f / parts
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
-val rot : Float = 45f
+val rot : Float = 30f
 val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 
@@ -37,6 +37,13 @@ fun Canvas.drawXY(x : Float, y : Float, cb : () -> Unit) {
     restore()
 }
 
+fun Canvas.drawLineWithoutDot(x1 : Float, y1 : Float, x2 : Float, y2 : Float, paint : Paint) {
+    if (Math.abs(x1 - x2) < 0.1f && Math.abs(y1 - y2) < 0.1f) {
+        return
+    }
+    drawLine(x1, y1, x2, y2, paint)
+}
+
 fun Canvas.drawLineRotCreateLeft(scale : Float, w : Float, h : Float, paint : Paint) {
     val size : Float = Math.min(w, h) / sizeFactor
     val dsc : (Int) -> Float = {
@@ -45,7 +52,7 @@ fun Canvas.drawLineRotCreateLeft(scale : Float, w : Float, h : Float, paint : Pa
     drawXY(w / 2 - (w / 2 + size) * dsc(3), h / 2) {
         drawXY(0f, 0f) {
             rotate(rot * dsc(1))
-            drawLine(0f, 0f, size * dsc(0), 0f, paint)
+            drawLineWithoutDot(0f, 0f, size * dsc(0), 0f, paint)
         }
         drawRect(RectF(-size * dsc(2), -size, 0f, 0f), paint)
     }
