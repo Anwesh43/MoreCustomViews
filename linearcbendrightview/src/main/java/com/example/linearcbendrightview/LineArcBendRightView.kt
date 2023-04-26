@@ -209,4 +209,12 @@ class LineArcBendRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineArcBendRightView {
+            val view : LineArcBendRightView = LineArcBendRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
