@@ -47,9 +47,9 @@ fun Canvas.drawLineBentRightArc(scale : Float, w : Float, h : Float, paint : Pai
             drawXY(0f, 0f) {
                 scale(1f, 1f - 2 * j)
                 drawArc(RectF(-size / 2, -size / 2, size / 2, size / 2), 0f, 90f * dsc(0), true, paint)
-                drawXY(size / 2, 0f) {
+                drawXY(0f, size / 2) {
                     rotate(rot * dsc(2))
-                    drawLine(0f, 0f, size * 0.5f * dsc(1), 0f, paint)
+                    drawLine(0f, 0f, 0f, size * 0.5f * dsc(1), paint)
                 }
             }
         }
