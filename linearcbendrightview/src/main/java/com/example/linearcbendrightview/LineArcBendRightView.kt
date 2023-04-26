@@ -186,4 +186,27 @@ class LineArcBendRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineArcBendRightView) {
+
+        private val animator : Animator = Animator(view)
+        private val labr : LineArcBendRight = LineArcBendRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            labr.draw(canvas, paint)
+            animator.animate {
+                labr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            labr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
