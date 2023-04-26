@@ -42,7 +42,7 @@ fun Canvas.drawLineBentRightArc(scale : Float, w : Float, h : Float, paint : Pai
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2 + (w / 2) * dsc(3), h / 2) {
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f, 1f - 2 * j)
