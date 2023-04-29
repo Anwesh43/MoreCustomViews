@@ -221,4 +221,12 @@ class LineSlantCreateRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineSlantCreateRotView {
+            val view : LineSlantCreateRotView = LineSlantCreateRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
