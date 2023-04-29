@@ -196,4 +196,27 @@ class LineSlantCreateRotView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineSlantCreateRotView) {
+
+        private val lscr : LineSlantCreateRot = LineSlantCreateRot(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lscr.draw(canvas, paint)
+            animator.animate {
+                lscr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lscr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
