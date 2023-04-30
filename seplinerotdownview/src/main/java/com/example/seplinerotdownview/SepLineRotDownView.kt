@@ -186,4 +186,27 @@ class SepLineRotDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : SepLineRotDownView) {
+
+        private val srld : SepLineRotDown = SepLineRotDown(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            srld.draw(canvas, paint)
+            animator.animate {
+                srld.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            srld.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
