@@ -44,7 +44,7 @@ fun Canvas.drawSepRotLineDown(scale : Float, w : Float, h : Float, paint : Paint
     drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(3)) {
         for (j in 0..1) {
             drawXY(0f, 0f) {
-                rotate((rot / j + 1) * dsc(j + 1) * (1f - 2 * j))
+                rotate((rot / (j + 1)) * dsc(j + 1) * (1f - 2 * j))
                 drawLine(0f, 0f, size * dsc(0), 0f, paint)
             }
         }
