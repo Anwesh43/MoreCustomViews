@@ -211,4 +211,13 @@ class SepLineRotDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : SepLineRotDownView {
+            val view : SepLineRotDownView = SepLineRotDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
