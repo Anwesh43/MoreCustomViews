@@ -195,4 +195,27 @@ class BarSemiCircleDownView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BarSemiCircleDownView) {
+
+        private val animator : Animator = Animator(view)
+        private val bscd : BarSemiCircleDown = BarSemiCircleDown(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            bscd.draw(canvas, paint)
+            animator.animate {
+                bscd.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bscd.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
