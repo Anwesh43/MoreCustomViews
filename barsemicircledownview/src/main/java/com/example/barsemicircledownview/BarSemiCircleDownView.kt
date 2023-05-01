@@ -48,14 +48,15 @@ fun Canvas.drawBarSemiCircleDown(scale : Float, w : Float, h : Float, paint : Pa
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 scale(1f - 2 * j, 1f)
-                drawXY(size / 2, size * 0.5f * dsc(2))
-                drawArc(
-                    RectF(-size / 2, -size / 2, size / 2, size / 2),
-                    90f,
-                    180f * dsc(1),
-                    true,
-                    paint
-                )
+                drawXY(size / 2, size * 0.5f * dsc(2)) {
+                    drawArc(
+                        RectF(-size / 2, -size / 2, size / 2, size / 2),
+                        90f,
+                        180f * dsc(1),
+                        true,
+                        paint
+                    )
+                }
             }
         }
     }
@@ -99,6 +100,34 @@ class BarSemiCircleDownView(ctx : Context) : View(ctx) {
             if (dir == 0f) {
                 dir = 1f - 2 * prevScale
                 cb()
+            }
+        }
+    }
+
+    data class Animator(var view : View, var animated : Boolean = false) {
+
+        fun animate(cb : () -> Unit) {
+            if (animated) {
+                cb()
+                try {
+                    Thread.sleep(delay)
+                    view.invalidate()
+                } catch(ex : Exception) {
+
+                }
+            }
+        }
+
+        fun start() {
+            if (!animated) {
+                animated = true
+                view.postInvalidate()
+            }
+        }
+
+        fun stop() {
+            if (animated) {
+                animated = false
             }
         }
     }
