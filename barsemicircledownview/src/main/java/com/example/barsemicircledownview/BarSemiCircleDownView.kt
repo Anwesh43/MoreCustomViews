@@ -51,7 +51,7 @@ fun Canvas.drawBarSemiCircleDown(scale : Float, w : Float, h : Float, paint : Pa
                 drawXY(size / 2, size * 0.5f * dsc(2)) {
                     drawArc(
                         RectF(-size / 2, -size / 2, size / 2, size / 2),
-                        90f,
+                        -90f,
                         180f * dsc(1),
                         true,
                         paint
