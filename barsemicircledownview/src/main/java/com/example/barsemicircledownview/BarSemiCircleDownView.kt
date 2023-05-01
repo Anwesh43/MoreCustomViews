@@ -220,4 +220,13 @@ class BarSemiCircleDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BarSemiCircleDownView {
+            val view : BarSemiCircleDownView = BarSemiCircleDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
