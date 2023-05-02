@@ -186,4 +186,27 @@ class LineBarBentView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineBarBentView) {
+
+        private val animator : Animator = Animator(view)
+        private val lbb : LineBarBent = LineBarBent(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lbb.draw(canvas, paint)
+            animator.animate {
+                lbb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lbb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
