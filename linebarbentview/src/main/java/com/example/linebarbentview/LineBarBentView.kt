@@ -24,7 +24,7 @@ val strokeFactor : Float = 90f
 val sizeFactor : Float = 4.9f
 val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
-val rot : Float = 45f
+val rot : Float = 30f
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -46,7 +46,7 @@ fun Canvas.drawLineBarBent(scale : Float, w : Float, h : Float, paint : Paint) {
         drawLine(0f, 0f, size * dsc(0), 0f, paint)
         drawXY(size, 0f) {
             rotate(rot * dsc(2))
-            drawRect(RectF(0f, 0f, size / 2, size * dsc(1)), paint)
+            drawRect(RectF(0f, 0f, size * dsc(1), size / 2,), paint)
         }
     }
 }
