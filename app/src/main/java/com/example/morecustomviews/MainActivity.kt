@@ -3,8 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.barsemicircledownview.BarSemiCircleDownView
-
+import com.example.linebarbentview.LineBarBentView
 
 
 //import com.example.linerotsqexpandview.LineRotSqExpandView
@@ -21,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //.create(this)
-        BarSemiCircleDownView.create(this)
+        LineBarBentView.create(this)
         fullScreen()
     }
 }
