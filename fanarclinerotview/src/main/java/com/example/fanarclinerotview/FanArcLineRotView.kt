@@ -218,4 +218,13 @@ class FanArcLineRotView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : FanArcLineRotView {
+            val view : FanArcLineRotView = FanArcLineRotView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
