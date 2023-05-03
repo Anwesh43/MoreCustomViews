@@ -3,7 +3,7 @@ package com.example.morecustomviews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.linebarbentview.LineBarBentView
+import com.example.fanarclinerotview.FanArcLineRotView
 
 
 //import com.example.linerotsqexpandview.LineRotSqExpandView
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         //.create(this)
-        LineBarBentView.create(this)
+        FanArcLineRotView.create(this)
         fullScreen()
     }
 }
