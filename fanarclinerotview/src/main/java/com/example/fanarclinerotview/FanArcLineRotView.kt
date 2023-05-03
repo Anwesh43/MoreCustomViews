@@ -26,6 +26,8 @@ val delay : Long = 20
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rot : Float = 45f
 val deg : Float = 180f
+val rFactor : Float = 2.3f
+
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
 fun Float.divideScale(i : Int, n : Int) : Float = Math.min(n.inverse(), maxScale(i, n)) * n
@@ -52,7 +54,7 @@ fun Canvas.drawFanArcLineRot(scale : Float, w : Float, h : Float, paint : Paint)
                     rotate(rot * dsc(1))
                     drawLine(0f, 0f, 0f, -size * dsc(0), paint)
                 }
-                drawArc(RectF(-size / 4, -size / 4, size / 4, size / 4), -90f, rot * dsc(1), true, paint)
+                drawArc(RectF(-size / rFactor, -size / rFactor, size / rFactor, size / rFactor), -90f, rot * dsc(1), true, paint)
             }
         }
     }
