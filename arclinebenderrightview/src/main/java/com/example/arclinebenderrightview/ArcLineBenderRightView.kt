@@ -188,4 +188,27 @@ class ArcLineBenderRightView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : ArcLineBenderRightView) {
+
+        private val albr : ArcLineBenderRight = ArcLineBenderRight(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            albr.draw(canvas, paint)
+            animator.animate {
+                albr.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            albr.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
