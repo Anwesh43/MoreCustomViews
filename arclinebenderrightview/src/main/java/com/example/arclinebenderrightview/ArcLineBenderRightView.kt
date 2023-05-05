@@ -46,7 +46,7 @@ fun Canvas.drawArcLineBenderRight(scale : Float, w : Float, h : Float, paint : P
     drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(4)) {
         rotate(rot * dsc(3))
         drawXY(0f, 0f) {
-            rotate(-deg * dsc(2))
+            rotate(deg * dsc(2))
             drawLine(0f, 0f, 0f, size * dsc(1), paint)
         }
         drawArc(RectF(-size / 2, -size, size / 2, 0f), -90f, 180f * dsc(0), true, paint)
