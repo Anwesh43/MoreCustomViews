@@ -213,4 +213,13 @@ class ArcLineBenderRightView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : ArcLineBenderRightView {
+            val view : ArcLineBenderRightView = ArcLineBenderRightView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
