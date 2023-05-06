@@ -43,13 +43,13 @@ fun Canvas.drawLineRotToArrow(scale : Float, w : Float, h : Float, paint : Paint
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 + (h / 2 + size) * dsc(3)) {
         rotate(rot * dsc(1))
         drawLine(0f, 0f, 0f, size * dsc(0), paint)
         for (j in 0..1) {
-            drawXY(0f, size) {
-                rotate(deg * (1f - 2 * j) * dsc(3))
-                drawLine(0f, 0f, 0f, -size * lSizeFactor * Math.floor(dsc(2).toDouble()).toFloat(), paint)
+            drawXY(0f, 0f) {
+                rotate(deg * (1f - 2 * j) * dsc(2))
+                drawLine(0f, 0f, 0f, size * lSizeFactor * Math.floor(dsc(2).toDouble()).toFloat(), paint)
             }
         }
     }
