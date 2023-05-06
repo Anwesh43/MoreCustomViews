@@ -168,7 +168,7 @@ class LineRotToArrowDownView(ctx : Context) : View(ctx) {
         }
     }
 
-    data class LineRotRotArrowDown(var i : Int) {
+    data class LineRotArrowDown(var i : Int) {
 
         private var curr : LRTADNode = LRTADNode(0)
         private var dir : Int = 1
@@ -188,6 +188,29 @@ class LineRotToArrowDownView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : LineRotToArrowDownView) {
+
+        private val lrtad : LineRotArrowDown = LineRotArrowDown(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lrtad.draw(canvas, paint)
+            animator.animate {
+                lrtad.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lrtad.startUpdating {
+                animator.start()
+            }
         }
     }
 }
