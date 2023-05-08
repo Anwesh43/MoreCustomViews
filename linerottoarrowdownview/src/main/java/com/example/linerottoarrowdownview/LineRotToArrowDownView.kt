@@ -49,7 +49,7 @@ fun Canvas.drawLineRotToArrow(scale : Float, w : Float, h : Float, paint : Paint
         for (j in 0..1) {
             drawXY(0f, 0f) {
                 rotate(deg * (1f - 2 * j) * dsc(2))
-                drawLine(0f, 0f, 0f, size * lSizeFactor * Math.floor(dsc(2).toDouble()).toFloat(), paint)
+                drawLine(0f, 0f, 0f, size * lSizeFactor * Math.floor(dsc(1).toDouble()).toFloat(), paint)
             }
         }
     }
