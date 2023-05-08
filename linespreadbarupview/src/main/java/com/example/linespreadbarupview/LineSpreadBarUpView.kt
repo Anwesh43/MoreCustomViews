@@ -213,4 +213,12 @@ class LineSpreadBarUpView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity : Activity) : LineSpreadBarUpView {
+            val view : LineSpreadBarUpView = LineSpreadBarUpView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
