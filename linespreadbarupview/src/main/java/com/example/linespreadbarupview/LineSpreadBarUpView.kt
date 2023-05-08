@@ -168,7 +168,7 @@ class LineSpreadBarUpView(ctx : Context) : View(ctx) {
         }
     }
 
-    data class LineSpreadBarUpdate(var i : Int) {
+    data class LineSpreadBarUp(var i : Int) {
 
         private var curr : LSBUNode = LSBUNode(0)
         private var dir : Int = 1
@@ -188,6 +188,29 @@ class LineSpreadBarUpView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : LineSpreadBarUpView) {
+
+        private val lsbu : LineSpreadBarUp = LineSpreadBarUp(0)
+        private val animator : Animator = Animator(view)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lsbu.draw(canvas, paint)
+            animator.animate {
+                lsbu.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lsbu.startUpdating {
+                animator.start()
+            }
         }
     }
 }
