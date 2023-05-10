@@ -42,7 +42,7 @@ fun Canvas.drawLineArcDivide(scale  : Float, w : Float, h : Float, paint : Paint
         scale.divideScale(it, parts)
     }
     val size : Float = Math.min(w, h) / sizeFactor
-    drawXY(w / 2 + (w / 2) * dsc(3), h / 2) {
+    drawXY(w / 2 + (w / 2 + size) * dsc(3), h / 2) {
         drawLine(0f, 0f, -size * dsc(0), 0f, paint)
         for (j in 0..1) {
             drawXY(0f, 0f) {
