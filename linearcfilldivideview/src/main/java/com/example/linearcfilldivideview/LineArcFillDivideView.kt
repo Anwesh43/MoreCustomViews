@@ -189,4 +189,27 @@ class LineArcDivideView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : LineArcDivideView) {
+
+        private val animator : Animator = Animator(view)
+        private val lad : LineArcDivide = LineArcDivide(0)
+        private val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            lad.draw(canvas, paint)
+            animator.animate {
+                lad.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            lad.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
