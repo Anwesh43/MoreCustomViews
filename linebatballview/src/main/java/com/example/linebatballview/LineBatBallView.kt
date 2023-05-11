@@ -42,9 +42,9 @@ fun Canvas.drawLineBatBall(scale : Float, w : Float, h : Float, paint : Paint) {
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
-    drawXY(w / 2, h / 2) {
+    drawXY(w / 2, h / 2 + (h / 2) * dsc(3)) {
         drawXY(0f, 0f) {
-            rotate(rot * dsc(1))
+            rotate(-rot * dsc(1))
             drawLine(0f, 0f, -size * dsc(0), 0f, paint)
         }
         drawXY(size / 2, size) {
