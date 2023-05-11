@@ -8,6 +8,7 @@ import android.graphics.RectF
 import android.graphics.Canvas
 import android.app.Activity
 import android.content.Context
+import android.util.Log
 
 val colors : Array<Int> = arrayOf(
     "#1A237E",
@@ -16,7 +17,7 @@ val colors : Array<Int> = arrayOf(
     "#C51162",
     "#00C853"
 ).map {
-    Color.parseColor("#BDBDBD")
+    Color.parseColor(it)
 }.toTypedArray()
 val parts : Int = 5
 val scGap : Float = 0.04f / parts
@@ -42,12 +43,13 @@ fun Canvas.drawLineBatBall(scale : Float, w : Float, h : Float, paint : Paint) {
     val dsc : (Int) -> Float = {
         scale.divideScale(it, parts)
     }
+    Log.d("sc", "$scale")
     drawXY(w / 2, h / 2 + (h / 2) * dsc(3)) {
         drawXY(0f, 0f) {
             rotate(-rot * dsc(1))
             drawLine(0f, 0f, -size * dsc(0), 0f, paint)
         }
-        drawXY(size / 2, size) {
+        drawXY(size / 2 + (w / 2) * dsc(2), size) {
             drawArc(
                 RectF(
                     -size / 2, -size / 2, size / 2, size / 2
@@ -91,6 +93,7 @@ class LineBatBallView(ctx : Context) : View(ctx) {
 
         fun update(cb : (Float) -> Unit) {
             scale += scGap * dir
+            Log.d("scale", "$scale")
             if (Math.abs(scale - prevScale) > 1) {
                 scale = prevScale + dir
                 dir = 0f
