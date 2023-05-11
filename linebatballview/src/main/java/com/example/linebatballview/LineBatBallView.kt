@@ -222,4 +222,13 @@ class LineBatBallView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineBatBallView {
+            val view : LineBatBallView = LineBatBallView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
