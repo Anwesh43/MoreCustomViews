@@ -210,4 +210,13 @@ class ParallelToRightLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : ParallelToRightLineView {
+            val view : ParallelToRightLineView = ParallelToRightLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
