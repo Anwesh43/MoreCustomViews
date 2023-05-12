@@ -216,4 +216,13 @@ class LineFlapSqDownView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : LineFlapSqDownView {
+            val view : LineFlapSqDownView = LineFlapSqDownView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
