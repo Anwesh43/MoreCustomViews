@@ -216,4 +216,12 @@ class MultiLineRotGapView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+        fun create(activity: Activity) : MultiLineRotGapView {
+            val view : MultiLineRotGapView = MultiLineRotGapView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
