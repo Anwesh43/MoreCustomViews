@@ -7,6 +7,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.app.Activity
 import android.content.Context
+import kotlin.math.acos
 
 val colors : Array<Int> = arrayOf(
     "#1A237E",
@@ -189,6 +190,28 @@ class MultiLineRotGapView(ctx : Context) : View(ctx) {
 
         fun startUpdating(cb : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view: MultiLineRotGapView) {
+        val animator : Animator = Animator(view)
+        val paint : Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        val mlrg : MultiLineRotGap = MultiLineRotGap(0)
+
+        fun render(canvas : Canvas) {
+            canvas.drawColor(backColor)
+            mlrg.draw(canvas, paint)
+            animator.animate {
+                mlrg.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            mlrg.startUpdating {
+                animator.start()
+            }
         }
     }
 }
