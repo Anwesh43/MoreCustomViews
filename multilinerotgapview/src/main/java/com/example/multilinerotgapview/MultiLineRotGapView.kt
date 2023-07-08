@@ -56,7 +56,7 @@ fun Canvas.drawMultiLineRotGap(scale : Float, w : Float, h : Float, paint : Pain
     }
 }
 
-fun Canvas.draMLRGNode(i : Int, scale : Float, paint : Paint) {
+fun Canvas.drawMLRGNode(i : Int, scale : Float, paint : Paint) {
     val w : Float = width.toFloat()
     val h : Float = height.toFloat()
     paint.color = colors[i]
@@ -125,6 +125,47 @@ class MultiLineRotGapView(ctx : Context) : View(ctx) {
                 dir = 1f - 2 * prevScale
                 cb()
             }
+        }
+    }
+
+    data class MLRGNode(var i : Int = 0, val state : State = State()) {
+
+        private var next : MLRGNode? = null
+        private var prev : MLRGNode? = null
+
+        init {
+            addNeighbor()
+        }
+
+        fun addNeighbor() {
+            if (i < colors.size - 1) {
+                next = MLRGNode(i + 1)
+                next?.prev = this
+            }
+        }
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            canvas.drawMLRGNode(i, state.scale, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            state.update(cb)
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            state.startUpdating(cb)
+        }
+
+        fun getNext(dir : Int, cb : () -> Unit) : MLRGNode {
+            var curr : MLRGNode? = prev
+            if (dir == 1) {
+                curr = next
+            }
+            if (curr != null) {
+                return curr
+            }
+            cb()
+            return this
         }
     }
 }
